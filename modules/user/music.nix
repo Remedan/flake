@@ -35,5 +35,8 @@ in
       enable = true;
       package = pkgs.ncmpcpp.override { visualizerSupport = true; };
     };
+    home.packages = with pkgs; [
+      plattenalbum
+    ];
   };
 }
