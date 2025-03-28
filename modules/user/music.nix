@@ -7,7 +7,7 @@ in
   options.user-modules.music = {
     enable = mkEnableOption "Music";
     libraryLocation = mkOption {
-      type = with types; nullOr path;
+      type = with types; nullOr str;
       default = null;
     };
   };
