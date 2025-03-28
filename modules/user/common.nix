@@ -25,7 +25,7 @@ with lib;
         shell.enable = mkDefault true;
         kitty.enable = mkDefault true;
         emacs.enable = mkDefault true;
-        mpd.enable = mkDefault true;
+        music.enable = mkDefault true;
         fonts.enable = mkDefault true;
         gtk.enable = mkDefault true;
         ssh.enable = mkDefault true;

@@ -1,13 +1,13 @@
 { config, lib, ... }:
 with lib;
 let
-  cfg = config.user-modules.mpd;
+  cfg = config.user-modules.music;
 in
 {
-  options.user-modules.mpd = {
-    enable = mkEnableOption "MPD";
-    musicDirectory = mkOption {
-      type = with types; nullOr str;
+  options.user-modules.music = {
+    enable = mkEnableOption "Music";
+    libraryLocation = mkOption {
+      type = with types; nullOr path;
       default = null;
     };
   };
@@ -27,9 +27,10 @@ in
             format  "44100:16:2"
         }
       '';
-    } // optionalAttrs (cfg.musicDirectory != null) {
-      musicDirectory = cfg.musicDirectory;
+    } // optionalAttrs (cfg.libraryLocation != null) {
+      musicDirectory = cfg.libraryLocation;
     };
+    services.mpd-mpris.enable = true;
     programs.ncmpcpp.enable = true;
   };
 }

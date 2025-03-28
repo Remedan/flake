@@ -5,6 +5,6 @@
     homeDirectory = "/home/remedan";
   };
   user-modules = {
-    mpd.musicDirectory = "~/Network/Media/Audio/Music";
+    music.libraryLocation = "~/Network/Media/Audio/Music";
   };
 }

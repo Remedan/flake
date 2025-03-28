@@ -8,7 +8,7 @@
   ./gpg.nix
   ./gtk.nix
   ./kitty.nix
-  ./mpd.nix
+  ./music.nix
   ./nodejs.nix
   ./packages.nix
   ./ranger.nix
