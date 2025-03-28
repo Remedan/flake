@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 with lib;
 let
   cfg = config.user-modules.music;
@@ -31,6 +31,9 @@ in
       musicDirectory = cfg.libraryLocation;
     };
     services.mpd-mpris.enable = true;
-    programs.ncmpcpp.enable = true;
+    programs.ncmpcpp = {
+      enable = true;
+      package = pkgs.ncmpcpp.override { visualizerSupport = true; };
+    };
   };
 }
