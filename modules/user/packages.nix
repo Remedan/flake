@@ -55,6 +55,7 @@ in
       # Extra
       btop
       btrfs-assistant
+      dos2unix
       fd
       ghostscript
       gnome-solanum
@@ -158,9 +159,12 @@ in
       vesktop # Discord
 
       # Graphics
-      blender
       gimp
       inkscape
+
+      # 3D
+      blender
+      freecad
       openscad
       prusa-slicer
 
