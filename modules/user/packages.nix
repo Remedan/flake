@@ -90,6 +90,7 @@ in
       ffmpeg
       mpv
       obs-studio
+      vlc
 
       # Development
       bfg-repo-cleaner
