@@ -27,6 +27,7 @@
         inherit pkgs;
         modules = [
           (import ./hosts/weatherwax/user.nix)
+          (import ./secrets/common.nix)
           (import ./secrets/weatherwax-user.nix)
           nix-flatpak.homeManagerModules.nix-flatpak
         ] ++ import ./modules/user;
@@ -43,6 +44,7 @@
         inherit pkgs;
         modules = [
           (import ./hosts/rincewind/user.nix)
+          (import ./secrets/common.nix)
           nix-flatpak.homeManagerModules.nix-flatpak
         ] ++ import ./modules/user;
       };
@@ -58,6 +60,7 @@
         inherit pkgs;
         modules = [
           (import ./hosts/atuin/user.nix)
+          (import ./secrets/common.nix)
           (import ./secrets/atuin-user.nix)
           nix-flatpak.homeManagerModules.nix-flatpak
         ] ++ import ./modules/user;

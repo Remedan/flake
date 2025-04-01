@@ -31,11 +31,19 @@ in
       musicDirectory = cfg.libraryLocation;
     };
     services.mpd-mpris.enable = true;
+    services.mpdscribble = {
+      enable = true;
+      endpoints."last.fm" = {
+        username = "Remedan";
+        passwordFile = config.home.homeDirectory + "/.config/mpd/lastfm";
+      };
+    };
     programs.ncmpcpp = {
       enable = true;
       package = pkgs.ncmpcpp.override { visualizerSupport = true; };
     };
     home.packages = with pkgs; [
+      mpc
       plattenalbum
       picard
     ];
