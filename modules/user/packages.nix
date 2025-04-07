@@ -110,12 +110,6 @@ in
       tig
       vscode
 
-      # Python
-      poetry
-      python3
-      ruff
-      uv
-
       # Rust
       rustup
 

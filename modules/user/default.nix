@@ -1,5 +1,7 @@
 [
   ./common.nix
+  ./dev/nodejs.nix
+  ./dev/python.nix
   ./emacs
   ./flatpak.nix
   ./fonts.nix
@@ -9,7 +11,6 @@
   ./gtk.nix
   ./kitty.nix
   ./music.nix
-  ./nodejs.nix
   ./packages.nix
   ./ranger.nix
   ./shell.nix

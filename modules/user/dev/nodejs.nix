@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.user-modules.nodejs;
+  cfg = config.user-modules.dev.nodejs;
 in
 {
-  options.user-modules.nodejs = {
+  options.user-modules.dev.nodejs = {
     enable = mkEnableOption "Node.js";
   };
   config = mkIf cfg.enable {
