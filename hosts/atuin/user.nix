@@ -1,11 +1,11 @@
-{ ... }:
+{ pkgs, ... }:
 {
   home = {
     username = "vojta";
     homeDirectory = "/home/vojta";
   };
   user-modules = {
-    python = {
+    dev.python = {
       enable = true;
       extraVersions = with pkgs; [
         python310
@@ -15,6 +15,6 @@
         python314
       ];
     };
-    nodejs.enable = true;
+    dev.nodejs.enable = true;
   };
 }
