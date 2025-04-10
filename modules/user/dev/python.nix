@@ -8,7 +8,7 @@ in
     enable = mkEnableOption "Python";
     extraVersions = mkOption {
       type = with types; listOf package;
-      default = [];
+      default = [ ];
     };
   };
   config = mkIf cfg.enable {
