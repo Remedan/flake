@@ -154,7 +154,6 @@ in
       vesktop # Discord
 
       # Graphics
-      gimp
       inkscape
 
       # 3D

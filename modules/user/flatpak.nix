@@ -16,7 +16,10 @@ in
           location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
         }
       ];
-      packages = [ ];
+      packages = [
+        "com.github.PintaProject.Pinta" # TODO switch to Nixpkgs when Pinta is updated to 3
+        "org.gimp.GIMP" # TODO switch to Nixpkgs when GIMP is updated to 3
+      ];
     };
   };
 }
