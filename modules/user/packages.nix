@@ -154,7 +154,9 @@ in
       vesktop # Discord
 
       # Graphics
+      gimp3
       inkscape
+      pinta
 
       # 3D
       blender
