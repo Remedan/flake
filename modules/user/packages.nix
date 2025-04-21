@@ -101,7 +101,7 @@ in
       gcc
       gdb
       git-crypt
-      godot_4
+      # godot Build failure
       jetbrains-toolbox
       jq
       minikube
