@@ -133,6 +133,7 @@ in
       filezilla
       firefox
       thunderbird
+      warp
 
       # Office
       libreoffice
