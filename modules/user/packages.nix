@@ -53,7 +53,6 @@ in
       wireguard-tools
 
       # Extra
-      btop
       btrfs-assistant
       dos2unix
       fd
@@ -94,7 +93,6 @@ in
 
       # Development
       bfg-repo-cleaner
-      bruno
       cmake
       direnv
       dive
