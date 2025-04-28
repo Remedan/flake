@@ -28,7 +28,7 @@ in
     programs.zsh = {
       enable = true;
       autosuggestion.enable = true;
-      initExtra = ''
+      initContent = ''
         compdef kubecolor=kubectl
       '';
       oh-my-zsh = {
