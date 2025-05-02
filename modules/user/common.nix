@@ -3,16 +3,7 @@ with lib;
 {
   config = mkMerge [
     {
-      home = {
-        stateVersion = "24.11";
-        keyboard = {
-          layout = "us,cz(qwerty)";
-          options = [
-            "grp:win_space_toggle"
-            "caps:escape_shifted_capslock"
-          ];
-        };
-      };
+      home.stateVersion = "24.11";
       programs.home-manager.enable = true;
       xdg.userDirs.enable = true;
       nix = {
