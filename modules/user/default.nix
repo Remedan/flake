@@ -11,6 +11,7 @@
   ./gtk.nix
   ./kitty.nix
   ./music.nix
+  ./nixgl.nix
   ./packages.nix
   ./ranger.nix
   ./shell.nix

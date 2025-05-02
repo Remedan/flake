@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 with lib;
 let
   cfg = config.user-modules.kitty;
@@ -15,6 +15,7 @@ in
   config = mkIf cfg.enable {
     programs.kitty = {
       enable = true;
+      package = config.lib.nixGL.wrap pkgs.kitty;
       font = {
         name = "Iosevka Term";
         size = 11;

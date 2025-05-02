@@ -7,12 +7,16 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
+    nixgl.url = "github:nix-community/nixGL";
   };
 
-  outputs = { nixpkgs, home-manager, nixos-hardware, nix-flatpak, ... }:
+  outputs = { nixpkgs, home-manager, nixos-hardware, nix-flatpak, nixgl, ... }:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [ nixgl.overlay ];
+      };
     in
     {
       formatter.${system} = pkgs.nixpkgs-fmt;
@@ -49,13 +53,7 @@
         ] ++ import ./modules/user;
       };
 
-      nixosConfigurations.atuin = nixpkgs.lib.nixosSystem {
-        inherit system;
-        modules = [
-          ./hosts/atuin/system.nix
-          nixos-hardware.nixosModules.dell-latitude-5520
-        ] ++ import ./modules/system;
-      };
+      # Atuin is a Fedora-based system
       homeConfigurations."vojta@atuin" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
