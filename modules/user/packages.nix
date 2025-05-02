@@ -108,13 +108,6 @@ in
       tig
       vscode
 
-      # Rust
-      rustup
-
-      # Common Lisp
-      sbcl
-      sbclPackages.agnostic-lizard
-
       # Infrastructure
       k9s
       krew

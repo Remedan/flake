@@ -1,7 +1,6 @@
 [
   ./common.nix
-  ./dev/nodejs.nix
-  ./dev/python.nix
+  ./dev.nix
   ./emacs
   ./flatpak.nix
   ./fonts.nix
