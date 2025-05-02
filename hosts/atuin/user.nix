@@ -28,6 +28,7 @@
   user-modules = {
     nixgl.enable = true;
     git.sshProgram = "/opt/1Password/op-ssh-sign";
+    music.enableMpris = false;
 
     # Disable modules that I haven't tested on Fedora
     packages.enable = false;

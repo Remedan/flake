@@ -10,6 +10,10 @@ in
       type = with types; nullOr str;
       default = null;
     };
+    enableMpris = mkOption {
+      type = types.bool;
+      default = true;
+    };
   };
   config = mkIf cfg.enable {
     services.mpd = {
@@ -30,7 +34,7 @@ in
     } // optionalAttrs (cfg.libraryLocation != null) {
       musicDirectory = cfg.libraryLocation;
     };
-    services.mpd-mpris.enable = true;
+    services.mpd-mpris.enable = cfg.enableMpris;
     services.mpdscribble = {
       enable = true;
       endpoints."last.fm" = {
