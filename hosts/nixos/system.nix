@@ -53,6 +53,5 @@
       hostName = "nixos";
       cpuType = "amd";
     };
-    nix-ld.enable = true;
   };
 }

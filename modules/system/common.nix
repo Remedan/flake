@@ -33,15 +33,11 @@ in
     # Firmware upgrades
     services.fwupd.enable = true;
 
-    # Enable periodic SSD trim
-    services.fstrim.enable = true;
-
     # Regularly scrub btrfs filesystems
     services.btrfs.autoScrub.enable = true;
 
     # Networking
     networking = {
-      useDHCP = lib.mkDefault true;
       hostName = cfg.hostName;
       networkmanager.enable = true;
     };
@@ -81,17 +77,10 @@ in
         };
       };
 
-    # Enable the X11 windowing system.
+    # Enable Gnome
     services.xserver = {
-      enable = true;
       displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
-
-      # Configure keymap in X11
-      xkb = {
-        layout = "us";
-        variant = "";
-      };
     };
 
     # Add the option to open a directory in Kitty to Nautilus
@@ -115,7 +104,6 @@ in
     services.avahi = {
       enable = true;
       nssmdns4 = true;
-      openFirewall = true;
     };
 
     # Scanning
@@ -132,7 +120,6 @@ in
 
     # Enable bluetooth
     hardware.bluetooth.enable = true;
-    hardware.bluetooth.powerOnBoot = true;
 
     # SSH Server
     services.openssh = {
@@ -186,7 +173,7 @@ in
     environment.systemPackages = with pkgs; [
       cifs-utils
       git
-      vim
+      neovim
       wget
     ];
 
@@ -211,7 +198,6 @@ in
       "steam-original"
       "steam-run"
       "steam-unwrapped"
-      "teamviewer"
       "uhk-agent"
       "uhk-udev-rules"
     ];
@@ -271,6 +257,7 @@ in
     programs.adb.enable = true;
 
     # Custom Modules
+    system-modules.nix-ld.enable = mkDefault true;
     system-modules.snapper.enable = mkDefault true;
   };
 }
