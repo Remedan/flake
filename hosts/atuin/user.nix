@@ -22,7 +22,6 @@
     packages.enable = false;
     music.enable = false;
     fonts.enable = false;
-    gtk.enable = false;
     gnome.enable = false;
     virt-manager.enable = false;
     gpg.enable = false;
