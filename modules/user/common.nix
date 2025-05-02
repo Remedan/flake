@@ -23,7 +23,6 @@ with lib;
         git.enable = mkDefault true;
         gnome.enable = mkDefault true;
         virt-manager.enable = mkDefault true;
-        gpg.enable = mkDefault true;
         flatpak.enable = mkDefault true;
         ranger.enable = mkDefault true;
       };

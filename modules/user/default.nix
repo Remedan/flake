@@ -6,7 +6,6 @@
   ./fonts.nix
   ./git.nix
   ./gnome.nix
-  ./gpg.nix
   ./gtk.nix
   ./kitty.nix
   ./music.nix

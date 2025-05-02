@@ -34,7 +34,6 @@
     packages.enable = false;
     fonts.enable = false;
     gnome.enable = false;
-    gpg.enable = false;
     flatpak.enable = false;
   };
 }
