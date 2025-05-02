@@ -55,6 +55,7 @@ in
       # Extra
       btrfs-assistant
       dos2unix
+      fastfetch
       fd
       ghostscript
       gnome-solanum
@@ -64,7 +65,6 @@ in
       lm_sensors
       magic-wormhole
       ncdu
-      neofetch
       nix-tree
       ntfs3g
       progress
