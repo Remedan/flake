@@ -7,6 +7,7 @@
   home.packages = with pkgs; [
     awscli2
     bat
+    bfg-repo-cleaner
     direnv
     fastfetch
     fd
@@ -15,11 +16,17 @@
     htop
     just
     k9s
+    krew
+    kubectl
     neovim
-    nix-search
+    nix-direnv
+    nix-search-cli
     nix-tree
+    postgresql
+    pwgen
     ripgrep
     tig
+    ventoy
     wireguard-tools
   ];
   programs.zsh.initContent = ''
