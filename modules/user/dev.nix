@@ -15,6 +15,7 @@ in
     rust.enable = mkEnableOption "Rust";
     nodejs.enable = mkEnableOption "Node.js";
     commonLisp.enable = mkEnableOption "Common Lisp";
+    godot.enable = mkEnableOption "Common Lisp";
   };
   config = mkMerge [
     (mkIf cfg.python.enable {
@@ -39,6 +40,11 @@ in
       home.packages = with pkgs; [
         sbcl
         sbclPackages.agnostic-lizard
+      ];
+    })
+    (mkIf cfg.godot.enable {
+      home.packages = with pkgs; [
+        godot
       ];
     })
   ];

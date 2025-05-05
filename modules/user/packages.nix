@@ -99,7 +99,6 @@ in
       gcc
       gdb
       git-crypt
-      # godot Build failure
       jetbrains-toolbox
       jq
       minikube
