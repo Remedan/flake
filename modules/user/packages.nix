@@ -39,7 +39,6 @@ in
       ripgrep
       rlwrap
       rsync
-      steam-run
       tmux
       unzip
 
@@ -101,11 +100,9 @@ in
       git-crypt
       jetbrains-toolbox
       jq
-      minikube
       nix-direnv
       postgresql
       tig
-      vscode
 
       # Infrastructure
       k9s
@@ -137,10 +134,10 @@ in
       distrobox
       quickemu
       quickgui
+      steam-run
 
       # Messaging
       element-desktop
-      slack
       telegram-desktop
       vesktop # Discord
 
