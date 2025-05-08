@@ -32,6 +32,7 @@
   programs.zsh.initContent = ''
     source /home/vojta/.config/op/plugins.sh
   '';
+  home.sessionPath = [ "$HOME/.cargo/bin" ];
   user-modules = {
     nixgl.enable = true;
     git.sshProgram = "/opt/1Password/op-ssh-sign";

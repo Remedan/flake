@@ -27,9 +27,12 @@ in
       ] ++ map lib.lowPrio cfg.python.extraPackages;
     })
     (mkIf cfg.rust.enable {
-      home.packages = with pkgs; [
-        rustup
-      ];
+      home = {
+        sessionPath = [ "$HOME/.cargo/bin" ];
+        packages = with pkgs; [
+          rustup
+        ];
+      };
     })
     (mkIf cfg.nodejs.enable {
       home.packages = with pkgs; [
