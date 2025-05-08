@@ -39,16 +39,12 @@ in
     ];
     dconf.settings = {
       "org/gnome/desktop/input-sources" = with lib.gvariant; {
-        mru-sources = [ (mkTuple [ "xkb" "us" ]) (mkTuple [ "ibus" "anthy" ]) (mkTuple [ "xkb" "cz+qwerty" ]) ];
         per-window = true;
         sources = [ (mkTuple [ "xkb" "us" ]) (mkTuple [ "xkb" "cz+qwerty" ]) (mkTuple [ "ibus" "anthy" ]) ];
         xkb-options = [ "caps:escape_shifted_capslock" ];
       };
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
-      };
-      "org/gnome/desktop/peripherals/touchpad" = {
-        tap-to-click = true;
       };
       "org/gnome/desktop/wm/preferences" = {
         focus-mode = "mouse";
@@ -85,7 +81,7 @@ in
       "org/gnome/mutter" = {
         dynamic-workspaces = true;
         edge-tiling = true;
-        experimental-features = [ "scale-monitor-framebuffer" ];
+        experimental-features = [ "scale-monitor-framebuffer" "xwayland-native-scaling" ];
       };
       "org/gnome/shell/extensions/dash-to-dock" = {
         apply-custom-theme = true;
