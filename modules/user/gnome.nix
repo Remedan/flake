@@ -28,7 +28,6 @@ in
         { package = caffeine; }
         { package = dash-to-dock; }
         { package = gsconnect; }
-        { package = quick-settings-tweaker; }
         { package = search-light; }
         { package = smile-complementary-extension; }
         { package = solaar-extension; }
@@ -104,14 +103,6 @@ in
         # Don't divide cpu usage by cpu count
         solaris-mode = false;
         show-whose-processes = "all";
-      };
-      "org/gnome/shell/extensions/quick-settings-tweaks" = {
-        datemenu-hide-left-box = false;
-        datemenu-hide-media-control = false;
-        datemenu-hide-notifications = false;
-        dnd-quick-toggle-enabled = false;
-        media-enabled = false;
-        notifications-enabled = false;
       };
     };
   };
