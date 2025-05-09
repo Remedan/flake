@@ -37,11 +37,10 @@
     nixgl.enable = true;
     git.sshProgram = "/opt/1Password/op-ssh-sign";
     music.enableMpris = false;
+    gnome.extensions.enable = false;
 
-    # Disable modules that I haven't tested on Fedora
     packages.enable = false;
     fonts.enable = false;
-    gnome.enable = false;
     flatpak.enable = false;
   };
 }

@@ -6,9 +6,13 @@ in
 {
   options.user-modules.gnome = {
     enable = mkEnableOption "Gnome";
+    extensions.enable = mkOption {
+      type = types.bool;
+      default = true;
+    };
   };
   config = mkIf cfg.enable {
-    programs.gnome-shell = {
+    programs.gnome-shell = mkIf cfg.extensions.enable {
       enable = true;
       extensions = with pkgs.gnomeExtensions; [
         {
