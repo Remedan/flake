@@ -241,7 +241,11 @@ in
     security.polkit.enable = true;
 
     # Gaming
-    programs.steam.enable = true;
+    programs.steam = {
+      enable = true;
+      # This fixes Steam having a weird cursor
+      extraPackages = [ pkgs.adwaita-icon-theme ];
+    };
     programs.gamemode.enable = true;
 
     # Local LLMs
