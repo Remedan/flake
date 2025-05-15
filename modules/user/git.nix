@@ -35,6 +35,8 @@ in
 
       lfs.enable = true;
 
+      # A lot of things taken from here
+      # https://blog.gitbutler.com/how-git-core-devs-configure-git
       extraConfig = {
         help.autocorrect = "prompt";
         init.defaultBranch = "main";
