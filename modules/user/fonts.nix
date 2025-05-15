@@ -10,27 +10,30 @@ in
   config = mkIf cfg.enable {
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
+      # General
       dejavu_fonts
       eb-garamond
-      fira
-      fira-code
       inter
-      iosevka-bin
-      jetbrains-mono
       merriweather
       merriweather-sans
       montserrat
-      nerd-fonts.symbols-only
       noto-fonts
       noto-fonts-emoji
       open-sans
       raleway
       roboto
-      source-code-pro
       source-han-sans
       source-han-serif
       source-sans
       source-serif
+
+      # Programming/Terminal
+      fira
+      fira-code
+      iosevka-bin
+      jetbrains-mono
+      nerd-fonts.symbols-only
+      source-code-pro
     ];
   };
 }
