@@ -30,7 +30,6 @@ in
       # Core
       bat
       file
-      fzf
       gnupg
       htop
       killall
@@ -56,6 +55,7 @@ in
       dos2unix
       fastfetch
       fd
+      fzf
       ghostscript
       gnome-solanum
       gparted

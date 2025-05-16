@@ -5,29 +5,38 @@
     homeDirectory = "/home/vojta";
   };
   home.packages = with pkgs; [
-    awscli2
+    # Core
     bat
-    bfg-repo-cleaner
-    direnv
+    htop
+    neovim
+    nix-search-cli
+    ripgrep
+
+    # Networking
+    wireguard-tools
+
+    # Extra
     fastfetch
     fd
     fzf
+    nix-tree
+    pwgen
+    ventoy
+
+    # Development
+    bfg-repo-cleaner
+    direnv
     git-crypt
-    htop
     just
+    nix-direnv
+    postgresql
+    tig
+
+    # Infrastructure
+    awscli2
     k9s
     krew
     kubectl
-    neovim
-    nix-direnv
-    nix-search-cli
-    nix-tree
-    postgresql
-    pwgen
-    ripgrep
-    tig
-    ventoy
-    wireguard-tools
   ];
   programs.zsh.initContent = ''
     source /home/vojta/.config/op/plugins.sh
