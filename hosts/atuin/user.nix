@@ -21,7 +21,6 @@
     fzf
     nix-tree
     pwgen
-    ventoy
 
     # Development
     bfg-repo-cleaner
