@@ -50,7 +50,7 @@ in
         color-scheme = "prefer-dark";
       };
       "org/gnome/desktop/wm/preferences" = {
-        focus-mode = "mouse";
+        focus-mode = "sloppy";
         resize-with-right-button = true;
       };
       "org/gnome/settings-daemon/plugins/media-keys" = {
