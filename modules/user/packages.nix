@@ -73,7 +73,6 @@ in
       trezorctl
       uhk-agent
       usbutils
-      ventoy
       wl-clipboard
       yubikey-manager
 
