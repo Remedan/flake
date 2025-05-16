@@ -40,7 +40,6 @@
     gnome.extensions.enable = false;
 
     packages.enable = false;
-    fonts.enable = false;
     flatpak.enable = false;
   };
 }
