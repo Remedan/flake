@@ -100,7 +100,7 @@ in
       jetbrains-toolbox
       jq
       nix-direnv
-      postgresql
+      pgcli
       tig
 
       # Infrastructure

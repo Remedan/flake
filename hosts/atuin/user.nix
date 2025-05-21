@@ -28,7 +28,7 @@
     git-crypt
     just
     nix-direnv
-    postgresql
+    pgcli
     tig
 
     # Infrastructure
