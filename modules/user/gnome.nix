@@ -105,5 +105,14 @@ in
         show-whose-processes = "all";
       };
     };
+    # Generate a desktop entry that starts Solaar with the window hiden for the purpose of autostarting
+    xdg.desktopEntries = {
+      solaar-hidden = {
+        name = "Solaar Hidden";
+        comment = "Logitech Unifying Receiver peripherals manager";
+        exec = "solaar --widnow hide";
+        icon = "solaar";
+      };
+    };
   };
 }
