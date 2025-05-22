@@ -27,6 +27,7 @@
     direnv
     git-crypt
     just
+    minikube
     nix-direnv
     pgcli
     tig

@@ -99,6 +99,7 @@ in
       git-crypt
       jetbrains-toolbox
       jq
+      minikube
       nix-direnv
       pgcli
       tig
