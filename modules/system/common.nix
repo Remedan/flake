@@ -78,10 +78,8 @@ in
       };
 
     # Enable Gnome
-    services.xserver = {
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
-    };
+    services.displayManager.gdm.enable = true;
+    services.desktopManager.gnome.enable = true;
 
     # Add the option to open a directory in Kitty to Nautilus
     programs.nautilus-open-any-terminal = {
