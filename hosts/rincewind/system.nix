@@ -13,19 +13,19 @@
     "/" = {
       device = "/dev/disk/by-uuid/0c96f3db-9493-414d-9fa2-320ed4e961ae";
       fsType = "btrfs";
-      options = [ "subvol=@" ];
+      options = [ "subvol=@" "compress=zstd:1" ];
     };
 
     "/home" = {
       device = "/dev/disk/by-uuid/0c96f3db-9493-414d-9fa2-320ed4e961ae";
       fsType = "btrfs";
-      options = [ "subvol=@home" ];
+      options = [ "subvol=@home" "compress=zstd:1" ];
     };
 
     "/nix" = {
       device = "/dev/disk/by-uuid/0c96f3db-9493-414d-9fa2-320ed4e961ae";
       fsType = "btrfs";
-      options = [ "subvol=@nix" "noatime" ];
+      options = [ "subvol=@nix" "noatime" "compress=zstd:1" ];
     };
 
     "/boot/efi" = {

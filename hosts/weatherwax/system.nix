@@ -24,19 +24,19 @@
       "/" = {
         device = "/dev/disk/by-uuid/6fc090b5-66e2-4870-91f0-145d46b65f84";
         fsType = "btrfs";
-        options = [ "subvol=@" ];
+        options = [ "subvol=@" "compress=zstd:1" ];
       };
 
       "/nix" = {
         device = "/dev/disk/by-uuid/6fc090b5-66e2-4870-91f0-145d46b65f84";
         fsType = "btrfs";
-        options = [ "subvol=@nix" "noatime" ];
+        options = [ "subvol=@nix" "noatime" "compress=zstd:1" ];
       };
 
       "/home" = {
         device = "/dev/disk/by-uuid/6fc090b5-66e2-4870-91f0-145d46b65f84";
         fsType = "btrfs";
-        options = [ "subvol=@home" ];
+        options = [ "subvol=@home" "compress=zstd:1" ];
       };
 
       "/boot" = {
