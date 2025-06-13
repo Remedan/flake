@@ -47,7 +47,10 @@ in
         xkb-options = [ "caps:escape_shifted_capslock" ];
       };
       "org/gnome/desktop/interface" = {
+        clock-format = "24h";
         color-scheme = "prefer-dark";
+        font-antialiasing = "rgba";
+        font-hinting = "full";
       };
       "org/gnome/desktop/wm/preferences" = {
         focus-mode = "sloppy";
