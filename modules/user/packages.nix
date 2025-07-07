@@ -85,9 +85,11 @@ in
 
       # Video
       ffmpeg
+      mediainfo
       mpv
       obs-studio
       vlc
+      yt-dlp
 
       # Development
       bfg-repo-cleaner
