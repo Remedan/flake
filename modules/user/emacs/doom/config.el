@@ -78,7 +78,7 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-# Show trailing whitespace unless in vterm
+;; Show trailing whitespace unless in vterm
 (setq-default show-trailing-whitespace t)
 (add-hook
  'vterm-mode-hook
