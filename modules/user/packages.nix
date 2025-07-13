@@ -132,7 +132,7 @@ in
 
       # Compatibility
       appimage-run
-      bottles
+      (bottles.override { removeWarningPopup = true; })
       distrobox
       quickemu
       quickgui
