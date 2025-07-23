@@ -31,6 +31,7 @@
     nix-direnv
     pgcli
     tig
+    websocat
 
     # Infrastructure
     awscli2

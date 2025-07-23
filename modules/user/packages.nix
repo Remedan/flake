@@ -105,6 +105,7 @@ in
       nix-direnv
       pgcli
       tig
+      websocat
 
       # Infrastructure
       k9s
