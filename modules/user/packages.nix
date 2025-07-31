@@ -122,7 +122,7 @@ in
       deluge
       filezilla
       firefox
-      thunderbird
+      thunderbird-latest
       warp
 
       # Office

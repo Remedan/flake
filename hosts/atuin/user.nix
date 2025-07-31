@@ -38,6 +38,9 @@
     k9s
     krew
     kubectl
+
+    # Internet
+    thunderbird-latest # Fedora only ships the ESR channel
   ];
   programs.zsh.initContent = ''
     source /home/vojta/.config/op/plugins.sh
