@@ -163,6 +163,7 @@ in
 
       # Games
       aisleriot
+      bolt-launcher
       gargoyle
       gnome-mines
       gzdoom
