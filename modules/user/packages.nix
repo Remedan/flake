@@ -122,6 +122,7 @@ in
       deluge
       filezilla
       firefox
+      samba
       thunderbird-latest
       warp
 
