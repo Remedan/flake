@@ -108,6 +108,7 @@ in
       websocat
 
       # Infrastructure
+      ansible
       k9s
       krew
       kubectl
