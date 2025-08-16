@@ -24,6 +24,7 @@ in
           id = "system-monitor@gnome-shell-extensions.gcampax.github.com";
         }
         { package = appindicator; }
+        { package = bing-wallpaper-changer; }
         { package = bluetooth-battery-meter; }
         { package = caffeine; }
         { package = dash-to-dock; }
