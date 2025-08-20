@@ -17,13 +17,18 @@ in
       "doom/config.el".source = ./doom/config.el;
       "doom/packages.el".source = ./doom/packages.el;
     };
-    home.packages = [
-      (pkgs.writeShellScriptBin "doom-sync" ''
-        home-manager switch
-        ~/.config/emacs/bin/doom sync
-        systemctl --user restart emacs
-      '')
-    ];
+    home = {
+      sessionPath = [
+        "$HOME/.config/emacs/bin"
+      ];
+      packages = [
+        (pkgs.writeShellScriptBin "doom-sync" ''
+          home-manager switch
+          $HOME/.config/emacs/bin/doom sync
+          systemctl --user restart emacs
+        '')
+      ];
+    };
     programs.emacs = {
       enable = true;
       package = pkgs.emacs-pgtk; # The pgtk version has native Wayland support
