@@ -32,7 +32,7 @@
         modules = [
           (import ./hosts/weatherwax/user.nix)
           (import ./secrets/common.nix)
-          (import ./secrets/weatherwax-user.nix)
+          (import ./secrets/weatherwax.nix)
           nix-flatpak.homeManagerModules.nix-flatpak
         ] ++ import ./modules/user;
       };
@@ -59,7 +59,7 @@
         modules = [
           (import ./hosts/atuin/user.nix)
           (import ./secrets/common.nix)
-          (import ./secrets/atuin-user.nix)
+          (import ./secrets/atuin.nix)
           nix-flatpak.homeManagerModules.nix-flatpak
         ] ++ import ./modules/user;
       };
