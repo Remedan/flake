@@ -10,6 +10,8 @@ in
   config = mkIf cfg.enable {
     programs.ssh = {
       enable = true;
+      # Default values will be removed in the future
+      enableDefaultConfig = false;
       matchBlocks = {
         "*" = {
           extraOptions.IdentityAgent = "~/.1password/agent.sock";
