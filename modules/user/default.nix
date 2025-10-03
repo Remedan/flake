@@ -2,6 +2,7 @@
   ./common.nix
   ./dev.nix
   ./emacs
+  ./emulators.nix
   ./flatpak.nix
   ./fonts.nix
   ./git.nix
