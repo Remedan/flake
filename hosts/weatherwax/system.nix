@@ -62,6 +62,9 @@
     { device = "/dev/disk/by-uuid/589f663d-8784-4e17-9634-829edb852c59"; }
   ];
 
+  # Fixes blutooth Xbox One controller issues
+  hardware.xpadneo.enable = true;
+
   system-modules = {
     common = {
       userName = "remedan";
