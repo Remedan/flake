@@ -12,6 +12,5 @@
       nodejs.enable = true;
       godot.enable = true;
     };
-    emulators.enable = true;
   };
 }
