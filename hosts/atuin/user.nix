@@ -19,6 +19,7 @@
     fastfetch
     fd
     fzf
+    magic-wormhole
     nix-tree
     pwgen
 
