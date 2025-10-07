@@ -25,6 +25,7 @@ with lib;
         virt-manager.enable = mkDefault true;
         flatpak.enable = mkDefault true;
         ranger.enable = mkDefault true;
+        nextcloud.enable = mkDefault true;
       };
     }
   ];
