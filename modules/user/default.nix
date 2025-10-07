@@ -9,6 +9,7 @@
   ./gtk.nix
   ./kitty.nix
   ./music.nix
+  ./nextcloud.nix
   ./nixgl.nix
   ./packages.nix
   ./ranger.nix

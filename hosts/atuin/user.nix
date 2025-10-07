@@ -55,5 +55,6 @@
 
     packages.enable = false;
     flatpak.enable = false;
+    nextcloud.enable = true;
   };
 }
