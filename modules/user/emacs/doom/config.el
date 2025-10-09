@@ -84,5 +84,3 @@
  'vterm-mode-hook
  (lambda() (setq show-trailing-whitespace nil)))
 
-(use-package! nix-mode
-  :mode "\\.nix\\'")
