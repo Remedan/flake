@@ -43,7 +43,7 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(setq org-directory "~/Documents/Org/")
 
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
@@ -84,3 +84,15 @@
  'vterm-mode-hook
  (lambda() (setq show-trailing-whitespace nil)))
 
+;; Use the ISO date format in org-journal
+(setq org-journal-date-format "%A, %Y-%m-%d")
+
+;; Disable line numbers in Org
+(add-hook! 'org-mode-hook #'doom-disable-line-numbers-h)
+
+;; Define a function to insert the current date
+(defun insert-current-date ()
+  "Insert today's date into the current buffer."
+  (interactive)
+  (insert (format-time-string "%Y-%m-%d" (current-time))))
+(map! :leader :desc "Current date" "i d" #'insert-current-date)
