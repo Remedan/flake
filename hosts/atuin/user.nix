@@ -21,6 +21,7 @@
     fzf
     magic-wormhole
     nix-tree
+    pandoc
     pwgen
 
     # Development

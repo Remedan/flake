@@ -66,6 +66,7 @@ in
       ncdu
       nix-tree
       ntfs3g
+      pandoc
       progress
       pv
       pwgen
