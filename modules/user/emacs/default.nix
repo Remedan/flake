@@ -21,12 +21,13 @@ in
       sessionPath = [
         "$HOME/.config/emacs/bin"
       ];
-      packages = [
+      packages = with pkgs; [
         (pkgs.writeShellScriptBin "doom-sync" ''
           home-manager switch
           $HOME/.config/emacs/bin/doom sync
           systemctl --user restart emacs
         '')
+        vips # for Dirvish image preview
       ];
     };
     programs.emacs = {
