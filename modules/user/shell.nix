@@ -46,14 +46,8 @@ in
     programs.starship = {
       enable = true;
       settings = {
-        right_format = "$kubernetes";
-        directory = {
-          truncate_to_repo = false;
-        };
-        kubernetes = {
-          disabled = false;
-          format = "[$symbol$context( \\($namespace\\))]($style)";
-        };
+        directory.truncate_to_repo = false;
+        kubernetes.disabled = false;
       };
     };
     programs.kubecolor = {
