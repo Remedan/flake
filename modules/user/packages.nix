@@ -113,6 +113,7 @@ in
       k9s
       krew
       kubectl
+      kubernetes-helm
       remmina
       terraform
       winbox4

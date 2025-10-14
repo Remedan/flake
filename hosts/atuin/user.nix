@@ -37,6 +37,7 @@
 
     # Infrastructure
     awscli2
+    kubernetes-helm
     k9s
     krew
     kubectl
