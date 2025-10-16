@@ -80,15 +80,16 @@
 
 ;; Show trailing whitespace unless in vterm
 (setq-default show-trailing-whitespace t)
-(add-hook
- 'vterm-mode-hook
- (lambda() (setq show-trailing-whitespace nil)))
+(use-package! vterm
+  :hook (vterm-mode . (lambda() (setq show-trailing-whitespace nil))))
 
-;; Use the ISO date format in org-journal
-(setq org-journal-date-format "%A, %Y-%m-%d")
+;; Use the ISO date format in org-journal, rename the journal directory
+(use-package! org-journal
+  :config (setq org-journal-date-format "%A, %Y-%m-%d"
+                org-journal-dir (file-name-concat org-directory "Journal/")))
 
 ;; Disable line numbers in Org
-(add-hook! 'org-mode-hook #'doom-disable-line-numbers-h)
+(add-hook! org-mode #'doom-disable-line-numbers-h)
 
 ;; Define a function to insert the current date
 (defun insert-current-date ()
@@ -96,3 +97,9 @@
   (interactive)
   (insert (format-time-string "%Y-%m-%d" (current-time))))
 (map! :leader :desc "Current date" "i d" #'insert-current-date)
+
+;; The (org +pretty) flag enables org-modern which I don't want.
+(remove-hook! org-mode #'org-modern-mode)
+;; Enable org-appear link previews.
+(use-package! org-appear
+  :config (setq org-appear-autolinks t))
