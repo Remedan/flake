@@ -103,3 +103,11 @@
 ;; Enable org-appear link previews.
 (use-package! org-appear
   :config (setq org-appear-autolinks t))
+
+;; Add all Org files to the Org Agenda
+(setq org-agenda-files
+      (delete-dups
+       (mapcar #'file-name-directory
+               (directory-files-recursively org-directory "\\.org$"))))
+(add-to-list 'org-agenda-files org-journal-dir)
+(setq org-agenda-file-regexp "\\`\\\([^.].*\\.org\\\|[0-9]\\\{8\\\}\\\(\\.gpg\\\)?\\\)\\'")
