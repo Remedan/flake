@@ -27,9 +27,6 @@ in
     programs.git = {
       enable = true;
 
-      userName = cfg.userName;
-      userEmail = cfg.userEmail;
-
       signing.signByDefault = true;
       signing.key = cfg.signingKey;
 
@@ -37,7 +34,10 @@ in
 
       # A lot of things taken from here
       # https://blog.gitbutler.com/how-git-core-devs-configure-git
-      extraConfig = {
+      settings = {
+        user.name = cfg.userName;
+        user.email = cfg.userEmail;
+
         help.autocorrect = "prompt";
         init.defaultBranch = "main";
         column.ui = "auto";
