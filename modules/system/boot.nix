@@ -5,6 +5,10 @@ let
 in
 {
   options.system-modules.boot = {
+    loader = mkOption {
+      type = types.enum [ "systemd-boot" "grub" ];
+      default = "systemd-boot";
+    };
     luks = {
       enable = mkOption {
         type = types.bool;
@@ -20,33 +24,24 @@ in
     boot = mkMerge [
       {
         loader.efi.canTouchEfiVariables = true;
-
-        # Plymouth boot splash screen
         plymouth.enable = true;
       }
-      (mkIf (!cfg.luks.enable) {
+      (mkIf (cfg.loader == "systemd-boot") {
         loader.systemd-boot.enable = true;
       })
-      (mkIf cfg.luks.enable {
-        # We need to use grub for luks support
+      (mkIf (cfg.loader == "grub") {
         loader.grub = {
           enable = true;
           device = "nodev";
           efiSupport = true;
-          enableCryptodisk = true;
+          enableCryptodisk = cfg.luks.enable;
         };
         loader.efi.efiSysMountPoint = "/boot/efi";
-        # Thanks to this keyfile we don't need to enter the luks password twice
-        # https://wiki.archlinux.org/title/Dm-crypt/Device_encryption#With_a_keyfile_embedded_in_the_initramfs
-        initrd.secrets = {
-          "/crypto_keyfile.bin" = "/root/secrets/crypto_keyfile.bin";
-        };
-        initrd.luks.devices = {
-          root = {
-            device = "/dev/disk/by-uuid/${cfg.luks.uuid}";
-            keyFile = "/crypto_keyfile.bin";
-            preLVM = true;
-          };
+      })
+      (mkIf cfg.luks.enable {
+        initrd.luks.devices.root = {
+          device = "/dev/disk/by-uuid/${cfg.luks.uuid}";
+          allowDiscards = true;
         };
       })
     ];
