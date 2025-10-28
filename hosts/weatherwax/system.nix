@@ -57,10 +57,7 @@
       };
     };
 
-  swapDevices = [
-    { device = "/dev/disk/by-uuid/8fb1f7ff-4f1a-42c4-bc30-567e976c7a54"; }
-    { device = "/dev/disk/by-uuid/589f663d-8784-4e17-9634-829edb852c59"; }
-  ];
+  zramSwap.enable = true;
 
   # Fixes blutooth Xbox One controller issues
   hardware.xpadneo.enable = true;
