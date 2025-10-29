@@ -93,6 +93,7 @@ in
       "org/gnome/shell/extensions/dash-to-dock" = {
         apply-custom-theme = true;
         click-action = "minimize";
+        custom-theme-shrink = true;
         dock-fixed = true;
         dock-position = "LEFT";
         extend-height = true;
