@@ -45,7 +45,7 @@
     };
     boot.luks = {
       enable = true;
-      uuid = "6be4f120-522f-4fc6-8b58-937c5fe36791";
+      uuid = "4fe9e530-4428-4f07-a102-641e35f11155";
     };
   };
 }
