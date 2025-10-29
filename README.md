@@ -9,7 +9,9 @@
 Clone this repo to `~/.config/home-manager` and then run:
 
 ```bash
-nix --extra-experimental-features 'nix-command flakes' run home-manager/master -- switch
+mkdir ~/.config/nix
+echo 'experimental-features = nix-command flakes' > ~/.config/nix/nix.conf
+nix run home-manager/master -- switch
 ```
 
 [Install Doom Emacs](https://github.com/doomemacs/doomemacs?tab=readme-ov-file#install):
