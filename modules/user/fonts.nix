@@ -18,7 +18,7 @@ in
       merriweather-sans
       montserrat
       noto-fonts
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       open-sans
       raleway
       roboto
