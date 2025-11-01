@@ -71,7 +71,7 @@ in
       pv
       pwgen
       trezor-suite
-      trezorctl
+      # trezorctl Has in insecure dependency, should be resolved in 0.20.0
       uhk-agent
       usbutils
       wl-clipboard
