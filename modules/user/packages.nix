@@ -168,7 +168,7 @@ in
       # Games
       aisleriot
       bolt-launcher
-      # gargoyle https://github.com/NixOS/nixpkgs/issues/445447
+      gargoyle
       gnome-mines
       gzdoom
       ifm
