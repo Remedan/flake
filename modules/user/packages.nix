@@ -13,7 +13,6 @@ in
       "1password"
       "jetbrains-toolbox"
       "lmstudio"
-      "obsidian"
       "slack"
       "spotify"
       "steam"
@@ -158,9 +157,6 @@ in
       freecad
       openscad
       prusa-slicer
-
-      # Notes
-      obsidian
 
       # Books
       calibre
