@@ -69,12 +69,8 @@ in
       progress
       pv
       pwgen
-      trezor-suite
-      # trezorctl Has in insecure dependency, should be resolved in 0.20.0
-      uhk-agent
       usbutils
       wl-clipboard
-      yubikey-manager
 
       # Backup
       pika-backup
@@ -160,6 +156,13 @@ in
 
       # Books
       calibre
+
+      # Hardware
+      rpi-imager
+      trezor-suite
+      # trezorctl Has an insecure dependency, should be resolved in 0.20.0
+      uhk-agent
+      yubikey-manager
 
       # Games
       aisleriot
