@@ -244,10 +244,7 @@ in
     programs.gamemode.enable = true;
 
     # Local LLMs
-    services.ollama = {
-      enable = true;
-      acceleration = mkIf config.system-modules.nvidia.enable "cuda";
-    };
+    services.ollama.enable = true;
 
     # Trezor
     services.trezord.enable = true;
