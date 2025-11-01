@@ -15,7 +15,8 @@ in
     rust.enable = mkEnableOption "Rust";
     nodejs.enable = mkEnableOption "Node.js";
     commonLisp.enable = mkEnableOption "Common Lisp";
-    godot.enable = mkEnableOption "Common Lisp";
+    godot.enable = mkEnableOption "Godot";
+    claudeCode.enable = mkEnableOption "Claude Code";
   };
   config = mkMerge [
     (mkIf cfg.python.enable {
@@ -49,6 +50,9 @@ in
       home.packages = with pkgs; [
         godot
       ];
+    })
+    (mkIf cfg.claudeCode.enable {
+      programs.claude-code.enable = true;
     })
   ];
 }
