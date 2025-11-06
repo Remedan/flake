@@ -9,6 +9,7 @@ in
   };
   config = mkIf cfg.enable {
     home = {
+      shell.enableZshIntegration = true;
       sessionPath = [
         "$HOME/.local/bin"
         "$HOME/.krew/bin"
@@ -53,6 +54,11 @@ in
     programs.kubecolor = {
       enable = true;
       enableAlias = true;
+    };
+    programs.atuin = {
+      enable = true;
+      daemon.enable = true;
+      flags = [ "--disable-up-arrow" ];
     };
   };
 }
