@@ -4,13 +4,13 @@
   ./emacs
   ./flatpak.nix
   ./fonts.nix
+  ./generic-linux.nix
   ./git.nix
   ./gnome.nix
   ./gtk.nix
   ./kitty.nix
   ./music.nix
   ./nextcloud.nix
-  ./nixgl.nix
   ./packages.nix
   ./ranger.nix
   ./shell.nix

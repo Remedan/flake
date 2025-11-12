@@ -50,7 +50,7 @@
   '';
   home.sessionPath = [ "$HOME/.cargo/bin" ];
   user-modules = {
-    nixgl.enable = true;
+    genericLinux.enable = true;
     git.sshProgram = "/opt/1Password/op-ssh-sign";
     music.enableMpris = false;
     gnome.extensions.enable = false;
