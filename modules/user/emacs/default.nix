@@ -22,7 +22,7 @@ in
         "$HOME/.config/emacs/bin"
       ];
       packages = with pkgs; [
-        (pkgs.writeShellScriptBin "doom-sync" ''
+        (pkgs.writeShellScriptBin "doom-update-config" ''
           home-manager switch
           $HOME/.config/emacs/bin/doom sync
           systemctl --user restart emacs
