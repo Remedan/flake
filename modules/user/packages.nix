@@ -159,7 +159,7 @@ in
       calibre
 
       # Hardware
-      # rpi-imager Broken https://github.com/NixOS/nixpkgs/issues/454826
+      rpi-imager
       trezor-suite
       # trezorctl Has an insecure dependency, should be resolved in 0.20.0
       uhk-agent
