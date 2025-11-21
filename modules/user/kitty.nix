@@ -20,20 +20,14 @@ in
         name = "Iosevka Term";
         size = 11;
       };
-      themeFile =
-        let
-          themeNames = {
-            selenized-dark = "Solarized Dark";
-            gruvbox-dark = "Gruvbox Dark";
-          };
-        in
-          themeNames.${cfg.colorscheme} or cfg.colorscheme;
+      themeFile = cfg.colorscheme;
       settings = {
         window_padding_width = 5;
         tab_bar_edge = "top";
         tab_bar_style = "powerline";
         tab_powerline_style = "slanted";
         enable_audio_bell = false;
+        enabled_layouts = "tall,horizontal,grid";
       };
     };
     home.shellAliases = {
