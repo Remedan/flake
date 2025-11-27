@@ -111,3 +111,6 @@
                (directory-files-recursively org-directory "\\.org$"))))
 (add-to-list 'org-agenda-files org-journal-dir)
 (setq org-agenda-file-regexp "\\`\\\([^.].*\\.org\\\|[0-9]\\\{8\\\}\\\(\\.gpg\\\)?\\\)\\'")
+
+;; Add a way to toggle nyan mode
+(map! :leader :desc "Nyan mode" "t n" #'nyan-mode)
