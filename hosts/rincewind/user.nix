@@ -5,6 +5,9 @@
     homeDirectory = "/home/remedan";
   };
   user-modules = {
-    dev.python.enable = true;
+    dev = {
+      python.enable = true;
+      claudeCode.enable = true;
+    };
   };
 }
