@@ -142,7 +142,7 @@ in
       # Messaging
       element-desktop
       telegram-desktop
-      vesktop # Discord
+      # vesktop Broken package
 
       # Graphics
       gimp3
@@ -171,7 +171,7 @@ in
       gargoyle
       gnome-mines
       gzdoom
-      ifm
+      # ifm Broken package
       prismlauncher # Minecraft
       scummvm
     ];
