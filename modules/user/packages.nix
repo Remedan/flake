@@ -142,7 +142,7 @@ in
       # Messaging
       element-desktop
       telegram-desktop
-      # vesktop Broken package
+      vesktop
 
       # Graphics
       gimp3
