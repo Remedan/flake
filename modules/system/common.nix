@@ -252,9 +252,6 @@ in
     # Trezor
     services.trezord.enable = true;
 
-    # Android
-    programs.adb.enable = true;
-
     # Custom Modules
     system-modules.nix-ld.enable = mkDefault true;
     system-modules.snapper.enable = mkDefault true;

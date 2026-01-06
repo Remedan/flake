@@ -159,6 +159,7 @@ in
       calibre
 
       # Hardware
+      android-tools
       rpi-imager
       trezor-suite
       # trezorctl Has an insecure dependency, should be resolved in 0.20.0
