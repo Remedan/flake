@@ -114,3 +114,6 @@
 
 ;; Add a way to toggle nyan mode
 (map! :leader :desc "Nyan mode" "t n" #'nyan-mode)
+
+;; Enable auto saving files
+(auto-save-visited-mode 1)
