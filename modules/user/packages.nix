@@ -138,6 +138,7 @@ in
       quickemu
       quickgui
       steam-run
+      winboat
 
       # Messaging
       element-desktop
