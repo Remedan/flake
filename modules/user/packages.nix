@@ -106,6 +106,7 @@ in
 
       # Infrastructure
       ansible
+      hcloud
       k9s
       krew
       kubectl
