@@ -67,6 +67,7 @@
       userName = "remedan";
       hostName = "weatherwax";
       cpuType = "amd";
+      desktopEnvironment = "KDE";
     };
     nvidia.enable = true;
   };
