@@ -77,12 +77,6 @@ in
               LC_TELEPHONE = format;
               LC_TIME = format;
             };
-            inputMethod = {
-              enable = true;
-              type = "ibus";
-              # Enable Japanese input
-              ibus.engines = with pkgs.ibus-engines; [ anthy mozc ];
-            };
           };
 
       # Printing
@@ -259,6 +253,13 @@ in
       programs.nautilus-open-any-terminal = {
         enable = true;
         terminal = "kitty";
+      };
+
+      i18n.inputMethod = {
+        enable = true;
+        type = "ibus";
+        # Enable Japanese input
+        ibus.engines = with pkgs.ibus-engines; [ anthy mozc ];
       };
     })
     (mkIf (cfg.desktopEnvironment == "KDE") {
