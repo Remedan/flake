@@ -42,6 +42,7 @@
       userName = "remedan";
       hostName = "rincewind";
       cpuType = "intel";
+      desktopEnvironment = "KDE";
     };
     boot.luks = {
       enable = true;
