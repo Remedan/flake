@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.user-modules.emacs;
+  cfg = config.userModules.emacs;
 in
 {
-  options.user-modules.emacs = {
+  options.userModules.emacs = {
     enable = mkEnableOption "Emacs";
     service = mkOption {
       type = types.bool;
@@ -42,7 +42,7 @@ in
     };
     # Emacs needs to have kitty's terminfo in env if it is started in terminal
     systemd.user.services.emacs.Service.Environment = mkIf
-      (cfg.service && config.user-modules.kitty.enable)
+      (cfg.service && config.userModules.kitty.enable)
       [ "TERMINFO=${pkgs.kitty}/lib/kitty/terminfo" ];
     # Integration between vterm and zsh
     # https://github.com/akermu/emacs-libvterm/blob/master/README.md#shell-side-configuration

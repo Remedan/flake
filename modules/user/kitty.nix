@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.user-modules.kitty;
+  cfg = config.userModules.kitty;
 in
 {
-  options.user-modules.kitty = {
+  options.userModules.kitty = {
     enable = mkEnableOption "Kitty";
     colorscheme = mkOption {
       type = types.str;

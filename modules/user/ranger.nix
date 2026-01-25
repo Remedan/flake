@@ -1,16 +1,16 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.user-modules.ranger;
+  cfg = config.userModules.ranger;
 in
 {
-  options.user-modules.ranger = {
+  options.userModules.ranger = {
     enable = mkEnableOption "Ranger";
   };
   config = mkIf cfg.enable {
     programs.ranger = {
       enable = true;
-      settings = mkIf config.user-modules.kitty.enable {
+      settings = mkIf config.userModules.kitty.enable {
         preview_images = true;
         preview_images_method = "kitty";
       };

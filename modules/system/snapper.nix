@@ -1,17 +1,17 @@
 { config, lib, ... }:
 with lib;
 let
-  cfg = config.system-modules.snapper;
+  cfg = config.systemModules.snapper;
 in
 {
-  options.system-modules.snapper = {
+  options.systemModules.snapper = {
     enable = mkEnableOption "Snapper";
   };
 
   config = mkIf cfg.enable {
     services.snapper.configs.home = {
       SUBVOLUME = "/home";
-      ALLOW_USERS = [ config.system-modules.common.userName ];
+      ALLOW_USERS = [ config.systemModules.common.userName ];
       TIMELINE_CREATE = true;
       TIMELINE_CLEANUP = true;
     };

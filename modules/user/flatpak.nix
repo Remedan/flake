@@ -1,10 +1,10 @@
 { config, lib, ... }:
 with lib;
 let
-  cfg = config.user-modules.flatpak;
+  cfg = config.userModules.flatpak;
 in
 {
-  options.user-modules.flatpak = {
+  options.userModules.flatpak = {
     enable = mkEnableOption "Flatpak";
   };
   config = mkIf cfg.enable {

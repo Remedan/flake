@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.system-modules.nix-ld;
+  cfg = config.systemModules.nix-ld;
 in
 {
-  options.system-modules.nix-ld = {
+  options.systemModules.nix-ld = {
     enable = mkEnableOption "nix-ld";
   };
 

@@ -49,7 +49,7 @@
     source /home/vojta/.config/op/plugins.sh
   '';
   home.sessionPath = [ "$HOME/.cargo/bin" ];
-  user-modules = {
+  userModules = {
     genericLinux.enable = true;
     git.sshProgram = "/opt/1Password/op-ssh-sign";
     music.enableMpris = false;

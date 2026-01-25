@@ -11,7 +11,7 @@ with lib;
         settings.experimental-features = [ "nix-command" "flakes" ];
       };
       programs.nix-index.enable = true;
-      user-modules = {
+      userModules = {
         packages.enable = mkDefault true;
         shell.enable = mkDefault true;
         kitty.enable = mkDefault true;

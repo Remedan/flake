@@ -1,10 +1,10 @@
 { config, lib, ... }:
 with lib;
 let
-  cfg = config.system-modules.nvidia;
+  cfg = config.systemModules.nvidia;
 in
 {
-  options.system-modules.nvidia = {
+  options.systemModules.nvidia = {
     enable = mkEnableOption "Nvidia";
     driverVersion = mkOption {
       type = types.enum [ "stable" "beta" ];

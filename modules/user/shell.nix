@@ -1,10 +1,10 @@
 { config, lib, ... }:
 with lib;
 let
-  cfg = config.user-modules.shell;
+  cfg = config.userModules.shell;
 in
 {
-  options.user-modules.shell = {
+  options.userModules.shell = {
     enable = mkEnableOption "shell";
   };
   config = mkIf cfg.enable {
@@ -15,7 +15,7 @@ in
         "$HOME/.krew/bin"
       ];
       sessionVariables = {
-        EDITOR = if config.user-modules.emacs.service then "emacsclient -nw" else "emacs -nw";
+        EDITOR = if config.userModules.emacs.service then "emacsclient -nw" else "emacs -nw";
         # Enable wayland for chromium-based apps
         NIXOS_OZONE_WL = 1;
       };

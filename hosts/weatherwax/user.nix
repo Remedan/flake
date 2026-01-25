@@ -4,7 +4,7 @@
     username = "remedan";
     homeDirectory = "/home/remedan";
   };
-  user-modules = {
+  userModules = {
     music.libraryLocation = "~/Network/Media/Audio/Music";
     gnome.enable = false;
     dev = {

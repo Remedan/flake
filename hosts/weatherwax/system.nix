@@ -62,7 +62,7 @@
   # Fixes blutooth Xbox One controller issues
   hardware.xpadneo.enable = true;
 
-  system-modules = {
+  systemModules = {
     common = {
       userName = "remedan";
       hostName = "weatherwax";

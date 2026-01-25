@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.user-modules.gtk;
+  cfg = config.userModules.gtk;
 in
 {
-  options.user-modules.gtk = {
+  options.userModules.gtk = {
     enable = mkEnableOption "GTK";
   };
   config = mkIf cfg.enable {

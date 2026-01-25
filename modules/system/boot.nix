@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.system-modules.boot;
+  cfg = config.systemModules.boot;
 in
 {
-  options.system-modules.boot = {
+  options.systemModules.boot = {
     loader = mkOption {
       type = types.enum [ "systemd-boot" "grub" ];
       default = "systemd-boot";

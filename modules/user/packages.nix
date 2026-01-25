@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.user-modules.packages;
+  cfg = config.userModules.packages;
 in
 {
-  options.user-modules.packages = {
+  options.userModules.packages = {
     enable = mkEnableOption "packages";
   };
   config = mkIf cfg.enable {

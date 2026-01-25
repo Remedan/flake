@@ -1,10 +1,10 @@
 { config, lib, ... }:
 with lib;
 let
-  cfg = config.user-modules.virt-manager;
+  cfg = config.userModules.virt-manager;
 in
 {
-  options.user-modules.virt-manager = {
+  options.userModules.virt-manager = {
     enable = mkEnableOption "Virt Manager";
   };
   config = mkIf cfg.enable {

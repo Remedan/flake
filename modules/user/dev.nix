@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.user-modules.dev;
+  cfg = config.userModules.dev;
 in
 {
-  options.user-modules.dev = {
+  options.userModules.dev = {
     python = {
       enable = mkEnableOption "Python";
       extraPackages = mkOption {

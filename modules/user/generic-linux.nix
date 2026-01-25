@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.user-modules.genericLinux;
+  cfg = config.userModules.genericLinux;
 in
 {
-  options.user-modules.genericLinux = {
+  options.userModules.genericLinux = {
     enable = mkEnableOption "Non-NixOS support";
   };
 

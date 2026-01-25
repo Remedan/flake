@@ -37,7 +37,7 @@
 
   zramSwap.enable = true;
 
-  system-modules = {
+  systemModules = {
     common = {
       userName = "remedan";
       hostName = "rincewind";

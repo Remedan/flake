@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.user-modules.music;
+  cfg = config.userModules.music;
 in
 {
-  options.user-modules.music = {
+  options.userModules.music = {
     enable = mkEnableOption "Music";
     libraryLocation = mkOption {
       type = with types; nullOr str;

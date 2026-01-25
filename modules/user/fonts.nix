@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.user-modules.fonts;
+  cfg = config.userModules.fonts;
 in
 {
-  options.user-modules.fonts = {
+  options.userModules.fonts = {
     enable = mkEnableOption "fonts";
   };
   config = mkIf cfg.enable {

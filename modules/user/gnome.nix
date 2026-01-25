@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.user-modules.gnome;
+  cfg = config.userModules.gnome;
 in
 {
-  options.user-modules.gnome = {
+  options.userModules.gnome = {
     enable = mkEnableOption "Gnome";
     extensions.enable = mkOption {
       type = types.bool;

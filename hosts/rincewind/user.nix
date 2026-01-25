@@ -4,7 +4,7 @@
     username = "remedan";
     homeDirectory = "/home/remedan";
   };
-  user-modules = {
+  userModules = {
     gnome.enable = false;
     dev = {
       python.enable = true;

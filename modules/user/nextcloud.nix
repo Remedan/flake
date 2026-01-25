@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.user-modules.nextcloud;
+  cfg = config.userModules.nextcloud;
 in
 {
-  options.user-modules.nextcloud = {
+  options.userModules.nextcloud = {
     enable = mkEnableOption "Nextcloud";
   };
   config = mkIf cfg.enable {

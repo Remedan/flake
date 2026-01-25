@@ -47,7 +47,7 @@
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
 
-  system-modules = {
+  systemModules = {
     common = {
       userName = "remedan";
       hostName = "nixos";

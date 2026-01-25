@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.system-modules.common;
+  cfg = config.systemModules.common;
 in
 {
-  options.system-modules.common = {
+  options.systemModules.common = {
     userName = mkOption {
       type = types.str;
     };
@@ -242,8 +242,8 @@ in
       services.trezord.enable = true;
 
       # Custom Modules
-      system-modules.nix-ld.enable = mkDefault true;
-      system-modules.snapper.enable = mkDefault true;
+      systemModules.nix-ld.enable = mkDefault true;
+      systemModules.snapper.enable = mkDefault true;
     }
     (mkIf (cfg.desktopEnvironment == "Gnome") {
       services.displayManager.gdm.enable = true;
