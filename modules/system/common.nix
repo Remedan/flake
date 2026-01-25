@@ -274,8 +274,12 @@ in
       };
     })
     (mkIf (cfg.desktopEnvironment == "KDE") {
-      services.displayManager.sddm.enable = true;
+      services.displayManager.sddm = {
+        enable = true;
+        wayland.enable = true;
+      };
       services.desktopManager.plasma6.enable = true;
+      programs.kdeconnect.enable = true;
     })
     (mkIf (cfg.desktopEnvironment == "Hyprland") {
       services.displayManager.sddm = {
