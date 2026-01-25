@@ -16,7 +16,7 @@ in
       default = null;
     };
     desktopEnvironment = mkOption {
-      type = types.enum [ "Gnome" "KDE" ];
+      type = types.enum [ "Gnome" "KDE" "Hyprland" ];
       default = "Gnome";
     };
   };
@@ -276,6 +276,16 @@ in
     (mkIf (cfg.desktopEnvironment == "KDE") {
       services.displayManager.sddm.enable = true;
       services.desktopManager.plasma6.enable = true;
+    })
+    (mkIf (cfg.desktopEnvironment == "Hyprland") {
+      services.displayManager.sddm = {
+        enable = true;
+        wayland.enable = true;
+      };
+      programs.hyprland = {
+        enable = true;
+        withUWSM  = true;
+      };
     })
   ];
 }
