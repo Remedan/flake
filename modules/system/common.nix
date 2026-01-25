@@ -64,20 +64,20 @@ in
           locale = "en_US.UTF-8";
           format = "cs_CZ.UTF-8";
         in
-          {
-            defaultLocale = locale;
-            extraLocaleSettings = {
-              LC_ADDRESS = format;
-              LC_IDENTIFICATION = format;
-              LC_MEASUREMENT = format;
-              LC_MONETARY = format;
-              LC_NAME = format;
-              LC_NUMERIC = format;
-              LC_PAPER = format;
-              LC_TELEPHONE = format;
-              LC_TIME = format;
-            };
+        {
+          defaultLocale = locale;
+          extraLocaleSettings = {
+            LC_ADDRESS = format;
+            LC_IDENTIFICATION = format;
+            LC_MEASUREMENT = format;
+            LC_MONETARY = format;
+            LC_NAME = format;
+            LC_NUMERIC = format;
+            LC_PAPER = format;
+            LC_TELEPHONE = format;
+            LC_TIME = format;
           };
+        };
 
       # Printing
       services.printing = {
@@ -174,6 +174,7 @@ in
 
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
       nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+        # System packages
         "1password"
         "1password-cli"
         "canon-cups-ufr2"
@@ -190,6 +191,16 @@ in
         "steam-unwrapped"
         "uhk-agent"
         "uhk-udev-rules"
+        # Home Manager packages (useGlobalPkgs = true)
+        "claude-code"
+        "jetbrains-toolbox"
+        "lmstudio"
+        "slack"
+        "spotify"
+        "terraform"
+        "trezor-suite"
+        "vscode"
+        "winbox"
       ];
 
       # Flatpak

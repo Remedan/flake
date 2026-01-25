@@ -1,11 +1,14 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, osConfig ? null, ... }:
 with lib;
 let
   cfg = config.userModules.gnome;
 in
 {
   options.userModules.gnome = {
-    enable = mkEnableOption "Gnome";
+    enable = mkOption {
+      type = types.bool;
+      default = osConfig != null && osConfig.systemModules.common.desktopEnvironment == "Gnome";
+    };
     extensions.enable = mkOption {
       type = types.bool;
       default = true;

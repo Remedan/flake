@@ -25,16 +25,18 @@
         inherit system;
         modules = [
           ./hosts/weatherwax/system.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.remedan = import ./hosts/weatherwax/user.nix;
+            home-manager.sharedModules = import ./modules/user ++ [
+              nix-flatpak.homeManagerModules.nix-flatpak
+              (import ./secrets/common.nix)
+              (import ./secrets/weatherwax.nix)
+            ];
+          }
         ] ++ import ./modules/system;
-      };
-      homeConfigurations."remedan@weatherwax" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          (import ./hosts/weatherwax/user.nix)
-          (import ./secrets/common.nix)
-          (import ./secrets/weatherwax.nix)
-          nix-flatpak.homeManagerModules.nix-flatpak
-        ] ++ import ./modules/user;
       };
 
       nixosConfigurations.rincewind = nixpkgs.lib.nixosSystem {
@@ -42,18 +44,20 @@
         modules = [
           ./hosts/rincewind/system.nix
           nixos-hardware.nixosModules.lenovo-thinkpad-x1-yoga
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.remedan = import ./hosts/rincewind/user.nix;
+            home-manager.sharedModules = import ./modules/user ++ [
+              nix-flatpak.homeManagerModules.nix-flatpak
+              (import ./secrets/common.nix)
+            ];
+          }
         ] ++ import ./modules/system;
       };
-      homeConfigurations."remedan@rincewind" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          (import ./hosts/rincewind/user.nix)
-          (import ./secrets/common.nix)
-          nix-flatpak.homeManagerModules.nix-flatpak
-        ] ++ import ./modules/user;
-      };
 
-      # Atuin is a Fedora-based system
+      # Atuin is a Fedora-based system (standalone Home Manager)
       homeConfigurations."vojta@atuin" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
@@ -69,14 +73,16 @@
         inherit system;
         modules = [
           ./hosts/nixos/system.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.remedan = import ./hosts/nixos/user.nix;
+            home-manager.sharedModules = import ./modules/user ++ [
+              nix-flatpak.homeManagerModules.nix-flatpak
+            ];
+          }
         ] ++ import ./modules/system;
-      };
-      homeConfigurations."remedan@nixos" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          (import ./hosts/nixos/user.nix)
-          nix-flatpak.homeManagerModules.nix-flatpak
-        ] ++ import ./modules/user;
       };
     };
 }

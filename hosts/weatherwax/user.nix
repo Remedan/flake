@@ -6,7 +6,6 @@
   };
   userModules = {
     music.libraryLocation = "~/Network/Media/Audio/Music";
-    gnome.enable = false;
     dev = {
       python.enable = true;
       rust.enable = true;

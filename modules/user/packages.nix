@@ -9,23 +9,6 @@ in
   };
   config = mkIf cfg.enable {
     home.shellAliases.lmstudio-wayland = "lmstudio --enable-features=WaylandWindowDecorations --ozone-platform-hint=auto";
-    nixpkgs.config.allowUnfreePredicate = pkg: elem (lib.getName pkg) [
-      "1password"
-      "claude-code"
-      "jetbrains-toolbox"
-      "lmstudio"
-      "slack"
-      "spotify"
-      "steam"
-      "steam-original"
-      "steam-run"
-      "steam-unwrapped"
-      "terraform"
-      "trezor-suite"
-      "uhk-agent"
-      "vscode"
-      "winbox"
-    ];
     home.packages = with pkgs; [
       # Core
       bat

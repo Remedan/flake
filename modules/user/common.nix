@@ -7,7 +7,7 @@ with lib;
       programs.home-manager.enable = true;
       xdg.userDirs.enable = true;
       nix = {
-        package = pkgs.nix;
+        package = mkDefault pkgs.nix;
         settings.experimental-features = [ "nix-command" "flakes" ];
       };
       programs.nix-index.enable = true;
@@ -21,7 +21,6 @@ with lib;
         gtk.enable = mkDefault true;
         ssh.enable = mkDefault true;
         git.enable = mkDefault true;
-        gnome.enable = mkDefault true;
         virt-manager.enable = mkDefault true;
         flatpak.enable = mkDefault true;
         ranger.enable = mkDefault true;
