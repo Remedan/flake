@@ -252,6 +252,13 @@ in
       # Trezor
       services.trezord.enable = true;
 
+      # Home Manager
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        backupFileExtension = "hm-backup";
+      };
+
       # Custom Modules
       systemModules.nix-ld.enable = mkDefault true;
       systemModules.snapper.enable = mkDefault true;

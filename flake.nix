@@ -34,8 +34,6 @@
           ./hosts/weatherwax/system.nix
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
             home-manager.users.remedan = import ./hosts/weatherwax/user.nix;
             home-manager.sharedModules = import ./modules/user ++ [
               nix-flatpak.homeManagerModules.nix-flatpak
@@ -54,8 +52,6 @@
           nixos-hardware.nixosModules.lenovo-thinkpad-x1-yoga
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
             home-manager.users.remedan = import ./hosts/rincewind/user.nix;
             home-manager.sharedModules = import ./modules/user ++ [
               nix-flatpak.homeManagerModules.nix-flatpak
@@ -85,8 +81,6 @@
           ./hosts/nixos/system.nix
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
             home-manager.users.remedan = import ./hosts/nixos/user.nix;
             home-manager.sharedModules = import ./modules/user ++ [
               nix-flatpak.homeManagerModules.nix-flatpak
