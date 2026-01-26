@@ -17,7 +17,7 @@ in
     };
     desktopEnvironment = mkOption {
       type = types.enum [ "Gnome" "KDE" "Hyprland" ];
-      default = "Gnome";
+      default = "KDE";
     };
   };
 
