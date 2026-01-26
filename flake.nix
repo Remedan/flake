@@ -3,14 +3,21 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     nixgl.url = "github:nix-community/nixGL";
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, nixos-hardware, nix-flatpak, nixgl, ... }:
+  outputs = { nixpkgs, home-manager, nixos-hardware, nix-flatpak, nixgl, plasma-manager, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -32,6 +39,7 @@
             home-manager.users.remedan = import ./hosts/weatherwax/user.nix;
             home-manager.sharedModules = import ./modules/user ++ [
               nix-flatpak.homeManagerModules.nix-flatpak
+              plasma-manager.homeModules.plasma-manager
               (import ./secrets/common.nix)
               (import ./secrets/weatherwax.nix)
             ];
@@ -51,6 +59,7 @@
             home-manager.users.remedan = import ./hosts/rincewind/user.nix;
             home-manager.sharedModules = import ./modules/user ++ [
               nix-flatpak.homeManagerModules.nix-flatpak
+              plasma-manager.homeModules.plasma-manager
               (import ./secrets/common.nix)
             ];
           }
@@ -65,6 +74,7 @@
           (import ./secrets/common.nix)
           (import ./secrets/atuin.nix)
           nix-flatpak.homeManagerModules.nix-flatpak
+          plasma-manager.homeModules.plasma-manager
         ] ++ import ./modules/user;
       };
 
@@ -80,6 +90,7 @@
             home-manager.users.remedan = import ./hosts/nixos/user.nix;
             home-manager.sharedModules = import ./modules/user ++ [
               nix-flatpak.homeManagerModules.nix-flatpak
+              plasma-manager.homeModules.plasma-manager
             ];
           }
         ] ++ import ./modules/system;

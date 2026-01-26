@@ -51,9 +51,9 @@
   home.sessionPath = [ "$HOME/.cargo/bin" ];
   userModules = {
     genericLinux.enable = true;
+    plasma.enable = true;
     git.sshProgram = "/opt/1Password/op-ssh-sign";
     music.enableMpris = false;
-    gnome.extensions.enable = false;
 
     packages.enable = false;
     flatpak.enable = false;

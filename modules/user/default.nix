@@ -13,6 +13,7 @@
   ./music.nix
   ./nextcloud.nix
   ./packages.nix
+  ./plasma.nix
   ./ranger.nix
   ./shell.nix
   ./ssh.nix
