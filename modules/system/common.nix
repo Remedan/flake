@@ -242,7 +242,7 @@ in
       programs.steam = {
         enable = true;
         # This fixes Steam having a weird cursor
-        extraPackages = [ pkgs.adwaita-icon-theme ];
+        extraPackages = with pkgs; [ adwaita-icon-theme kdePackages.breeze ];
       };
       programs.gamemode.enable = true;
 
