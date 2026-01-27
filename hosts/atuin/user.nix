@@ -1,9 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   home = {
     username = "vojta";
     homeDirectory = "/home/vojta";
   };
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "claude-code"
+  ];
   home.packages = with pkgs; [
     # Core
     bat
@@ -57,5 +60,7 @@
 
     packages.enable = false;
     flatpak.enable = false;
+
+    dev.claudeCode.enable = true;
   };
 }

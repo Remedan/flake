@@ -13,6 +13,9 @@ in
   config = mkIf cfg.enable {
     programs.plasma = {
       enable = true;
+      shortcuts = {
+        "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = "Meta+Space";
+      };
     };
   };
 }
