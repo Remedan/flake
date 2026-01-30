@@ -40,7 +40,7 @@ in
         };
         kscreenlockerrc."Greeter/Wallpaper/org.kde.potd/General".FillMode = 2;
         kwinrc = {
-          Windows.DelayFocusInterval = 0;
+          Windows.DelayFocusInterval = 100;
           Windows.FocusPolicy = "FocusFollowsMouse";
         };
       };
