@@ -29,6 +29,9 @@ in
         enable_audio_bell = false;
         enabled_layouts = "tall,horizontal,grid";
       };
+      quickAccessTerminalConfig = {
+        app_id = "dock";
+      };
     };
     home.shellAliases = {
       s = "kitten ssh";
