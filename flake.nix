@@ -20,9 +20,15 @@
   outputs = { nixpkgs, home-manager, nixos-hardware, nix-flatpak, nixgl, plasma-manager, ... }:
     let
       system = "x86_64-linux";
+      rc2nixOverlay = final: prev: {
+        rc2nix = plasma-manager.packages.${system}.rc2nix;
+      };
       pkgs = import nixpkgs {
         inherit system;
-        overlays = [ nixgl.overlay ];
+        overlays = [
+          nixgl.overlay
+          rc2nixOverlay
+        ];
       };
     in
     {
@@ -31,6 +37,7 @@
       nixosConfigurations.weatherwax = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
+          { nixpkgs.overlays = [ rc2nixOverlay ]; }
           ./hosts/weatherwax/system.nix
           home-manager.nixosModules.home-manager
           {
@@ -48,6 +55,7 @@
       nixosConfigurations.rincewind = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
+          { nixpkgs.overlays = [ rc2nixOverlay ]; }
           ./hosts/rincewind/system.nix
           nixos-hardware.nixosModules.lenovo-thinkpad-x1-yoga
           home-manager.nixosModules.home-manager
@@ -78,6 +86,7 @@
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
+          { nixpkgs.overlays = [ rc2nixOverlay ]; }
           ./hosts/nixos/system.nix
           home-manager.nixosModules.home-manager
           {
