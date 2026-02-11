@@ -58,6 +58,9 @@
     packages.enable = false;
     flatpak.enable = false;
 
-    dev.claudeCode.enable = true;
+    dev = {
+      python.enable = true;
+      claudeCode.enable = true;
+    };
   };
 }
