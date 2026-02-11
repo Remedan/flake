@@ -49,6 +49,7 @@
     source /home/vojta/.config/op/plugins.sh
   '';
   home.sessionPath = [ "$HOME/.cargo/bin" ];
+  programs.nix-index.enable = false;
   userModules = {
     genericLinux.enable = true;
     plasma.enable = true;

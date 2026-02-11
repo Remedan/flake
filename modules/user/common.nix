@@ -10,7 +10,7 @@ with lib;
         package = mkDefault pkgs.nix;
         settings.experimental-features = [ "nix-command" "flakes" ];
       };
-      programs.nix-index.enable = true;
+      programs.nix-index.enable = mkDefault true;
       userModules = {
         packages.enable = mkDefault true;
         shell.enable = mkDefault true;
