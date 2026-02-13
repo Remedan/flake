@@ -58,6 +58,7 @@ in
 
       # Backup
       pika-backup
+      vorta
 
       # Audio
       playerctl
