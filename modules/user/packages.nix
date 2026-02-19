@@ -157,7 +157,7 @@ in
       bolt-launcher
       gargoyle
       gnome-mines
-      gzdoom
+      uzdoom
       # ifm Broken package
       prismlauncher # Minecraft
       scummvm
