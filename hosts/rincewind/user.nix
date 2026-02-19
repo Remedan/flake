@@ -7,7 +7,7 @@
   userModules = {
     dev = {
       python.enable = true;
-      claudeCode.enable = true;
+      claude.code.enable = true;
     };
   };
 }

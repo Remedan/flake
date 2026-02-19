@@ -16,7 +16,8 @@ in
     nodejs.enable = mkEnableOption "Node.js";
     commonLisp.enable = mkEnableOption "Common Lisp";
     godot.enable = mkEnableOption "Godot";
-    claudeCode.enable = mkEnableOption "Claude Code";
+    claude.code.enable = mkEnableOption "Claude Code";
+    claude.desktop.enable = mkEnableOption "Claude Desktop";
   };
   config = mkMerge [
     (mkIf cfg.python.enable {
@@ -51,8 +52,13 @@ in
         godot
       ];
     })
-    (mkIf cfg.claudeCode.enable {
+    (mkIf cfg.claude.code.enable {
       programs.claude-code.enable = true;
+    })
+    (mkIf cfg.claude.desktop.enable {
+      home.packages = with pkgs; [
+        claude-desktop
+      ];
     })
   ];
 }

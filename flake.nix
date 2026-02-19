@@ -15,19 +15,24 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+    claude-desktop = {
+      url = "github:k3d3/claude-desktop-linux-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, nixos-hardware, nix-flatpak, nixgl, plasma-manager, ... }:
+  outputs = { nixpkgs, home-manager, nixos-hardware, nix-flatpak, nixgl, plasma-manager, claude-desktop, ... }:
     let
       system = "x86_64-linux";
-      rc2nixOverlay = final: prev: {
+      extraPkgs = final: prev: {
         rc2nix = plasma-manager.packages.${system}.rc2nix;
+        claude-desktop = claude-desktop.packages.${system}.claude-desktop;
       };
       pkgs = import nixpkgs {
         inherit system;
         overlays = [
           nixgl.overlay
-          rc2nixOverlay
+          extraPkgs
         ];
       };
     in
@@ -37,7 +42,7 @@
       nixosConfigurations.weatherwax = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
-          { nixpkgs.overlays = [ rc2nixOverlay ]; }
+          { nixpkgs.overlays = [ extraPkgs ]; }
           ./hosts/weatherwax/system.nix
           home-manager.nixosModules.home-manager
           {
@@ -55,7 +60,7 @@
       nixosConfigurations.rincewind = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
-          { nixpkgs.overlays = [ rc2nixOverlay ]; }
+          { nixpkgs.overlays = [ extraPkgs ]; }
           ./hosts/rincewind/system.nix
           nixos-hardware.nixosModules.lenovo-thinkpad-x1-yoga
           home-manager.nixosModules.home-manager
@@ -86,7 +91,7 @@
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
-          { nixpkgs.overlays = [ rc2nixOverlay ]; }
+          { nixpkgs.overlays = [ extraPkgs ]; }
           ./hosts/nixos/system.nix
           home-manager.nixosModules.home-manager
           {
