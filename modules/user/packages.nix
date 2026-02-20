@@ -61,6 +61,7 @@ in
       vorta
 
       # Audio
+      picard
       playerctl
       spotify
 

@@ -49,7 +49,6 @@ in
     home.packages = with pkgs; [
       mpc
       plattenalbum
-      picard
     ];
   };
 }

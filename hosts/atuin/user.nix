@@ -54,7 +54,6 @@
     genericLinux.enable = true;
     plasma.enable = true;
     git.sshProgram = "/opt/1Password/op-ssh-sign";
-    music.enable = false;
 
     packages.enable = false;
     flatpak.enable = false;
