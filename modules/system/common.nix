@@ -284,6 +284,10 @@ in
       services.displayManager.plasma-login-manager.enable = true;
       services.desktopManager.plasma6.enable = true;
       programs.kdeconnect.enable = true;
+
+      environment.systemPackages = with pkgs; [
+        kdePackages.plasma-keyboard
+      ];
     })
     (mkIf (cfg.desktopEnvironment == "Hyprland") {
       services.displayManager.sddm = {
