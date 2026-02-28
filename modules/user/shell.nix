@@ -23,8 +23,7 @@ in
       shellAliases = {
         e = "eval \"$EDITOR\"";
         E = "sudoedit";
-        ip = "ip -c";
-        sxiv = "sxiv -a";
+        ip = "ip --color=auto";
       };
     };
     programs.zsh = {
@@ -50,6 +49,10 @@ in
       enable = true;
       shellInit = ''
         set fish_greeting
+      '';
+      shellInitLast = ''
+        complete -e e
+        complete -c e -w emacs
       '';
     };
     programs.starship = {
