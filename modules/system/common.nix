@@ -136,7 +136,7 @@ in
           "video"
           "adbusers"
         ];
-        shell = pkgs.zsh;
+        shell = pkgs.fish;
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGQOh94Y3qiel5HPE9I7/mKotaFTLpeC4CD2sSZ9qr0d"
         ];
@@ -168,6 +168,8 @@ in
       ];
 
       programs.zsh.enable = true;
+      programs.fish.enable = true;
+
       programs._1password.enable = true;
       programs._1password-gui.enable = true;
       programs._1password-gui.polkitPolicyOwners = [ cfg.userName ];

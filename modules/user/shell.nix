@@ -10,6 +10,7 @@ in
   config = mkIf cfg.enable {
     home = {
       shell.enableZshIntegration = true;
+      shell.enableFishIntegration = true;
       sessionPath = [
         "$HOME/.local/bin"
         "$HOME/.krew/bin"
@@ -44,6 +45,12 @@ in
           "shrink-path"
         ];
       };
+    };
+    programs.fish = {
+      enable = true;
+      shellInit = ''
+        set fish_greeting
+      '';
     };
     programs.starship = {
       enable = true;
