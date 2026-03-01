@@ -134,7 +134,7 @@ in
       # Graphics
       gimp3
       inkscape
-      pinta
+      krita
 
       # 3D
       blender
