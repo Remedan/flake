@@ -149,7 +149,7 @@ in
       android-tools
       rpi-imager
       trezor-suite
-      trezorctl
+      # trezorctl Broken package
       uhk-agent
       yubikey-manager
 
