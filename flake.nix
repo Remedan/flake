@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,18 +22,33 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, nixos-hardware, nix-flatpak, nixgl, plasma-manager, claude-desktop, ... }:
+  outputs = {
+    nixpkgs,
+    nixpkgs-stable,
+    home-manager,
+    nixos-hardware,
+    nix-flatpak,
+    nixgl,
+    plasma-manager,
+    claude-desktop,
+    ...
+  }:
     let
       system = "x86_64-linux";
       extraPkgs = final: prev: {
         rc2nix = plasma-manager.packages.${system}.rc2nix;
         claude-desktop = claude-desktop.packages.${system}.claude-desktop;
       };
+      # Overlay for packages that are broken in unstable
+      stablePkgs = final: prev: {
+        calibre = nixpkgs-stable.legacyPackages.${system}.calibre;
+      };
       pkgs = import nixpkgs {
         inherit system;
         overlays = [
           nixgl.overlay
           extraPkgs
+          stablePkgs
         ];
       };
     in
@@ -42,7 +58,7 @@
       nixosConfigurations.weatherwax = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
-          { nixpkgs.overlays = [ extraPkgs ]; }
+          { nixpkgs.overlays = [ extraPkgs stablePkgs ]; }
           ./hosts/weatherwax/system.nix
           home-manager.nixosModules.home-manager
           {
@@ -60,7 +76,7 @@
       nixosConfigurations.rincewind = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
-          { nixpkgs.overlays = [ extraPkgs ]; }
+          { nixpkgs.overlays = [ extraPkgs stablePkgs ]; }
           ./hosts/rincewind/system.nix
           nixos-hardware.nixosModules.lenovo-thinkpad-x1-yoga
           home-manager.nixosModules.home-manager
@@ -91,7 +107,7 @@
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
-          { nixpkgs.overlays = [ extraPkgs ]; }
+          { nixpkgs.overlays = [ extraPkgs stablePkgs ]; }
           ./hosts/nixos/system.nix
           home-manager.nixosModules.home-manager
           {
