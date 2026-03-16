@@ -50,6 +50,13 @@
   '';
   home.sessionPath = [ "$HOME/.cargo/bin" ];
   programs.nix-index.enable = false;
+  # On Fedora with Nix installed, Claude Code doesn't use the right CA file
+  programs.claude-code.settings = {
+    env = {
+      SSL_CERT_FILE = "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem";
+      NODE_EXTRA_CA_CERTS = "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem";
+    };
+  };
   userModules = {
     genericLinux.enable = true;
     plasma.enable = true;
