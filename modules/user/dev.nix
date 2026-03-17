@@ -37,9 +37,7 @@ in
       };
     })
     (mkIf cfg.nodejs.enable {
-      home.packages = with pkgs; [
-        nodejs
-      ];
+      programs.npm.enable = true;
     })
     (mkIf cfg.commonLisp.enable {
       home.packages = with pkgs; [

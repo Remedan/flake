@@ -50,12 +50,16 @@
   '';
   home.sessionPath = [ "$HOME/.cargo/bin" ];
   programs.nix-index.enable = false;
-  # On Fedora with Nix installed, Claude Code doesn't use the right CA file
+  # For some reasone, some apps can't find the CA file since I've upgraded to Fedora 44
   programs.claude-code.settings = {
     env = {
       SSL_CERT_FILE = "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem";
       NODE_EXTRA_CA_CERTS = "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem";
     };
+  };
+  programs.npm.settings = {
+    prefix = "\${HOME}/.npm";
+    cafile = "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem";
   };
   userModules = {
     genericLinux.enable = true;
@@ -67,6 +71,7 @@
 
     dev = {
       python.enable = true;
+      nodejs.enable = true;
       claude.code.enable = true;
       claude.desktop.enable = true;
     };
