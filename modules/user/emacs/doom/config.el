@@ -117,3 +117,8 @@
 
 ;; Enable auto saving files
 (auto-save-visited-mode 1)
+
+(use-package! agent-shell
+  :config
+  (map! :leader :desc "Agent Shell" "o s" #'agent-shell)
+  (setq agent-shell-preferred-agent-config (agent-shell-anthropic-make-claude-code-config)))

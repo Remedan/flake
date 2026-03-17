@@ -49,3 +49,7 @@
 ;; (unpin! t)
 
 (package! nyan-mode)
+
+(package! shell-maker)
+(package! acp)
+(package! agent-shell)
