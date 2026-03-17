@@ -38,6 +38,7 @@ in
     })
     (mkIf cfg.nodejs.enable {
       programs.npm.enable = true;
+      home.sessionPath = [ "$HOME/.npm/bin" ];
     })
     (mkIf cfg.commonLisp.enable {
       home.packages = with pkgs; [
