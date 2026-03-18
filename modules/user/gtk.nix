@@ -10,6 +10,9 @@ in
   config = mkIf cfg.enable {
     gtk = {
       enable = true;
+      # Needed on Plasma
+      # https://github.com/nix-community/home-manager/issues/6188
+      gtk2.force = true;
       gtk3.extraConfig = {
         gtk-application-prefer-dark-theme = 1;
       };
