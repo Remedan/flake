@@ -6,11 +6,13 @@ in
 {
   options.userModules.shell = {
     enable = mkEnableOption "shell";
+    zsh.enable = mkEnableOption "zsh" // { default = true; };
+    fish.enable = mkEnableOption "fish" // { default = true; };
   };
   config = mkIf cfg.enable {
     home = {
-      shell.enableZshIntegration = true;
-      shell.enableFishIntegration = true;
+      shell.enableZshIntegration = cfg.zsh.enable;
+      shell.enableFishIntegration = cfg.fish.enable;
       sessionPath = [
         "$HOME/.local/bin"
         "$HOME/.krew/bin"
@@ -127,7 +129,7 @@ in
         kdelj = "kubectl delete job";
       };
     };
-    programs.zsh = {
+    programs.zsh = mkIf cfg.zsh.enable {
       enable = true;
       dotDir = "${config.xdg.configHome}/zsh";
       autosuggestion.enable = true;
@@ -146,7 +148,7 @@ in
         ];
       };
     };
-    programs.fish = {
+    programs.fish = mkIf cfg.fish.enable {
       enable = true;
       shellInit = ''
         set fish_greeting
