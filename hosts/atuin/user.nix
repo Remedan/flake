@@ -31,6 +31,7 @@
     bfg-repo-cleaner
     direnv
     git-crypt
+    glab
     just
     minikube
     nix-direnv
