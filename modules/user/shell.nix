@@ -168,6 +168,7 @@ in
       settings = {
         directory.truncate_to_repo = false;
         kubernetes.disabled = false;
+        gcloud.disabled = true;
       };
     };
     programs.kubecolor = {
