@@ -22,6 +22,8 @@
     fastfetch
     fd
     fzf
+    google-cloud-sdk
+    gws
     magic-wormhole
     nix-tree
     pandoc
@@ -68,7 +70,6 @@
       python.enable = true;
       nodejs.enable = true;
       claude.code.enable = true;
-      claude.desktop.enable = true;
     };
   };
 }
