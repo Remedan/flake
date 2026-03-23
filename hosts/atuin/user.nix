@@ -7,6 +7,9 @@
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "claude-code"
   ];
+  nixpkgs.config.allowInsecurePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "openclaw"
+  ];
   home.packages = with pkgs; [
     # Core
     bat
@@ -47,6 +50,9 @@
     k9s
     krew
     kubectl
+
+    # 🦀
+    openclaw
   ];
   programs.zsh.initContent = ''
     source /home/vojta/.config/op/plugins.sh
