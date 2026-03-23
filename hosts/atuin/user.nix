@@ -39,6 +39,7 @@
     glab
     just
     minikube
+    mkcert
     nix-direnv
     pgcli
     tig

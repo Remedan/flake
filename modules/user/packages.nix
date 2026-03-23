@@ -84,6 +84,7 @@ in
       jetbrains-toolbox
       jq
       minikube
+      mkcert
       nix-direnv
       pgcli
       tig
