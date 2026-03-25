@@ -27,6 +27,8 @@ in
           e = "eval \"$EDITOR\"";
           E = "sudoedit";
           ip = "ip --color=auto";
+          c = "claude";
+          oc = "openclaw tui";
         }
         (mkIf cfg.fish.enable {
           l = "ls -lah";
