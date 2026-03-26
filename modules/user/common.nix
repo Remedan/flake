@@ -29,6 +29,7 @@ with lib;
         flatpak.enable = mkDefault true;
         ranger.enable = mkDefault true;
         nextcloud.enable = mkDefault true;
+        vscode.enable = mkDefault true;
       };
     }
   ];
