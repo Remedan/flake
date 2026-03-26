@@ -73,17 +73,17 @@ in
         command = "kitty";
         name = "Terminal";
       };
-      "org/gnome/settings-daemon/plugins/media-keysg/custom-keybindings/custom2" = {
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
         binding = "<Super>period";
         command = "smile";
         name = "Smile";
       };
-      "org/gnome/settings-daemon/plugins/media-keysg/custom-keybindings/custom3" = {
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" = {
         binding = "<Super>e";
         command = "emacsclient -c";
         name = "Emacs";
       };
-      "org/gnome/settings-daemon/plugins/media-keysg/custom-keybindings/custom4" = {
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4" = {
         binding = "<Shift><Super>e";
         command = "emacsclient -ce '(full-calc)'";
         name = "Emacs Calc";
@@ -118,7 +118,7 @@ in
       solaar-hidden = {
         name = "Solaar Hidden";
         comment = "Logitech Unifying Receiver peripherals manager";
-        exec = "solaar --widnow hide";
+        exec = "solaar --window hide";
         icon = "solaar";
       };
     };
