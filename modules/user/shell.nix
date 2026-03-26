@@ -6,8 +6,8 @@ in
 {
   options.userModules.shell = {
     enable = mkEnableOption "shell";
-    zsh.enable = mkEnableOption "zsh" // { default = true; };
     fish.enable = mkEnableOption "fish" // { default = true; };
+    zsh.enable = mkEnableOption "zsh";
   };
   config = mkIf cfg.enable {
     home = {
