@@ -150,7 +150,7 @@ in
       android-tools
       rpi-imager
       trezor-suite
-      # trezorctl Broken package
+      trezorctl
       uhk-agent
       yubikey-manager
 
@@ -160,8 +160,8 @@ in
       gargoyle
       gnome-mines
       uzdoom
-      # ifm Broken package
-      prismlauncher # Minecraft
+      ifm
+      prismlauncher
       scummvm
     ];
   };
