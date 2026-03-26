@@ -22,17 +22,17 @@
     };
   };
 
-  outputs = {
-    nixpkgs,
-    nixpkgs-stable,
-    home-manager,
-    nixos-hardware,
-    nix-flatpak,
-    nixgl,
-    plasma-manager,
-    claude-desktop,
-    ...
-  }:
+  outputs =
+    { nixpkgs
+    , nixpkgs-stable
+    , home-manager
+    , nixos-hardware
+    , nix-flatpak
+    , nixgl
+    , plasma-manager
+    , claude-desktop
+    , ...
+    }:
     let
       system = "x86_64-linux";
       extraPkgs = final: prev: {
