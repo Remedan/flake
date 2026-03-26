@@ -42,6 +42,7 @@
       # Overlay for packages that are broken in unstable
       stablePkgs = final: prev: {
         calibre = nixpkgs-stable.legacyPackages.${system}.calibre;
+        winboat = nixpkgs-stable.legacyPackages.${system}.winboat;
       };
       pkgs = import nixpkgs {
         inherit system;
