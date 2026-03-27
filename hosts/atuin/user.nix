@@ -52,7 +52,7 @@
     krew
     kubectl
 
-    # 🦀
+    # 🦞
     openclaw
   ];
   programs.zsh.initContent = ''
