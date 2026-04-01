@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.userModules.vscode;
+  cfg = config.userModules.vscodium;
 in
 {
-  options.userModules.vscode = {
+  options.userModules.vscodium = {
     enable = mkEnableOption "VSCodium";
   };
 

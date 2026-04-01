@@ -69,7 +69,6 @@
     genericLinux.enable = true;
     plasma.enable = true;
     git.sshProgram = "/opt/1Password/op-ssh-sign";
-    vscode.enable = true;
 
     packages.enable = false;
     flatpak.enable = false;

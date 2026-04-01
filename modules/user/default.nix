@@ -18,5 +18,5 @@
   ./shell.nix
   ./ssh.nix
   ./virt-manager.nix
-  ./vscode.nix
+  ./vscodium.nix
 ]
