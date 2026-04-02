@@ -29,6 +29,7 @@ in
       ethtool
       iperf
       nmap
+      nmap
       tcpdump
       traceroute
       wireguard-tools

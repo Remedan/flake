@@ -19,6 +19,7 @@
     ripgrep
 
     # Networking
+    nmap
     wireguard-tools
 
     # Extra
