@@ -20,6 +20,10 @@
       url = "github:k3d3/claude-desktop-linux-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -31,6 +35,7 @@
     , nixgl
     , plasma-manager
     , claude-desktop
+    , nix-vscode-extensions
     , ...
     }:
     let
@@ -48,6 +53,7 @@
         inherit system;
         overlays = [
           nixgl.overlay
+          nix-vscode-extensions.overlays.default
           extraPkgs
           stablePkgs
         ];

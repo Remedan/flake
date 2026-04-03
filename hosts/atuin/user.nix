@@ -6,6 +6,7 @@
   };
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "claude-code"
+    "vscode-extension-anthropic-claude-code"
   ];
   nixpkgs.config.allowInsecurePredicate = pkg: builtins.elem (lib.getName pkg) [
     "openclaw"

@@ -202,6 +202,7 @@ in
         "terraform"
         "trezor-suite"
         "vscode"
+        "vscode-extension-anthropic-claude-code"
         "winbox"
       ];
 
