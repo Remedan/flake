@@ -44,10 +44,10 @@ in
           "claudeCode.allowDangerouslySkipPermissions" = true;
           "editor.minimap.enabled" = false;
           "vim.handleKeys" = {
-              "<C-p>" = false;
-              "<C-d>" = true;
-              "<C-s>" = false;
-              "<C-z>" = false;
+            "<C-p>" = false;
+            "<C-d>" = true;
+            "<C-s>" = false;
+            "<C-z>" = false;
           };
           "workbench.colorTheme" = "Gruvbox Dark Hard";
           "editor.fontFamily" = "'JetBrains Mono', monospace";
