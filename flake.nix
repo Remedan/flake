@@ -49,14 +49,16 @@
         ifm = nixpkgs-stable.legacyPackages.${system}.ifm;
         winboat = nixpkgs-stable.legacyPackages.${system}.winboat;
       };
+      overlays = [
+        nix-vscode-extensions.overlays.default
+        extraPkgs
+        stablePkgs
+      ];
       pkgs = import nixpkgs {
         inherit system;
         overlays = [
           nixgl.overlay
-          nix-vscode-extensions.overlays.default
-          extraPkgs
-          stablePkgs
-        ];
+        ] ++ overlays;
       };
     in
     {
@@ -65,7 +67,7 @@
       nixosConfigurations.weatherwax = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
-          { nixpkgs.overlays = [ extraPkgs stablePkgs ]; }
+          { nixpkgs.overlays = overlays; }
           ./hosts/weatherwax/system.nix
           home-manager.nixosModules.home-manager
           {
@@ -83,7 +85,7 @@
       nixosConfigurations.rincewind = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
-          { nixpkgs.overlays = [ extraPkgs stablePkgs ]; }
+          { nixpkgs.overlays = overlays; }
           ./hosts/rincewind/system.nix
           nixos-hardware.nixosModules.lenovo-thinkpad-x1-yoga
           home-manager.nixosModules.home-manager
@@ -114,7 +116,7 @@
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
-          { nixpkgs.overlays = [ extraPkgs stablePkgs ]; }
+          { nixpkgs.overlays = overlays; }
           ./hosts/nixos/system.nix
           home-manager.nixosModules.home-manager
           {
