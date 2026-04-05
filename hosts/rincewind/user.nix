@@ -7,6 +7,7 @@
   userModules = {
     dev = {
       python.enable = true;
+      rust.enable = true;
       claude.code.enable = true;
     };
   };
