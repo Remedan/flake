@@ -16,13 +16,22 @@ in
       profiles.default = {
         extensions = with pkgs.open-vsx-release; [
           anthropic.claude-code
-          charliermarsh.ruff
           davidlday.languagetool-linter
+          editorconfig.editorconfig
           gitlab.gitlab-workflow
           jdinhlife.gruvbox
-          jnoortheen.nix-ide
+          mkhl.direnv
           ms-azuretools.vscode-containers
           ms-kubernetes-tools.vscode-kubernetes-tools
+          redhat.vscode-yaml
+          tonybaloney.vscode-pets
+          vscodevim.vim
+
+          # Nix
+          jnoortheen.nix-ide
+
+          # Python
+          charliermarsh.ruff
           ms-python.debugpy
           ms-python.python
           ms-python.vscode-python-envs
@@ -31,9 +40,12 @@ in
           ms-toolsai.jupyter-renderers
           ms-toolsai.vscode-jupyter-cell-tags
           ms-toolsai.vscode-jupyter-slideshow
-          redhat.vscode-yaml
-          tonybaloney.vscode-pets
-          vscodevim.vim
+          # Rust
+          rust-lang.rust-analyzer
+          vadimcn.vscode-lldb
+          # Haskell
+          haskell.haskell
+          justusadam.language-haskell
         ];
         userSettings = {
           "containers.containerClient" = "com.microsoft.visualstudio.containers.docker";
