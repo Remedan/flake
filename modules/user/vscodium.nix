@@ -63,6 +63,7 @@ in
           };
           "workbench.colorTheme" = "Gruvbox Dark Hard";
           "editor.fontFamily" = "'JetBrains Mono', monospace";
+          "git.confirmSync" = false;
         };
         keybindings = [
           {
