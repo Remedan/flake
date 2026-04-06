@@ -40,9 +40,11 @@ in
           ms-toolsai.jupyter-renderers
           ms-toolsai.vscode-jupyter-cell-tags
           ms-toolsai.vscode-jupyter-slideshow
+
           # Rust
           rust-lang.rust-analyzer
           vadimcn.vscode-lldb
+
           # Haskell
           haskell.haskell
           justusadam.language-haskell
@@ -64,6 +66,10 @@ in
           "workbench.colorTheme" = "Gruvbox Dark Hard";
           "editor.fontFamily" = "'JetBrains Mono', monospace";
           "git.confirmSync" = false;
+          "vs-kubernetes" = {
+            "vs-kubernetes.crd-code-completion" = "enabled";
+          };
+          "redhat.telemetry.enabled" = true;
         };
         keybindings = [
           {
