@@ -47,7 +47,6 @@
       # Overlay for packages that are broken in unstable
       stablePkgs = final: prev: {
         ifm = nixpkgs-stable.legacyPackages.${system}.ifm;
-        winboat = nixpkgs-stable.legacyPackages.${system}.winboat;
       };
       overlays = [
         nix-vscode-extensions.overlays.default
