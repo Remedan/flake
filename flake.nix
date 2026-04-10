@@ -26,106 +26,69 @@
     };
   };
 
-  outputs =
-    { nixpkgs
-    , nixpkgs-stable
-    , home-manager
-    , nixos-hardware
-    , nix-flatpak
-    , nixgl
-    , plasma-manager
-    , claude-desktop
-    , nix-vscode-extensions
-    , ...
-    }:
+  outputs = inputs:
     let
       system = "x86_64-linux";
       extraPkgs = final: prev: {
-        rc2nix = plasma-manager.packages.${system}.rc2nix;
-        claude-desktop = claude-desktop.packages.${system}.claude-desktop;
+        rc2nix = inputs.plasma-manager.packages.${system}.rc2nix;
+        claude-desktop = inputs.claude-desktop.packages.${system}.claude-desktop;
       };
       # Overlay for packages that are broken in unstable
       stablePkgs = final: prev: {
-        ifm = nixpkgs-stable.legacyPackages.${system}.ifm;
+        ifm = inputs.nixpkgs-stable.legacyPackages.${system}.ifm;
       };
       overlays = [
-        nix-vscode-extensions.overlays.default
+        inputs.nix-vscode-extensions.overlays.default
         extraPkgs
         stablePkgs
       ];
-      pkgs = import nixpkgs {
+      pkgs = import inputs.nixpkgs {
         inherit system;
-        overlays = [
-          nixgl.overlay
-        ] ++ overlays;
+        overlays = overlays ++ [ inputs.nixgl.overlay ];
+      };
+      mkNixosSystem = { name, extraSystemModules ? [ ], extraHomeModules ? [ ] }: inputs.nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [
+          { nixpkgs.overlays = overlays; }
+          ./hosts/${name}/system.nix
+          inputs.home-manager.nixosModules.home-manager
+          {
+            home-manager.users.remedan = import ./hosts/${name}/user.nix;
+            home-manager.sharedModules = import ./modules/user ++ [
+              inputs.nix-flatpak.homeManagerModules.nix-flatpak
+              inputs.plasma-manager.homeModules.plasma-manager
+              (import ./secrets/common.nix)
+            ] ++ extraHomeModules;
+          }
+        ] ++ import ./modules/system ++ extraSystemModules;
       };
     in
     {
       formatter.${system} = pkgs.nixpkgs-fmt;
 
-      nixosConfigurations.weatherwax = nixpkgs.lib.nixosSystem {
-        inherit system;
-        modules = [
-          { nixpkgs.overlays = overlays; }
-          ./hosts/weatherwax/system.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.users.remedan = import ./hosts/weatherwax/user.nix;
-            home-manager.sharedModules = import ./modules/user ++ [
-              nix-flatpak.homeManagerModules.nix-flatpak
-              plasma-manager.homeModules.plasma-manager
-              (import ./secrets/common.nix)
-              (import ./secrets/weatherwax.nix)
-            ];
-          }
-        ] ++ import ./modules/system;
-      };
-
-      nixosConfigurations.rincewind = nixpkgs.lib.nixosSystem {
-        inherit system;
-        modules = [
-          { nixpkgs.overlays = overlays; }
-          ./hosts/rincewind/system.nix
-          nixos-hardware.nixosModules.lenovo-thinkpad-x1-yoga
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.users.remedan = import ./hosts/rincewind/user.nix;
-            home-manager.sharedModules = import ./modules/user ++ [
-              nix-flatpak.homeManagerModules.nix-flatpak
-              plasma-manager.homeModules.plasma-manager
-              (import ./secrets/common.nix)
-            ];
-          }
-        ] ++ import ./modules/system;
+      nixosConfigurations = {
+        weatherwax = mkNixosSystem {
+          name = "weatherwax";
+          extraHomeModules = [ (import ./secrets/weatherwax.nix) ];
+        };
+        rincewind = mkNixosSystem {
+          name = "rincewind";
+          extraSystemModules = [ inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-yoga ];
+        };
+        # Testing VM
+        nixos = { name = "nixos"; };
       };
 
       # Atuin is a Fedora-based system (standalone Home Manager)
-      homeConfigurations."vojta@atuin" = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations."vojta@atuin" = inputs.home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
           (import ./hosts/atuin/user.nix)
           (import ./secrets/common.nix)
           (import ./secrets/atuin.nix)
-          nix-flatpak.homeManagerModules.nix-flatpak
-          plasma-manager.homeModules.plasma-manager
+          inputs.nix-flatpak.homeManagerModules.nix-flatpak
+          inputs.plasma-manager.homeModules.plasma-manager
         ] ++ import ./modules/user;
-      };
-
-      # Testing VM
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        inherit system;
-        modules = [
-          { nixpkgs.overlays = overlays; }
-          ./hosts/nixos/system.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.users.remedan = import ./hosts/nixos/user.nix;
-            home-manager.sharedModules = import ./modules/user ++ [
-              nix-flatpak.homeManagerModules.nix-flatpak
-              plasma-manager.homeModules.plasma-manager
-            ];
-          }
-        ] ++ import ./modules/system;
       };
     };
 }
