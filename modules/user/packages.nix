@@ -8,7 +8,6 @@ in
     enable = mkEnableOption "packages";
   };
   config = mkIf cfg.enable {
-    home.shellAliases.lmstudio-wayland = "lmstudio --enable-features=WaylandWindowDecorations --ozone-platform-hint=auto";
     home.packages = with pkgs; [
       # Core
       bat
@@ -29,7 +28,6 @@ in
       ethtool
       iperf
       nmap
-      nmap
       tcpdump
       traceroute
       wireguard-tools
@@ -41,7 +39,6 @@ in
       fd
       fzf
       ghostscript
-      gnome-solanum
       gparted
       imagemagick
       ispell
@@ -58,7 +55,6 @@ in
       wl-clipboard
 
       # Backup
-      pika-backup
       vorta
 
       # Audio
@@ -100,7 +96,7 @@ in
       kubernetes-helm
       remmina
       terraform
-      winbox4
+      winbox
       wireshark
 
       # Internet
@@ -110,14 +106,10 @@ in
       filezilla
       firefox
       samba
-      thunderbird-latest
-      warp
+      thunderbird
 
       # Office
       libreoffice
-
-      # AI
-      lmstudio
 
       # Compatibility
       appimage-run
@@ -134,7 +126,7 @@ in
       vesktop
 
       # Graphics
-      gimp3
+      gimp
       inkscape
       krita
 
@@ -156,10 +148,8 @@ in
       yubikey-manager
 
       # Games
-      aisleriot
       bolt-launcher
       gargoyle
-      gnome-mines
       uzdoom
       ifm
       prismlauncher
