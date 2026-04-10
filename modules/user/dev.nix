@@ -16,6 +16,7 @@ in
     nodejs.enable = mkEnableOption "Node.js";
     commonLisp.enable = mkEnableOption "Common Lisp";
     godot.enable = mkEnableOption "Godot";
+    jetbrains.enable = mkEnableOption "JetBrains";
     claude.code.enable = mkEnableOption "Claude Code";
     claude.desktop.enable = mkEnableOption "Claude Desktop";
   };
@@ -49,6 +50,11 @@ in
     (mkIf cfg.godot.enable {
       home.packages = with pkgs; [
         godot
+      ];
+    })
+    (mkIf cfg.jetbrains.enable {
+      home.packages = with pkgs; [
+        jetbrains-toolbox
       ];
     })
     (mkIf cfg.claude.code.enable {

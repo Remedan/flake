@@ -78,7 +78,6 @@ in
       gcc
       gdb
       git-crypt
-      jetbrains-toolbox
       jq
       minikube
       mkcert

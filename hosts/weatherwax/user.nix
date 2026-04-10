@@ -11,6 +11,7 @@
       rust.enable = true;
       nodejs.enable = true;
       godot.enable = true;
+      jetbrains.enable = true;
       claude.code.enable = true;
     };
   };
