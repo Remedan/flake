@@ -5,7 +5,6 @@
     homeDirectory = "/home/remedan";
   };
   userModules = {
-    music.libraryLocation = "~/Network/Media/Audio/Music";
     dev = {
       python.enable = true;
       rust.enable = true;
