@@ -196,8 +196,6 @@ in
         # Home Manager packages (useGlobalPkgs = true)
         "claude-code"
         "jetbrains-toolbox"
-        "lmstudio"
-        "slack"
         "spotify"
         "terraform"
         "trezor-suite"
