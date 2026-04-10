@@ -60,6 +60,8 @@ in
     home.packages = with pkgs; [
       rc2nix
       kdePackages.kcalc
+      kdePackages.kmines
+      kdePackages.kpat
     ];
   };
 }
