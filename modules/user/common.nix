@@ -27,7 +27,6 @@ with lib;
         git.enable = mkDefault true;
         virt-manager.enable = mkDefault true;
         flatpak.enable = mkDefault true;
-        ranger.enable = mkDefault true;
         nextcloud.enable = mkDefault true;
         vscodium.enable = mkDefault true;
       };
