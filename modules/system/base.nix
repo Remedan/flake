@@ -167,7 +167,6 @@ in
         wget
       ];
 
-      programs.zsh.enable = true;
       programs.fish.enable = true;
 
       programs._1password.enable = true;

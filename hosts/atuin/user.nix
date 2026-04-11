@@ -57,9 +57,6 @@
     # 🦞
     openclaw
   ];
-  programs.zsh.initContent = ''
-    source /home/vojta/.config/op/plugins.sh
-  '';
   programs.fish.shellInit = ''
     source /home/vojta/.config/op/plugins.sh
   '';
