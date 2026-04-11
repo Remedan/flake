@@ -7,7 +7,7 @@ in
   options.userModules.gnome = {
     enable = mkOption {
       type = types.bool;
-      default = osConfig != null && osConfig.systemModules.common.desktopEnvironment == "Gnome";
+      default = osConfig != null && osConfig.systemModules.base.desktopEnvironment == "Gnome";
     };
     extensions.enable = mkOption {
       type = types.bool;

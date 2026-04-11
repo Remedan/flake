@@ -11,7 +11,7 @@ in
   config = mkIf cfg.enable {
     services.snapper.configs.home = {
       SUBVOLUME = "/home";
-      ALLOW_USERS = [ config.systemModules.common.userName ];
+      ALLOW_USERS = [ config.systemModules.base.userName ];
       TIMELINE_CREATE = true;
       TIMELINE_CLEANUP = true;
     };

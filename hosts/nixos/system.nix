@@ -48,7 +48,7 @@
   services.spice-vdagentd.enable = true;
 
   systemModules = {
-    common = {
+    base = {
       userName = "remedan";
       hostName = "nixos";
       cpuType = "amd";

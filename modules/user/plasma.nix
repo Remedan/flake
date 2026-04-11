@@ -7,7 +7,7 @@ in
   options.userModules.plasma = {
     enable = mkOption {
       type = types.bool;
-      default = osConfig != null && osConfig.systemModules.common.desktopEnvironment == "KDE";
+      default = osConfig != null && osConfig.systemModules.base.desktopEnvironment == "KDE";
     };
   };
   config = mkIf cfg.enable {

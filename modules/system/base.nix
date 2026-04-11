@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-  cfg = config.systemModules.common;
+  cfg = config.systemModules.base;
 in
 {
-  options.systemModules.common = {
+  options.systemModules.base = {
     userName = mkOption {
       type = types.str;
     };

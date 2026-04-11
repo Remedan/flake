@@ -38,7 +38,7 @@
   zramSwap.enable = true;
 
   systemModules = {
-    common = {
+    base = {
       userName = "remedan";
       hostName = "rincewind";
       cpuType = "intel";

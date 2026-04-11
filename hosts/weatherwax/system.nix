@@ -63,7 +63,7 @@
   hardware.xpadneo.enable = true;
 
   systemModules = {
-    common = {
+    base = {
       userName = "remedan";
       hostName = "weatherwax";
       cpuType = "amd";
