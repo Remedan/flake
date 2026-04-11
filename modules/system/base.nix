@@ -16,7 +16,7 @@ in
       default = null;
     };
     desktopEnvironment = mkOption {
-      type = types.enum [ "Gnome" "KDE" "Hyprland" ];
+      type = types.enum [ "KDE" "Hyprland" ];
       default = "KDE";
     };
   };
@@ -243,7 +243,7 @@ in
       programs.steam = {
         enable = true;
         # This fixes Steam having a weird cursor
-        extraPackages = with pkgs; [ adwaita-icon-theme kdePackages.breeze ];
+        extraPackages = [ pkgs.kdePackages.breeze ];
       };
       programs.gamemode.enable = true;
 
@@ -264,23 +264,6 @@ in
       systemModules.nix-ld.enable = mkDefault true;
       systemModules.snapper.enable = mkDefault true;
     }
-    (mkIf (cfg.desktopEnvironment == "Gnome") {
-      services.displayManager.gdm.enable = true;
-      services.desktopManager.gnome.enable = true;
-
-      # Add the option to open a directory in Kitty to Nautilus
-      programs.nautilus-open-any-terminal = {
-        enable = true;
-        terminal = "kitty";
-      };
-
-      i18n.inputMethod = {
-        enable = true;
-        type = "ibus";
-        # Enable Japanese input
-        ibus.engines = with pkgs.ibus-engines; [ anthy mozc ];
-      };
-    })
     (mkIf (cfg.desktopEnvironment == "KDE") {
       services.displayManager.plasma-login-manager.enable = true;
       services.desktopManager.plasma6.enable = true;

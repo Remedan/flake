@@ -6,7 +6,6 @@
   ./fonts.nix
   ./generic-linux.nix
   ./git.nix
-  ./gnome.nix
   ./gtk.nix
   ./hyprland.nix
   ./kitty.nix
