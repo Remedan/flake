@@ -33,6 +33,7 @@
     nix-tree
     pandoc
     pwgen
+    qmk
 
     # Development
     bfg-repo-cleaner
