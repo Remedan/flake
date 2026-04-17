@@ -70,6 +70,7 @@ in
             "vs-kubernetes.crd-code-completion" = "enabled";
           };
           "redhat.telemetry.enabled" = true;
+          "claudeCode.preferredLocation" = "panel";
         };
         keybindings = [
           {
