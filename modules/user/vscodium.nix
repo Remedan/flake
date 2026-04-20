@@ -20,6 +20,7 @@ in
           editorconfig.editorconfig
           gitlab.gitlab-workflow
           jdinhlife.gruvbox
+          jeanp413.open-remote-ssh
           mkhl.direnv
           ms-azuretools.vscode-containers
           ms-kubernetes-tools.vscode-kubernetes-tools
