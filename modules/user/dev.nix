@@ -62,7 +62,7 @@ in
     })
     (mkIf cfg.claude.desktop.enable {
       home.packages = with pkgs; [
-        claude-desktop
+        claude-desktop-fhs
       ];
     })
   ];

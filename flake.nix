@@ -16,14 +16,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-    claude-desktop = {
-      url = "github:k3d3/claude-desktop-linux-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    claude-desktop.url = "github:aaddrick/claude-desktop-debian";
   };
 
   outputs = inputs:
@@ -31,7 +28,6 @@
       system = "x86_64-linux";
       extraPkgs = final: prev: {
         rc2nix = inputs.plasma-manager.packages.${system}.rc2nix;
-        claude-desktop = inputs.claude-desktop.packages.${system}.claude-desktop;
       };
       # Overlay for packages that are broken in unstable
       stablePkgs = final: prev: {
@@ -39,6 +35,7 @@
       };
       overlays = [
         inputs.nix-vscode-extensions.overlays.default
+        inputs.claude-desktop.overlays.default
         extraPkgs
         stablePkgs
       ];

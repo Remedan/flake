@@ -194,6 +194,7 @@ in
         "uhk-udev-rules"
         # Home Manager packages (useGlobalPkgs = true)
         "claude-code"
+        "claude-desktop"
         "jetbrains-toolbox"
         "spotify"
         "terraform"
