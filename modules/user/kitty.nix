@@ -17,7 +17,7 @@ in
       enable = true;
       package = config.lib.nixGL.wrap pkgs.kitty;
       font = {
-        name = "Iosevka Term";
+        name = "IosevkaTerm Nerd Font";
         size = 11;
       };
       themeFile = cfg.colorscheme;

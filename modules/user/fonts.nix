@@ -32,6 +32,7 @@ in
       fira-code
       iosevka-bin
       jetbrains-mono
+      nerd-fonts.iosevka-term
       nerd-fonts.symbols-only
       source-code-pro
     ];
