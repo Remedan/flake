@@ -32,6 +32,8 @@
       # Overlay for packages that are broken in unstable
       stablePkgs = final: prev: {
         ifm = inputs.nixpkgs-stable.legacyPackages.${system}.ifm;
+        wireshark = inputs.nixpkgs-stable.legacyPackages.${system}.wireshark;
+        bottles = inputs.nixpkgs-stable.legacyPackages.${system}.bottles;
       };
       overlays = [
         inputs.nix-vscode-extensions.overlays.default
