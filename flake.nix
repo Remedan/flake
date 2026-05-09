@@ -31,8 +31,8 @@
       };
       # Overlay for packages that are broken in unstable
       stablePkgs = final: prev: {
+        # <package> = inputs.nixpkgs-stable.legacyPackages.${system}.<package>;
         ifm = inputs.nixpkgs-stable.legacyPackages.${system}.ifm;
-        wireshark = inputs.nixpkgs-stable.legacyPackages.${system}.wireshark;
         bottles = inputs.nixpkgs-stable.legacyPackages.${system}.bottles;
       };
       overlays = [
