@@ -9,9 +9,8 @@ in
   };
 
   config = mkIf cfg.enable {
-    programs.vscode = {
+    programs.vscodium = {
       enable = true;
-      package = pkgs.vscodium;
       mutableExtensionsDir = false;
       profiles.default = {
         extensions = with pkgs.open-vsx-release; [
