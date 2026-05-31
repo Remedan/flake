@@ -62,7 +62,8 @@ in
     })
     (mkIf cfg.claude.desktop.enable {
       home.packages = with pkgs; [
-        claude-desktop-fhs
+        # TODO Broken upstream
+        # claude-desktop-fhs
       ];
     })
   ];
