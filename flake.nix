@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-26.05";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,10 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-    nix-vscode-extensions = {
-      url = "github:nix-community/nix-vscode-extensions";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     claude-desktop.url = "github:aaddrick/claude-desktop-debian";
   };
 
@@ -32,8 +29,8 @@
       # Overlay for packages that are broken in unstable
       stablePkgs = final: prev: {
         # <package> = inputs.nixpkgs-stable.legacyPackages.${system}.<package>;
-        ifm = inputs.nixpkgs-stable.legacyPackages.${system}.ifm;
         bottles = inputs.nixpkgs-stable.legacyPackages.${system}.bottles;
+        trezorctl = inputs.nixpkgs-stable.legacyPackages.${system}.trezorctl;
       };
       overlays = [
         inputs.nix-vscode-extensions.overlays.default
