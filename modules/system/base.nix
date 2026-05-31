@@ -27,7 +27,7 @@ in
       # However, I do update it when a new NixOS version releases,
       # after scanning the release notes for breaking changes.
       # https://nixos.org/manual/nixos/stable/release-notes
-      system.stateVersion = "25.11";
+      system.stateVersion = "26.05";
 
       # Install common non-free firmware
       hardware.enableRedistributableFirmware = true;
