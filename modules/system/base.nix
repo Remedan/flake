@@ -50,12 +50,6 @@ in
         networkmanager.enable = true;
       };
 
-      # Allow KDEConnect
-      networking.firewall = rec {
-        allowedTCPPortRanges = [{ from = 1714; to = 1764; }];
-        allowedUDPPortRanges = allowedTCPPortRanges;
-      };
-
       time.timeZone = "Europe/Prague";
 
       i18n =

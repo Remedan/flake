@@ -11,10 +11,7 @@ with lib;
         settings.experimental-features = [ "nix-command" "flakes" ];
       };
       programs.nix-index.enable = mkDefault true;
-      programs.yazi = {
-        enable = mkDefault true;
-        shellWrapperName = "y";
-      };
+      programs.yazi.enable = mkDefault true;
       programs.zellij.enable = mkDefault true;
       userModules = {
         packages.enable = mkDefault true;
