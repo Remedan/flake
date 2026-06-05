@@ -29,8 +29,6 @@
       # Overlay for packages that are broken in unstable
       stablePkgs = final: prev: {
         # <package> = inputs.nixpkgs-stable.legacyPackages.${system}.<package>;
-        bottles = inputs.nixpkgs-stable.legacyPackages.${system}.bottles;
-        trezorctl = inputs.nixpkgs-stable.legacyPackages.${system}.trezorctl;
       };
       overlays = [
         inputs.nix-vscode-extensions.overlays.default
