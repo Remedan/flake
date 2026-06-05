@@ -7,10 +7,6 @@ in
     home.stateVersion = "26.05";
     programs.home-manager.enable = true;
     xdg.userDirs.enable = true;
-    nix = {
-      package = mkDefault pkgs.nix;
-      settings.experimental-features = [ "nix-command" "flakes" ];
-    };
     programs.nix-index.enable = mkDefault true;
     programs.yazi.enable = mkDefault true;
     programs.zellij.enable = mkDefault true;
