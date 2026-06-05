@@ -27,11 +27,15 @@ in
         plymouth.enable = true;
       }
       (mkIf (cfg.loader == "systemd-boot") {
-        loader.systemd-boot.enable = true;
+        loader.systemd-boot = {
+          enable = true;
+          configurationLimit = 20;
+        };
       })
       (mkIf (cfg.loader == "grub") {
         loader.grub = {
           enable = true;
+          configurationLimit = 20;
           device = "nodev";
           efiSupport = true;
           enableCryptodisk = cfg.luks.enable;

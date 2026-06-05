@@ -37,13 +37,11 @@
 
     # Development
     bfg-repo-cleaner
-    direnv
     git-crypt
     glab
     just
     minikube
     mkcert
-    nix-direnv
     pgcli
     tig
     websocat

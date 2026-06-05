@@ -72,7 +72,6 @@ in
       # Development
       bfg-repo-cleaner
       cmake
-      direnv
       dive
       gcc
       gdb
@@ -80,7 +79,6 @@ in
       jq
       minikube
       mkcert
-      nix-direnv
       pgcli
       tig
       websocat
@@ -102,7 +100,6 @@ in
       datovka
       deluge
       filezilla
-      firefox
       samba
       thunderbird
 
@@ -110,7 +107,6 @@ in
       libreoffice
 
       # Compatibility
-      appimage-run
       (bottles.override { removeWarningPopup = true; })
       distrobox
       quickemu

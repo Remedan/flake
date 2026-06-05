@@ -48,6 +48,7 @@ in
       networking = {
         hostName = cfg.hostName;
         networkmanager.enable = true;
+        firewall.enable = true;
       };
 
       time.timeZone = "Europe/Prague";
@@ -111,6 +112,9 @@ in
         settings.PasswordAuthentication = lib.mkDefault false;
       };
 
+      # Automatic SSD trim
+      services.fstrim.enable = true;
+
       # User setup
       users.groups.${cfg.userName} = {
         gid = 1000;
@@ -146,7 +150,7 @@ in
             "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
           ];
         };
-        optimise.automatic = true;
+        auto-optimise-store = true;
         gc = {
           automatic = true;
           options = "--delete-older-than 30d";
@@ -163,9 +167,13 @@ in
 
       programs.fish.enable = true;
 
+      programs.firefox.enable = true;
+
       programs._1password.enable = true;
       programs._1password-gui.enable = true;
       programs._1password-gui.polkitPolicyOwners = [ cfg.userName ];
+
+      programs.appimage.enable = true;
 
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
       nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
