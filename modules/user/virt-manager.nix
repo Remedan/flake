@@ -1,13 +1,12 @@
 { config, lib, ... }:
-with lib;
 let
   cfg = config.userModules.virt-manager;
 in
 {
   options.userModules.virt-manager = {
-    enable = mkEnableOption "Virt Manager";
+    enable = lib.mkEnableOption "Virt Manager";
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     dconf.settings = {
       "org/virt-manager/virt-manager/new-vm" = {
         firmware = "uefi";

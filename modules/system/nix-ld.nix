@@ -1,14 +1,13 @@
 { config, lib, pkgs, ... }:
-with lib;
 let
   cfg = config.systemModules.nix-ld;
 in
 {
   options.systemModules.nix-ld = {
-    enable = mkEnableOption "nix-ld";
+    enable = lib.mkEnableOption "nix-ld";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs.nix-ld = {
       enable = true;
       libraries = pkgs.appimageTools.defaultFhsEnvArgs.targetPkgs pkgs;

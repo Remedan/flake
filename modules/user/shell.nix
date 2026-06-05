@@ -1,13 +1,12 @@
 { config, lib, ... }:
-with lib;
 let
   cfg = config.userModules.shell;
 in
 {
   options.userModules.shell = {
-    enable = mkEnableOption "shell";
+    enable = lib.mkEnableOption "shell";
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     home = {
       shell.enableFishIntegration = true;
       sessionPath = [

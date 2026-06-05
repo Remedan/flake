@@ -1,13 +1,12 @@
 { config, lib, pkgs, ... }:
-with lib;
 let
   cfg = config.userModules.packages;
 in
 {
   options.userModules.packages = {
-    enable = mkEnableOption "packages";
+    enable = lib.mkEnableOption "packages";
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       # Core
       bat

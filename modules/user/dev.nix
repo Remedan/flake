@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
-with lib;
 let
+  inherit (lib) mkOption mkEnableOption types mkIf;
   cfg = config.userModules.dev;
 in
 {
@@ -20,7 +20,7 @@ in
     claude.code.enable = mkEnableOption "Claude Code";
     claude.desktop.enable = mkEnableOption "Claude Desktop";
   };
-  config = mkMerge [
+  config = lib.mkMerge [
     (mkIf cfg.python.enable {
       home.packages = with pkgs; [
         poetry

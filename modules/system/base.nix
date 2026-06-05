@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
-with lib;
 let
+  inherit (lib) mkOption types;
   cfg = config.systemModules.base;
 in
 {
@@ -21,7 +21,7 @@ in
     };
   };
 
-  config = mkMerge [
+  config = lib.mkMerge [
     {
       # In theory, this should never be updated.
       # However, I do update it when a new NixOS version releases,
@@ -255,10 +255,10 @@ in
       };
 
       # Custom Modules
-      systemModules.nix-ld.enable = mkDefault true;
-      systemModules.snapper.enable = mkDefault true;
+      systemModules.nix-ld.enable = lib.mkDefault true;
+      systemModules.snapper.enable = lib.mkDefault true;
     }
-    (mkIf (cfg.desktopEnvironment == "KDE") {
+    (lib.mkIf (cfg.desktopEnvironment == "KDE") {
       services.displayManager.plasma-login-manager.enable = true;
       services.desktopManager.plasma6.enable = true;
       programs.kdeconnect.enable = true;
@@ -267,7 +267,7 @@ in
         kdePackages.plasma-keyboard
       ];
     })
-    (mkIf (cfg.desktopEnvironment == "Hyprland") {
+    (lib.mkIf (cfg.desktopEnvironment == "Hyprland") {
       services.displayManager.sddm = {
         enable = true;
         wayland.enable = true;

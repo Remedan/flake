@@ -1,13 +1,12 @@
 { config, lib, pkgs, ... }:
-with lib;
 let
   cfg = config.userModules.gtk;
 in
 {
   options.userModules.gtk = {
-    enable = mkEnableOption "GTK";
+    enable = lib.mkEnableOption "GTK";
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     gtk = {
       enable = true;
       # Needed on Plasma

@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
-with lib;
 let
+  inherit (lib) mkOption mkEnableOption types;
   cfg = config.userModules.git;
 in
 {
@@ -23,7 +23,7 @@ in
       default = "${pkgs._1password-gui}/bin/op-ssh-sign";
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs.git = {
       enable = true;
 

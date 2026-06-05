@@ -1,13 +1,12 @@
 { config, lib, ... }:
-with lib;
 let
   cfg = config.userModules.flatpak;
 in
 {
   options.userModules.flatpak = {
-    enable = mkEnableOption "Flatpak";
+    enable = lib.mkEnableOption "Flatpak";
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     services.flatpak = {
       enable = true;
       remotes = lib.mkOptionDefault [

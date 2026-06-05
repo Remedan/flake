@@ -1,14 +1,13 @@
 { config, lib, ... }:
-with lib;
 let
   cfg = config.systemModules.snapper;
 in
 {
   options.systemModules.snapper = {
-    enable = mkEnableOption "Snapper";
+    enable = lib.mkEnableOption "Snapper";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     services.snapper.configs.home = {
       SUBVOLUME = "/home";
       ALLOW_USERS = [ config.systemModules.base.userName ];

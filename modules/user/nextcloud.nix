@@ -1,13 +1,12 @@
 { config, lib, pkgs, ... }:
-with lib;
 let
   cfg = config.userModules.nextcloud;
 in
 {
   options.userModules.nextcloud = {
-    enable = mkEnableOption "Nextcloud";
+    enable = lib.mkEnableOption "Nextcloud";
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     services.nextcloud-client = {
       enable = true;
       startInBackground = true;

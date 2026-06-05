@@ -1,6 +1,6 @@
 { config, lib, ... }:
-with lib;
 let
+  inherit (lib) mkOption mkEnableOption types;
   cfg = config.systemModules.nvidia;
 in
 {
@@ -12,7 +12,7 @@ in
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     hardware.graphics = {
       enable = true;
       enable32Bit = true;

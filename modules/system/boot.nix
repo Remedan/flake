@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
-with lib;
 let
+  inherit (lib) mkOption types mkIf;
   cfg = config.systemModules.boot;
 in
 {
@@ -21,7 +21,7 @@ in
   };
 
   config = {
-    boot = mkMerge [
+    boot = lib.mkMerge [
       {
         loader.efi.canTouchEfiVariables = true;
         plymouth.enable = true;

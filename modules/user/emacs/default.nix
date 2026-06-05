@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
-with lib;
 let
+  inherit (lib) mkOption mkEnableOption types mkIf;
   cfg = config.userModules.emacs;
 in
 {

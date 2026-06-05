@@ -1,5 +1,7 @@
 { config, lib, pkgs, ... }:
-with lib;
+let
+  inherit (lib) mkDefault;
+in
 {
   config = {
     home.stateVersion = "26.05";

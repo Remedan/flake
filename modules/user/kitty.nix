@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
-with lib;
 let
+  inherit (lib) mkEnableOption mkOption types;
   cfg = config.userModules.kitty;
 in
 {
@@ -12,7 +12,7 @@ in
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs.kitty = {
       enable = true;
       package = config.lib.nixGL.wrap pkgs.kitty;

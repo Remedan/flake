@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
-with lib;
 let
+  inherit (lib) mkOption mkEnableOption types;
   cfg = config.userModules.music;
 in
 {
@@ -15,7 +15,7 @@ in
       default = true;
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     services.mpd = {
       enable = true;
       extraConfig = ''
@@ -31,7 +31,7 @@ in
             format  "44100:16:2"
         }
       '';
-    } // optionalAttrs (cfg.libraryLocation != null) {
+    } // lib.optionalAttrs (cfg.libraryLocation != null) {
       musicDirectory = cfg.libraryLocation;
     };
     services.mpd-mpris.enable = cfg.enableMpris;
