@@ -72,7 +72,7 @@
           extraSystemModules = [ inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-yoga ];
         };
         # Testing VM
-        nixos = { name = "nixos"; };
+        nixos = mkNixosSystem { name = "nixos"; };
       };
 
       # Atuin is a Fedora-based system (standalone Home Manager)

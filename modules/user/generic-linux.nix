@@ -10,7 +10,7 @@ in
 
   config = mkIf cfg.enable {
     targets.genericLinux.enable = true;
-    # We use nixGL becuase the default approach relies on creating a system systemd service
+    # We use nixGL because the default approach relies on creating a system systemd service
     # which doesn't work well on Fedora because of SELinux.
     targets.genericLinux.nixGL.packages = pkgs.nixgl;
   };

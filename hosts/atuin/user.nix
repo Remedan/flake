@@ -62,7 +62,7 @@
     source /home/vojta/.config/op/plugins.sh
   '';
   home.sessionPath = [ "$HOME/.cargo/bin" ];
-  # For some reasone, Nix programs can't find the CA bundle on Fedora 44
+  # For some reason, Nix programs can't find the CA bundle on Fedora 44
   home.sessionVariables.NIX_SSL_CERT_FILE = "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem";
   programs.nix-index.enable = false;
   userModules = {
