@@ -18,7 +18,6 @@ in
           davidlday.languagetool-linter
           editorconfig.editorconfig
           gitlab.gitlab-workflow
-          jdinhlife.gruvbox
           jeanp413.open-remote-ssh
           mkhl.direnv
           ms-azuretools.vscode-containers
@@ -26,6 +25,10 @@ in
           redhat.vscode-yaml
           tonybaloney.vscode-pets
           vscodevim.vim
+
+          # Themes
+          jdinhlife.gruvbox
+          enkia.tokyo-night
 
           # Nix
           jnoortheen.nix-ide
@@ -63,7 +66,7 @@ in
             "<C-s>" = false;
             "<C-z>" = false;
           };
-          "workbench.colorTheme" = "Gruvbox Dark Hard";
+          "workbench.colorTheme" = "Dark Modern";
           "editor.fontFamily" = "'JetBrains Mono', monospace";
           "git.confirmSync" = false;
           "vs-kubernetes" = {
