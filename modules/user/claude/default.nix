@@ -12,7 +12,17 @@ in
     (lib.mkIf cfg.code.enable {
       programs.claude-code = {
         enable = true;
+        settings = {
+          model = "opus";
+          statusLine = {
+            type = "command";
+            command = "~/.claude/statusline.sh";
+          };
+        };
       };
+      # Adapted from https://code.claude.com/docs/en/statusline#context-window-usage
+      home.file.".claude/statusline.sh".source = ./statusline.sh;
+      home.shellAliases.c = "claude";
     })
     (lib.mkIf cfg.desktop.enable {
       home.packages = with pkgs; [
