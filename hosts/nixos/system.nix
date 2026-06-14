@@ -15,33 +15,30 @@
 
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-uuid/4e6fcc6a-8dce-46e1-8b99-e174f0fe792c";
+      device = "/dev/disk/by-uuid/7fbabfcb-2761-4580-a0bc-4320c331fa0e";
       fsType = "btrfs";
-      options = [ "subvol=@" ];
+      options = [ "subvol=@" "compress=zstd:1" ];
     };
 
     "/nix" = {
-      device = "/dev/disk/by-uuid/4e6fcc6a-8dce-46e1-8b99-e174f0fe792c";
+      device = "/dev/disk/by-uuid/7fbabfcb-2761-4580-a0bc-4320c331fa0e";
       fsType = "btrfs";
-      options = [ "subvol=@nix" "noatime" ];
+      options = [ "subvol=@nix" "noatime" "compress=zstd:1" ];
     };
 
     "/home" = {
-      device = "/dev/disk/by-uuid/4e6fcc6a-8dce-46e1-8b99-e174f0fe792c";
+      device = "/dev/disk/by-uuid/7fbabfcb-2761-4580-a0bc-4320c331fa0e";
       fsType = "btrfs";
-      options = [ "subvol=@home" ];
+      options = [ "subvol=@home" "compress=zstd:1" ];
     };
 
     "/boot" = {
-      device = "/dev/disk/by-uuid/FFEE-5BF3";
+      device = "/dev/disk/by-uuid/BBEA-C5C6";
       fsType = "vfat";
     };
-
   };
 
-  swapDevices = [
-    { device = "/dev/disk/by-uuid/9d0eff90-fd15-40ea-a080-c8301a207307"; }
-  ];
+  zramSwap.enable = true;
 
   # Qemu guest integration
   services.qemuGuest.enable = true;
