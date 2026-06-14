@@ -74,7 +74,7 @@
     dev = {
       python.enable = true;
       nodejs.enable = true;
-      claude.code.enable = true;
     };
+    claude.code.enable = true;
   };
 }

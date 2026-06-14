@@ -1,4 +1,5 @@
 [
+  ./claude.nix
   ./common.nix
   ./dev.nix
   ./emacs

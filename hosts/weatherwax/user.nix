@@ -11,8 +11,8 @@
       nodejs.enable = true;
       godot.enable = true;
       jetbrains.enable = true;
-      claude.code.enable = true;
-      claude.desktop.enable = true;
     };
+    claude.code.enable = true;
+    claude.desktop.enable = true;
   };
 }

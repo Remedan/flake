@@ -17,8 +17,6 @@ in
     commonLisp.enable = mkEnableOption "Common Lisp";
     godot.enable = mkEnableOption "Godot";
     jetbrains.enable = mkEnableOption "JetBrains";
-    claude.code.enable = mkEnableOption "Claude Code";
-    claude.desktop.enable = mkEnableOption "Claude Desktop";
   };
   config = lib.mkMerge [
     (mkIf cfg.python.enable {
@@ -55,15 +53,6 @@ in
     (mkIf cfg.jetbrains.enable {
       home.packages = with pkgs; [
         jetbrains-toolbox
-      ];
-    })
-    (mkIf cfg.claude.code.enable {
-      programs.claude-code.enable = true;
-    })
-    (mkIf cfg.claude.desktop.enable {
-      home.packages = with pkgs; [
-        # TODO Broken upstream
-        # claude-desktop-fhs
       ];
     })
   ];
