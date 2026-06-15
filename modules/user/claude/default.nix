@@ -13,7 +13,9 @@ in
       programs.claude-code = {
         enable = true;
         settings = {
-          model = "opus";
+          model = "opus[1m]";
+          effortLevel = "high";
+          skipAutoPermissionPrompt = true;
           statusLine = {
             type = "command";
             command = "~/.claude/statusline.sh";
