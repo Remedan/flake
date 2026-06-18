@@ -29,7 +29,6 @@
       # Overlay for packages that are broken in unstable
       stablePkgs = final: prev: {
         # <package> = inputs.nixpkgs-stable.legacyPackages.${system}.<package>;
-        openscad = inputs.nixpkgs-stable.legacyPackages.${system}.openscad;
       };
       overlays = [
         inputs.nix-vscode-extensions.overlays.default
