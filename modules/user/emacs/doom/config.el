@@ -116,7 +116,26 @@
 ;; Enable auto saving files
 (auto-save-visited-mode 1)
 
+;; Agent Shell
+(defun my/agent-shell-dot-subdir (subdir)
+  (let* ((cwd (string-remove-suffix "/" (agent-shell-cwd)))
+         (sanitized (replace-regexp-in-string "/" "-" (string-remove-prefix "/" cwd))))
+    (expand-file-name subdir (locate-user-emacs-file (concat "agent-shell/" sanitized)))))
+
 (use-package! agent-shell
   :config
   (map! :leader :desc "Agent Shell" "o s" #'agent-shell)
-  (setq agent-shell-preferred-agent-config (agent-shell-anthropic-make-claude-code-config)))
+  (setq agent-shell-preferred-agent-config (agent-shell-anthropic-make-claude-code-config))
+  (setopt agent-shell-dot-subdir-function #'my/agent-shell-dot-subdir)
+  (evil-define-key 'insert agent-shell-mode-map (kbd "RET") #'newline)
+  (evil-define-key 'normal agent-shell-mode-map (kbd "RET") #'comint-send-input)
+  (add-hook 'diff-mode-hook
+            (lambda ()
+              (when (string-match-p "\\*agent-shell-diff\\*" (buffer-name))
+                (evil-emacs-state)))))
+
+(use-package! agent-shell-sidebar
+  :after agent-shell
+  :config
+  (setq agent-shell-sidebar-default-config (agent-shell-anthropic-make-claude-code-config))
+  (map! :leader :desc "Agent Shell Sidebar" "o s" #'agent-shell-sidebar-toggle))
