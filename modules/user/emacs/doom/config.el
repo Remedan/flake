@@ -76,10 +76,26 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-;; Show trailing whitespace unless in vterm
 (setq-default show-trailing-whitespace t)
-(use-package! vterm
-  :hook (vterm-mode . (lambda() (setq show-trailing-whitespace nil))))
+
+(use-package! ghostel
+  :config
+  (set-popup-rule! "^\\*ghostel" :size 0.3 :vslot -4 :select t :quit nil :ttl 0)
+  (defun +ghostel/toggle ()
+    "Toggle a ghostel popup window."
+    (interactive)
+    (if-let ((buf (seq-find (lambda (b) (with-current-buffer b (derived-mode-p 'ghostel-mode)))
+                            (buffer-list))))
+        (if-let ((win (get-buffer-window buf)))
+            (delete-window win)
+          (pop-to-buffer buf))
+      (ghostel)))
+  (map! :leader :desc "Terminal" "o t" #'+ghostel/toggle)
+  (add-hook 'ghostel-mode-hook (lambda () (setq show-trailing-whitespace nil))))
+
+(use-package! evil-ghostel
+  :after (ghostel evil)
+  :hook (ghostel-mode . evil-ghostel-mode))
 
 ;; Use the ISO date format in org-journal, rename the journal directory
 (use-package! org-journal
