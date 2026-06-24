@@ -17,20 +17,27 @@ in
       "doom/config.el".source = ./doom/config.el;
       "doom/packages.el".source = ./doom/packages.el;
     };
-    home = {
-      sessionPath = [
-        "$HOME/.config/emacs/bin"
-      ];
-      packages = with pkgs; [
-        (pkgs.writeShellScriptBin "doom-update-config" ''
-          home-manager switch
-          $HOME/.config/emacs/bin/doom sync
-          systemctl --user restart emacs
-        '')
-        vips # for Dirvish image preview
-      ];
+    home.sessionPath = [
+      "$HOME/.config/emacs/bin"
+    ];
+    programs.emacs = {
+      enable = true;
+      package =
+        let
+          extraPkgs = with pkgs; [
+            vips # For Dirvish image preview
+            gcc # For Tree-sitter grammar installation
+          ];
+        in
+        pkgs.symlinkJoin {
+          name = "emacs";
+          paths = [ pkgs.emacs ];
+          nativeBuildInputs = [ pkgs.makeWrapper ];
+          postBuild = ''
+            wrapProgram $out/bin/emacs --prefix PATH : ${lib.makeBinPath extraPkgs}
+          '';
+        };
     };
-    programs.emacs.enable = true;
     services.emacs = {
       enable = cfg.service;
       startWithUserSession = "graphical"; # Fixes *ERROR*: Display :0 can’t be opened
