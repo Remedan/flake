@@ -143,8 +143,6 @@
   (map! :leader :desc "Agent Shell" "o s" #'agent-shell)
   (setq agent-shell-preferred-agent-config (agent-shell-anthropic-make-claude-code-config))
   (setopt agent-shell-dot-subdir-function #'my/agent-shell-dot-subdir)
-  (evil-define-key 'insert agent-shell-mode-map (kbd "RET") #'newline)
-  (evil-define-key 'normal agent-shell-mode-map (kbd "RET") #'comint-send-input)
   (add-hook 'diff-mode-hook
             (lambda ()
               (when (string-match-p "\\*agent-shell-diff\\*" (buffer-name))
