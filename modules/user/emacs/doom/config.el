@@ -153,6 +153,7 @@
   :config
   (map! :leader :desc "Agent Shell" "o s" #'agent-shell)
   (setq agent-shell-preferred-agent-config (agent-shell-anthropic-make-claude-code-config))
+  (setq agent-shell-anthropic-default-session-mode-id "acceptEdits")
   (setopt agent-shell-dot-subdir-function #'my/agent-shell-dot-subdir)
   (add-hook 'diff-mode-hook
             (lambda ()
