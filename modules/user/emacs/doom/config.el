@@ -143,30 +143,46 @@
 ;; Enable auto saving files
 (auto-save-visited-mode 1)
 
-;; Agent Shell
-(defun my/agent-shell-dot-subdir (subdir)
-  (let* ((cwd (string-remove-suffix "/" (agent-shell-cwd)))
-         (sanitized (replace-regexp-in-string "/" "-" (string-remove-prefix "/" cwd))))
-    (expand-file-name subdir (locate-user-emacs-file (concat "agent-shell/" sanitized)))))
-
 (use-package! agent-shell
   :config
+  (setq agent-shell-display-action nil)
+  (set-popup-rule! "^Claude Agent @" :side 'right :size 0.4 :select t :quit nil :ttl 0)
+  (defun +agent-shell/toggle-sidebar ()
+    "Toggle an agent-shell popup sidebar."
+    (interactive)
+    (if-let ((buf (seq-find (lambda (b) (with-current-buffer b (derived-mode-p 'agent-shell-mode)))
+                            (buffer-list))))
+        (if-let ((win (get-buffer-window buf)))
+            (delete-window win)
+          (pop-to-buffer buf))
+      (agent-shell)))
   (map! :leader (:prefix ("o s" . "Agent Shell")
-                 :desc "Open shell" "o" #'agent-shell
+                 :desc "Toggle sidebar" "s" #'+agent-shell/toggle-sidebar
                  :desc "Send file"      "f" #'agent-shell-send-file
-                 :desc "Send region"    "r" #'agent-shell-send-region))
+                 :desc "Send region"    "r" #'agent-shell-send-region
+                 :desc "New shell"      "n" #'agent-shell-new-shell
+                 :desc "Switch buffer"  "b" #'agent-shell-switch-buffer))
   (setq agent-shell-preferred-agent-config (agent-shell-anthropic-make-claude-code-config))
   (setq agent-shell-anthropic-default-session-mode-id "acceptEdits")
-  (setopt agent-shell-dot-subdir-function #'my/agent-shell-dot-subdir)
+  (defun +agent-shell/dot-subdir (subdir)
+    (let* ((cwd (string-remove-suffix "/" (agent-shell-cwd)))
+           (sanitized (replace-regexp-in-string "/" "-" (string-remove-prefix "/" cwd))))
+      (expand-file-name subdir (locate-user-emacs-file (concat "agent-shell/" sanitized)))))
+  (setopt agent-shell-dot-subdir-function #'+agent-shell/dot-subdir)
+  ;; This solves an issue where agent shell output wouldn't scroll after submitting a prompt
+  (after! shell-maker
+    (advice-add 'shell-maker--write-partial-reply :after
+                (lambda (&rest _)
+                  (when-let ((proc (shell-maker--process))
+                             (buf (process-buffer proc))
+                             (proc-mark (process-mark proc)))
+                    (dolist (win (get-buffer-window-list buf nil t))
+                      (when (< (window-point win) proc-mark)
+                        (set-window-point win proc-mark))
+                      (when (= (window-point win) proc-mark)
+                        (with-selected-window win
+                          (recenter (- -1 scroll-margin)))))))))
   (add-hook 'diff-mode-hook
             (lambda ()
               (when (string-match-p "\\*agent-shell-diff\\*" (buffer-name))
                 (evil-emacs-state)))))
-
-(use-package! agent-shell-sidebar
-  :after agent-shell
-  :config
-  (setq agent-shell-sidebar-default-config (agent-shell-anthropic-make-claude-code-config))
-  (map! :leader
-        (:prefix ("o s" . "Agent Shell")
-         :desc "Toggle sidebar" "s" #'agent-shell-sidebar-toggle)))
