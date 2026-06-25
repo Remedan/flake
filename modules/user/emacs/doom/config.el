@@ -90,7 +90,18 @@
             (delete-window win)
           (pop-to-buffer buf))
       (ghostel)))
-  (map! :leader :desc "Terminal" "o t" #'+ghostel/toggle)
+  (defun +ghostel/here ()
+    "Open ghostel in the current window."
+    (interactive)
+    (switch-to-buffer
+     (or (seq-find (lambda (b) (with-current-buffer b (derived-mode-p 'ghostel-mode)))
+                   (buffer-list))
+         (save-window-excursion
+           (ghostel)
+           (current-buffer)))))
+  (map! :leader
+        :desc "Terminal" "o t" #'+ghostel/toggle
+        :desc "Terminal here" "o T" #'+ghostel/here)
   (add-hook 'ghostel-mode-hook (lambda () (setq show-trailing-whitespace nil))))
 
 (use-package! evil-ghostel
