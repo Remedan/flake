@@ -27,6 +27,7 @@ in
           extraPkgs = with pkgs; [
             vips # For Dirvish image preview
             gcc # For Tree-sitter grammar installation
+            claude-agent-acp # For agent-shell
           ];
         in
         pkgs.symlinkJoin {
