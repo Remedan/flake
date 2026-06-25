@@ -151,7 +151,10 @@
 
 (use-package! agent-shell
   :config
-  (map! :leader :desc "Agent Shell" "o s" #'agent-shell)
+  (map! :leader (:prefix ("o s" . "Agent Shell")
+                 :desc "Open shell" "o" #'agent-shell
+                 :desc "Send file"      "f" #'agent-shell-send-file
+                 :desc "Send region"    "r" #'agent-shell-send-region))
   (setq agent-shell-preferred-agent-config (agent-shell-anthropic-make-claude-code-config))
   (setq agent-shell-anthropic-default-session-mode-id "acceptEdits")
   (setopt agent-shell-dot-subdir-function #'my/agent-shell-dot-subdir)
@@ -164,4 +167,6 @@
   :after agent-shell
   :config
   (setq agent-shell-sidebar-default-config (agent-shell-anthropic-make-claude-code-config))
-  (map! :leader :desc "Agent Shell Sidebar" "o s" #'agent-shell-sidebar-toggle))
+  (map! :leader
+        (:prefix ("o s" . "Agent Shell")
+         :desc "Toggle sidebar" "s" #'agent-shell-sidebar-toggle)))
