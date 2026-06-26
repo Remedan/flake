@@ -20,6 +20,7 @@ in
             type = "command";
             command = "~/.claude/statusline.sh";
           };
+          tui = "fullscreen";
         };
       };
       # Adapted from https://code.claude.com/docs/en/statusline#context-window-usage
