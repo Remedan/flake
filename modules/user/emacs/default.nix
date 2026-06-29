@@ -32,7 +32,7 @@ in
         in
         pkgs.symlinkJoin {
           name = "emacs";
-          paths = [ pkgs.emacs ];
+          paths = [ pkgs.emacs-pgtk ];
           nativeBuildInputs = [ pkgs.makeWrapper ];
           postBuild = ''
             wrapProgram $out/bin/emacs --prefix PATH : ${lib.makeBinPath extraPkgs}
