@@ -78,14 +78,12 @@
 
 (setq-default show-trailing-whitespace t)
 
-;; pgtk builds enable GTK's input-method context, which turns key-and-hold into
-;; a character-variants popup instead of key repeat. Keep it on only in insert
-;; state (so accented-character input still works), and off elsewhere so hjkl
-;; and other normal-state motions repeat normally.
-(when (fboundp 'pgtk-use-im-context)
-  (pgtk-use-im-context nil)
-  (add-hook 'evil-insert-state-entry-hook (lambda () (pgtk-use-im-context t)))
-  (add-hook 'evil-insert-state-exit-hook  (lambda () (pgtk-use-im-context nil))))
+;; Disable GTK IM outside of insert mode.
+(setq pgtk-use-im-context-on-new-connection nil)
+(add-hook 'evil-insert-state-entry-hook
+          (lambda () (when (display-graphic-p) (pgtk-use-im-context t))))
+(add-hook 'evil-insert-state-exit-hook
+          (lambda () (when (display-graphic-p) (pgtk-use-im-context nil))))
 
 (use-package! ghostel
   :config
