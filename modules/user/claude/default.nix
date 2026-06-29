@@ -15,7 +15,7 @@ in
         settings = {
           model = "opus[1m]";
           effortLevel = "high";
-          skipAutoPermissionPrompt = true;
+          defaultMode = "auto";
           statusLine = {
             type = "command";
             command = "~/.claude/statusline.sh";

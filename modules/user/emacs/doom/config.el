@@ -163,7 +163,7 @@
                  :desc "New shell"      "n" #'agent-shell-new-shell
                  :desc "Switch buffer"  "b" #'agent-shell-switch-buffer))
   (setq agent-shell-preferred-agent-config (agent-shell-anthropic-make-claude-code-config))
-  (setq agent-shell-anthropic-default-session-mode-id "acceptEdits")
+  (setq agent-shell-anthropic-default-session-mode-id "auto")
   (defun +agent-shell/dot-subdir (subdir)
     (let* ((cwd (string-remove-suffix "/" (agent-shell-cwd)))
            (sanitized (replace-regexp-in-string "/" "-" (string-remove-prefix "/" cwd))))
