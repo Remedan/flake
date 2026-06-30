@@ -85,6 +85,10 @@
 (add-hook 'evil-insert-state-exit-hook
           (lambda () (when (display-graphic-p) (pgtk-use-im-context nil))))
 
+;; Make new frames larger by default (width/height in character cells).
+(add-to-list 'default-frame-alist '(width . 150))
+(add-to-list 'default-frame-alist '(height . 50))
+
 (use-package! ghostel
   :config
   (set-popup-rule! "^\\*ghostel" :size 0.3 :vslot -4 :select t :quit nil :ttl 0)
