@@ -28,6 +28,7 @@ in
             vips # For Dirvish image preview
             gcc # For Tree-sitter grammar installation
             claude-agent-acp # For agent-shell
+            gnuplot # For Org Babel
           ];
         in
         pkgs.symlinkJoin {
