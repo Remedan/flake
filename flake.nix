@@ -30,11 +30,17 @@
       stablePkgs = final: prev: {
         # <package> = inputs.nixpkgs-stable.legacyPackages.${system}.<package>;
       };
+      # Some packages pin a vulnerable version of pnpm
+      # https://github.com/NixOS/nixpkgs/issues/536623
+      pnpm = final: prev: {
+        pnpm_10_29_2 = final.pnpm_10;
+      };
       overlays = [
         inputs.nix-vscode-extensions.overlays.default
         inputs.claude-desktop.overlays.default
         extraPkgs
         stablePkgs
+        pnpm
       ];
       pkgs = import inputs.nixpkgs {
         inherit system;
