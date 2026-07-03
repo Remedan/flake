@@ -76,5 +76,6 @@
       nodejs.enable = true;
     };
     claude.code.enable = true;
+    claude.recall.enable = true;
   };
 }

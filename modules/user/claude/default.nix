@@ -6,6 +6,7 @@ in
   options.userModules.claude = {
     code.enable = lib.mkEnableOption "Claude Code";
     desktop.enable = lib.mkEnableOption "Claude Desktop";
+    recall.enable = lib.mkEnableOption "recall";
   };
 
   config = lib.mkMerge [
@@ -32,6 +33,11 @@ in
     (lib.mkIf cfg.desktop.enable {
       home.packages = with pkgs; [
         claude-desktop-fhs
+      ];
+    })
+    (lib.mkIf cfg.recall.enable {
+      home.packages = with pkgs; [
+        recall
       ];
     })
   ];

@@ -14,5 +14,6 @@
     };
     claude.code.enable = true;
     claude.desktop.enable = true;
+    claude.recall.enable = true;
   };
 }

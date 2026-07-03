@@ -18,6 +18,10 @@
     };
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     claude-desktop.url = "github:aaddrick/claude-desktop-debian";
+    recall = {
+      url = "github:zippoxer/recall";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:
@@ -25,6 +29,7 @@
       system = "x86_64-linux";
       extraPkgs = final: prev: {
         rc2nix = inputs.plasma-manager.packages.${system}.rc2nix;
+        recall = inputs.recall.packages.${system}.default;
       };
       # Overlay for packages that are broken in unstable
       stablePkgs = final: prev: {
