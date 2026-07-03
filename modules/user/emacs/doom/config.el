@@ -87,7 +87,7 @@
 
 ;; Make new frames larger by default (width/height in character cells).
 (add-to-list 'default-frame-alist '(width . 150))
-(add-to-list 'default-frame-alist '(height . 50))
+(add-to-list 'default-frame-alist '(height . 45))
 
 (use-package! ghostel
   :config
