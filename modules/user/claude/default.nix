@@ -16,7 +16,7 @@ in
         settings = {
           model = "opus[1m]";
           effortLevel = "high";
-          defaultMode = "auto";
+          permissions.defaultMode = "auto";
           statusLine = {
             type = "command";
             command = "~/.claude/statusline.sh";
