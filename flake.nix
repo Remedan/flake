@@ -34,18 +34,15 @@
       # Overlay for packages that are broken in unstable
       stablePkgs = final: prev: {
         # <package> = inputs.nixpkgs-stable.legacyPackages.${system}.<package>;
-      };
-      # Some packages pin a vulnerable version of pnpm
-      # https://github.com/NixOS/nixpkgs/issues/536623
-      pnpm = final: prev: {
-        pnpm_10_29_2 = final.pnpm_10;
+        bottles = inputs.nixpkgs-stable.legacyPackages.${system}.bottles;
+        freecad = inputs.nixpkgs-stable.legacyPackages.${system}.freecad;
+        trezorctl = inputs.nixpkgs-stable.legacyPackages.${system}.trezorctl;
       };
       overlays = [
         inputs.nix-vscode-extensions.overlays.default
         inputs.claude-desktop.overlays.default
         extraPkgs
         stablePkgs
-        pnpm
       ];
       pkgs = import inputs.nixpkgs {
         inherit system;
