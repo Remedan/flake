@@ -40,7 +40,7 @@
     git-crypt
     glab
     just
-    minikube
+    (lib.lowPrio minikube)
     mkcert
     pgcli
     tig

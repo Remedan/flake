@@ -77,7 +77,7 @@ in
       gdb
       git-crypt
       jq
-      minikube
+      (lib.lowPrio minikube) # Conflict with kubectl
       mkcert
       pgcli
       tig
