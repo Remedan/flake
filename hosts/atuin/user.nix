@@ -15,7 +15,6 @@
     # Core
     bat
     htop
-    neovim
     nix-search-cli
     ripgrep
 

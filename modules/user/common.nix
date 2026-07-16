@@ -7,6 +7,12 @@ in
     home.stateVersion = "26.05";
     programs.home-manager.enable = true;
     xdg.userDirs.enable = true;
+    programs.neovim = {
+      enable = true;
+      viAlias = true;
+      vimAlias = true;
+      vimdiffAlias = true;
+    };
     programs.nix-index.enable = mkDefault true;
     programs.yazi.enable = mkDefault true;
     programs.zellij.enable = mkDefault true;
