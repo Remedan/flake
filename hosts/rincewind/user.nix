@@ -9,7 +9,5 @@
       python.enable = true;
       rust.enable = true;
     };
-    claude.code.enable = true;
-    claude.recall.enable = true;
   };
 }

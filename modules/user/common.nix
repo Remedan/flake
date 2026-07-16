@@ -29,6 +29,7 @@ in
       flatpak.enable = mkDefault true;
       nextcloud.enable = mkDefault true;
       vscodium.enable = mkDefault true;
+      claude.code.enable = mkDefault true;
     };
   };
 }
