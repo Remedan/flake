@@ -157,6 +157,8 @@
 (use-package! agent-shell
   :config
   (setq agent-shell-display-action nil)
+  ;; Don't auto-send the current file/region/line as context when opening a shell.
+  (setq agent-shell-context-sources nil)
   (set-popup-rule! "^Claude Agent @" :side 'right :size 0.4 :select t :quit nil :ttl 0)
   (defun +agent-shell/toggle-sidebar ()
     "Toggle an agent-shell popup sidebar."
@@ -174,7 +176,6 @@
                  :desc "New shell"      "n" #'agent-shell-new-shell
                  :desc "Switch buffer"  "b" #'agent-shell-switch-buffer))
   (setq agent-shell-preferred-agent-config (agent-shell-anthropic-make-claude-code-config))
-  (setq agent-shell-anthropic-default-session-mode-id "auto")
   (setq agent-shell-session-restore-verbosity 'full)
   (defun +agent-shell/dot-subdir (subdir)
     (let* ((cwd (string-remove-suffix "/" (agent-shell-cwd)))
