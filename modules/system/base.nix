@@ -206,6 +206,10 @@ in
         "vscode-extension-anthropic-claude-code"
         "winbox"
       ];
+      # Electron 40 is EOL but some packages still depend on it.
+      # TODO: remove once those packages move to a supported Electron.
+      nixpkgs.config.allowInsecurePredicate = pkg:
+        lib.getName pkg == "electron" && lib.hasPrefix "40" (lib.getVersion pkg);
 
       # Flatpak
       services.flatpak.enable = true;
