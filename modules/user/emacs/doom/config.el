@@ -199,3 +199,27 @@
             (lambda ()
               (when (string-match-p "\\*agent-shell-diff\\*" (buffer-name))
                 (evil-emacs-state)))))
+
+;; TRAMP over ssh hangs because our ~/.ssh/config forces TERM=xterm-256color
+;; for `Host *` (a kitty workaround; see modules/user/ssh.nix). TRAMP needs
+;; TERM=dumb, otherwise the remote interactive shell's colored/bracketed-paste
+;; prompt never matches TRAMP's prompt regexp and Emacs freezes. A command-line
+;; `-o SetEnv=TERM=dumb` on TRAMP's own ssh overrides the ssh_config value
+;; without affecting interactive kitty->ssh sessions.
+(after! tramp
+  (dolist (m '("ssh" "scp"))
+    (let* ((entry (assoc m tramp-methods))
+           (largs (assq 'tramp-login-args (cdr entry))))
+      (when (and largs
+                 (not (member '("-o" "SetEnv=TERM=dumb") (cadr largs))))
+        (setcar (cdr largs)
+                (cons '("-o" "SetEnv=TERM=dumb") (cadr largs)))))))
+
+;; Flycheck over tramp is not well-supported and causes issues with ghostel.
+(after! flycheck
+  (add-hook 'flycheck-mode-hook
+            (defun +flycheck-disable-on-remote-h ()
+              (when (and flycheck-mode
+                         default-directory
+                         (file-remote-p default-directory))
+                (flycheck-mode -1)))))
