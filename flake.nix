@@ -32,12 +32,10 @@
         recall = inputs.recall.packages.${system}.default;
       };
       # Overlay for packages that are broken in unstable
-      stablePkgs = final: prev: {
-        # <package> = inputs.nixpkgs-stable.legacyPackages.${system}.<package>;
-        bottles = inputs.nixpkgs-stable.legacyPackages.${system}.bottles;
-        freecad = inputs.nixpkgs-stable.legacyPackages.${system}.freecad;
-        trezorctl = inputs.nixpkgs-stable.legacyPackages.${system}.trezorctl;
-      };
+      stablePkgs = final: prev: inputs.nixpkgs.lib.getAttrs [
+        "trezorctl"
+        "poetry"
+      ] inputs.nixpkgs-stable.legacyPackages.${system};
       overlays = [
         inputs.nix-vscode-extensions.overlays.default
         inputs.claude-desktop.overlays.default
