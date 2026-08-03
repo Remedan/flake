@@ -78,13 +78,6 @@
 
 (setq-default show-trailing-whitespace t)
 
-;; Disable GTK IM outside of insert mode.
-(setq pgtk-use-im-context-on-new-connection nil)
-(add-hook 'evil-insert-state-entry-hook
-          (lambda () (when (display-graphic-p) (pgtk-use-im-context t))))
-(add-hook 'evil-insert-state-exit-hook
-          (lambda () (when (display-graphic-p) (pgtk-use-im-context nil))))
-
 ;; Make new frames larger by default (width/height in character cells).
 (add-to-list 'default-frame-alist '(width . 150))
 (add-to-list 'default-frame-alist '(height . 45))
