@@ -82,64 +82,86 @@
 (add-to-list 'default-frame-alist '(width . 150))
 (add-to-list 'default-frame-alist '(height . 45))
 
+(defun +buffer-with-mode (mode)
+  "Return the first live buffer whose major mode derives from MODE."
+  (seq-find (lambda (b) (provided-mode-derived-p (buffer-local-value 'major-mode b) mode))
+            (buffer-list)))
+
+(defun +toggle-buffer-with-mode (mode start-fn)
+  "Toggle display of the buffer in MODE, calling START-FN if there is none."
+  (if-let* ((buf (+buffer-with-mode mode)))
+      (if-let* ((win (get-buffer-window buf)))
+          (delete-window win)
+        (pop-to-buffer buf))
+    (funcall start-fn)))
+
 (use-package! ghostel
-  :config
-  (set-popup-rule! "^\\*ghostel" :size 0.3 :vslot -4 :select t :quit nil :ttl 0)
+  :defer t
+  :init
+  ;; :ttl nil keeps the buffer (and terminal session) alive when the popup closes.
+  (set-popup-rule! "^\\*ghostel" :size 0.3 :vslot -4 :select t :quit nil :ttl nil)
   (defun +ghostel/toggle ()
     "Toggle a ghostel popup window."
     (interactive)
-    (if-let ((buf (seq-find (lambda (b) (with-current-buffer b (derived-mode-p 'ghostel-mode)))
-                            (buffer-list))))
-        (if-let ((win (get-buffer-window buf)))
-            (delete-window win)
-          (pop-to-buffer buf))
-      (ghostel)))
+    (+toggle-buffer-with-mode 'ghostel-mode #'ghostel))
   (defun +ghostel/here ()
     "Open ghostel in the current window."
     (interactive)
     (switch-to-buffer
-     (or (seq-find (lambda (b) (with-current-buffer b (derived-mode-p 'ghostel-mode)))
-                   (buffer-list))
+     (or (+buffer-with-mode 'ghostel-mode)
          (save-window-excursion
            (ghostel)
            (current-buffer)))))
   (map! :leader
         :desc "Terminal" "o t" #'+ghostel/toggle
         :desc "Terminal here" "o T" #'+ghostel/here)
-  (add-hook 'ghostel-mode-hook (lambda () (setq show-trailing-whitespace nil))))
+  (add-hook! 'ghostel-mode-hook
+    (defun +ghostel-hide-trailing-whitespace-h ()
+      (setq-local show-trailing-whitespace nil))))
 
 (use-package! evil-ghostel
   :after (ghostel evil)
   :hook (ghostel-mode . evil-ghostel-mode))
 
-;; Use the ISO date format in org-journal, rename the journal directory
+;; Use the ISO date format in org-journal, rename the journal directory.
 (use-package! org-journal
-  :config (setq org-journal-date-format "%A, %Y-%m-%d"
-                org-journal-dir (file-name-concat org-directory "Journal/")))
+  :defer t
+  :init
+  ;; Set before load so Doom's lazy journal-file detection sees the right dir.
+  (setq org-journal-date-format "%A, %Y-%m-%d"
+        org-journal-dir (file-name-concat org-directory "Journal/")))
 
 ;; Disable line numbers in Org
 (add-hook! org-mode #'doom-disable-line-numbers-h)
 
 ;; Define a function to insert the current date
-(defun insert-current-date ()
+(defun +insert-current-date ()
   "Insert today's date into the current buffer."
   (interactive)
-  (insert (format-time-string "%Y-%m-%d" (current-time))))
-(map! :leader :desc "Current date" "i d" #'insert-current-date)
+  (insert (format-time-string "%Y-%m-%d")))
+(map! :leader :desc "Current date" "i d" #'+insert-current-date)
 
 ;; The (org +pretty) flag enables org-modern which I don't want.
 (remove-hook! org-mode #'org-modern-mode)
 ;; Enable org-appear link previews.
 (use-package! org-appear
-  :config (setq org-appear-autolinks t))
+  :defer t
+  :init (setq org-appear-autolinks t))
 
-;; Add all Org files to the Org Agenda
-(setq org-agenda-files
-      (delete-dups
-       (mapcar #'file-name-directory
-               (directory-files-recursively org-directory "\\.org$"))))
-(add-to-list 'org-agenda-files org-journal-dir)
-(setq org-agenda-file-regexp "\\`\\\([^.].*\\.org\\\|[0-9]\\\{8\\\}\\\(\\.gpg\\\)?\\\)\\'")
+;; Add all Org files to the Org Agenda; journal files are named YYYYMMDD[.gpg]
+(defun +org-agenda-files ()
+  "Directories under `org-directory' containing agenda files."
+  (when (file-directory-p org-directory)
+    (delete-dups
+     (cons org-journal-dir
+           (mapcar #'file-name-directory
+                   (directory-files-recursively org-directory "\\.org\\'"))))))
+(setq org-agenda-files (+org-agenda-files))
+(setq org-agenda-file-regexp "\\`\\([^.].*\\.org\\|[0-9]\\{8\\}\\(\\.gpg\\)?\\)\\'")
+(defadvice! +org-agenda-refresh-files-a (&rest _)
+  "Rescan `org-directory' so new directories show up in the agenda."
+  :before #'org-agenda
+  (setq org-agenda-files (+org-agenda-files)))
 
 ;; Add a way to toggle nyan mode
 (map! :leader :desc "Nyan mode" "t n" #'nyan-mode)
@@ -148,50 +170,53 @@
 (auto-save-visited-mode 1)
 
 (use-package! agent-shell
-  :config
-  (setq agent-shell-display-action nil)
-  ;; Don't auto-send the current file/region/line as context when opening a shell.
-  (setq agent-shell-context-sources nil)
-  (set-popup-rule! "^Claude Agent @" :side 'right :size 0.4 :select t :quit nil :ttl 0)
+  :defer t
+  :init
+  ;; These agent-shell commands lack autoload cookies.
+  (dolist (cmd '(agent-shell-send-file agent-shell-send-region agent-shell-switch-buffer))
+    (autoload cmd "agent-shell" nil t))
+  (set-popup-rule! "^Claude Agent @" :side 'right :size 0.4 :select t :quit nil :ttl nil)
   (defun +agent-shell/toggle-sidebar ()
     "Toggle an agent-shell popup sidebar."
     (interactive)
-    (if-let ((buf (seq-find (lambda (b) (with-current-buffer b (derived-mode-p 'agent-shell-mode)))
-                            (buffer-list))))
-        (if-let ((win (get-buffer-window buf)))
-            (delete-window win)
-          (pop-to-buffer buf))
-      (agent-shell)))
+    (+toggle-buffer-with-mode 'agent-shell-mode #'agent-shell))
   (map! :leader (:prefix ("o s" . "Agent Shell")
                  :desc "Toggle sidebar" "s" #'+agent-shell/toggle-sidebar
                  :desc "Send file"      "f" #'agent-shell-send-file
                  :desc "Send region"    "r" #'agent-shell-send-region
                  :desc "New shell"      "n" #'agent-shell-new-shell
                  :desc "Switch buffer"  "b" #'agent-shell-switch-buffer))
-  (setq agent-shell-preferred-agent-config (agent-shell-anthropic-make-claude-code-config))
-  (setq agent-shell-session-restore-verbosity 'full)
   (defun +agent-shell/dot-subdir (subdir)
+    "Return a per-project SUBDIR for agent-shell dotfiles."
     (let* ((cwd (string-remove-suffix "/" (agent-shell-cwd)))
            (sanitized (replace-regexp-in-string "/" "-" (string-remove-prefix "/" cwd))))
       (expand-file-name subdir (locate-user-emacs-file (concat "agent-shell/" sanitized)))))
-  (setopt agent-shell-dot-subdir-function #'+agent-shell/dot-subdir)
-  ;; This solves an issue where agent shell output wouldn't scroll after submitting a prompt
-  (after! shell-maker
-    (advice-add 'shell-maker--write-partial-reply :after
-                (lambda (&rest _)
-                  (when-let ((proc (shell-maker--process))
-                             (buf (process-buffer proc))
-                             (proc-mark (process-mark proc)))
-                    (dolist (win (get-buffer-window-list buf nil t))
-                      (when (< (window-point win) proc-mark)
-                        (set-window-point win proc-mark))
-                      (when (= (window-point win) proc-mark)
-                        (with-selected-window win
-                          (recenter (- -1 scroll-margin)))))))))
-  (add-hook 'diff-mode-hook
-            (lambda ()
-              (when (string-match-p "\\*agent-shell-diff\\*" (buffer-name))
-                (evil-emacs-state)))))
+  :config
+  (setq agent-shell-display-action nil
+        ;; Don't auto-send the current file/region/line as context when opening a shell.
+        agent-shell-context-sources nil
+        agent-shell-preferred-agent-config (agent-shell-anthropic-make-claude-code-config)
+        agent-shell-session-restore-verbosity 'full)
+  (setopt agent-shell-dot-subdir-function #'+agent-shell/dot-subdir))
+
+;; This solves an issue where agent shell output wouldn't scroll after submitting a prompt
+(defadvice! +shell-maker-scroll-after-partial-reply-a (&rest _)
+  "Keep windows scrolled to the process mark as replies stream in."
+  :after #'shell-maker--write-partial-reply
+  (when-let* ((proc (shell-maker--process))
+              (buf (process-buffer proc))
+              (proc-mark (process-mark proc)))
+    (dolist (win (get-buffer-window-list buf nil t))
+      (when (< (window-point win) proc-mark)
+        (set-window-point win proc-mark))
+      (when (= (window-point win) proc-mark)
+        (with-selected-window win
+          (recenter (- -1 scroll-margin)))))))
+
+(add-hook! 'diff-mode-hook
+  (defun +agent-shell-diff-emacs-state-h ()
+    (when (string-match-p "\\*agent-shell-diff\\*" (buffer-name))
+      (evil-emacs-state))))
 
 ;; TRAMP over ssh hangs because our ~/.ssh/config forces TERM=xterm-256color
 ;; for `Host *` (a kitty workaround; see modules/user/ssh.nix). TRAMP needs
