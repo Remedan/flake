@@ -33,8 +33,6 @@
       };
       # Overlay for packages that are broken in unstable
       stablePkgs = final: prev: inputs.nixpkgs.lib.getAttrs [
-        "trezorctl"
-        "poetry"
       ] inputs.nixpkgs-stable.legacyPackages.${system};
       overlays = [
         inputs.nix-vscode-extensions.overlays.default
