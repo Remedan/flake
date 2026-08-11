@@ -22,7 +22,6 @@ in
         e = "eval \"$EDITOR\"";
         E = "sudoedit";
         ip = "ip --color=auto";
-        oc = "openclaw tui";
         l = "ls -lah";
 
         # Inspired by omz git

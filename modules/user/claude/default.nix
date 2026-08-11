@@ -24,9 +24,10 @@ in
           editorMode = "vim";
         };
       };
+      home.shellAliases.c = "claude";
+      home.shellAliases.cs = "cd ~/sandbox && claude";
       # Adapted from https://code.claude.com/docs/en/statusline#context-window-usage
       home.file.".claude/statusline.sh".source = ./statusline.sh;
-      home.shellAliases.c = "claude";
       home.file.".claude/skills/emacs".source = ./skills/emacs;
 
       home.packages = with pkgs; [
