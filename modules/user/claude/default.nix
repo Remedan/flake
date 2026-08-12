@@ -14,7 +14,6 @@ in
         enable = true;
         settings = {
           model = "opus[1m]";
-          effortLevel = "high";
           permissions.defaultMode = "auto";
           statusLine = {
             type = "command";
