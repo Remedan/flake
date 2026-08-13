@@ -113,6 +113,7 @@ in
       quickgui
       steam-run
       winboat
+      xlsclients
 
       # Messaging
       element-desktop
