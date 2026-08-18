@@ -7,11 +7,17 @@ in
     enable = lib.mkEnableOption "SSH";
   };
   config = lib.mkIf cfg.enable {
+    home.file.".ssh/codeberg.pub".text = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICkkw0jYCkX2qhnLZxLPa4vEs97gRFM+F8zXKNdOY7Xn Codeberg\n";
     programs.ssh = {
       enable = true;
       # Default values will be removed in the future
       enableDefaultConfig = false;
       settings = {
+        # Pin a specific key for Codeberg, otherwise we get too many auth failures after trying all the keys in 1Password.
+        "codeberg.org" = {
+          IdentityFile = "~/.ssh/codeberg.pub";
+          IdentitiesOnly = true;
+        };
         "*" = {
           IdentityAgent = "~/.1password/agent.sock";
           # Kitty sets TERM to 'xterm-kitty', we either need to either use the ssh kitten or change TERM on servers
