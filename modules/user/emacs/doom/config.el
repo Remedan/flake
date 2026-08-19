@@ -82,6 +82,10 @@
 (add-to-list 'default-frame-alist '(width . 150))
 (add-to-list 'default-frame-alist '(height . 45))
 
+;; Doom defaults to 'persistent, which saves cache to disk but that can get stale.
+;; t will only keep files cached for the session.
+(setq projectile-enable-caching t)
+
 (defun +buffer-with-mode (mode)
   "Return the first live buffer whose major mode derives from MODE."
   (seq-find (lambda (b) (provided-mode-derived-p (buffer-local-value 'major-mode b) mode))
