@@ -34,6 +34,7 @@ in
 
           # Python
           charliermarsh.ruff
+          meta.pyrefly
           ms-python.debugpy
           ms-python.python
           ms-python.vscode-python-envs
@@ -50,6 +51,10 @@ in
           # Haskell
           haskell.haskell
           justusadam.language-haskell
+
+          # Databases
+          mtxr.sqltools
+          mtxr.sqltools-driver-pg
         ];
         userSettings = {
           "containers.containerClient" = "com.microsoft.visualstudio.containers.docker";
@@ -73,6 +78,7 @@ in
           };
           "redhat.telemetry.enabled" = true;
           "claudeCode.preferredLocation" = "panel";
+          "python.languageServer" = "None"; # Use Pyrefly
         };
         keybindings = [
           {
