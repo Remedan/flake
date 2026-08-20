@@ -70,7 +70,6 @@ in
             "<C-s>" = false;
             "<C-z>" = false;
           };
-          "workbench.colorTheme" = "Dark Modern";
           "editor.fontFamily" = "'JetBrains Mono', monospace";
           "git.confirmSync" = false;
           "vs-kubernetes" = {
