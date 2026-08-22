@@ -243,6 +243,12 @@ in
       programs.virt-manager.enable = true;
       virtualisation.spiceUSBRedirection.enable = true;
 
+      # Android virtualisation
+      virtualisation.waydroid = {
+        enable = true;
+        package = pkgs.waydroid-nftables;
+      };
+
       # Polkit
       security.polkit.enable = true;
 
