@@ -21,6 +21,9 @@
     recall = {
       url = "github:zippoxer/recall";
       inputs.nixpkgs.follows = "nixpkgs";
+      # recall's pinned naersk fetches crates from crates.io/api/v1/..., which
+      # now 403s on curl's default User-Agent. Newer naersk uses static.crates.io.
+      inputs.naersk.url = "github:nix-community/naersk";
     };
   };
 
