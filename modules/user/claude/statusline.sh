@@ -3,13 +3,14 @@
 # Read all of stdin into a variable
 input=$(cat)
 
-# Extract fields with jq, "// 0" provides fallback for null
+# Extract fields with jq, "// empty" yields nothing when a field is absent
 DIR=$(echo "$input" | jq -r '.workspace.current_dir')
 MODEL=$(echo "$input" | jq -r '.model.display_name')
 EFFORT=$(echo "$input" | jq -r '.effort.level')
-CTX=$(echo "$input" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
 
-# Subscription limit usage; absent when the account has no limit data
+# Usage percentages; each is absent until the session's first API response,
+# and the rate limits are only ever present for Pro and Max subscriptions
+CTX=$(echo "$input" | jq -r '.context_window.used_percentage // empty' | cut -d. -f1)
 FIVE_HOUR=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty' | cut -d. -f1)
 SEVEN_DAY=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty' | cut -d. -f1)
 
@@ -46,10 +47,22 @@ field() {
   printf '%s%s: %s%s%s' "$DIM" "$1" "$3" "$2" "$RESET"
 }
 
+# A usage field, holding its place with a faint dash until the data arrives so
+# the fields to its right keep still
+usage_field() {
+  if [ -z "$2" ]; then
+    field "$1" "—" "$DIM"
+  else
+    field "$1" "$2% $(pct_bar "$2")" "$(pct_color "$2")"
+  fi
+}
+
 SEP="$DIM | $RESET"
-OUT="$(field Dir "${DIR##*/}" "$RESET")$SEP$(field Model "$MODEL" "$CYAN")$SEP$(field Effort "$EFFORT" "$BLUE")"
-OUT="$OUT$SEP$(field Ctx "$CTX% $(pct_bar "$CTX")" "$(pct_color "$CTX")")"
-[ -n "$FIVE_HOUR" ] && OUT="$OUT$SEP$(field 5h "$FIVE_HOUR% $(pct_bar "$FIVE_HOUR")" "$(pct_color "$FIVE_HOUR")")"
-[ -n "$SEVEN_DAY" ] && OUT="$OUT$SEP$(field 7d "$SEVEN_DAY% $(pct_bar "$SEVEN_DAY")" "$(pct_color "$SEVEN_DAY")")"
+OUT="$(field Dir "${DIR##*/}" "$RESET")"
+OUT="$OUT$SEP$(field Model "$MODEL" "$CYAN")"
+OUT="$OUT$SEP$(field Effort "$EFFORT" "$BLUE")"
+OUT="$OUT$SEP$(usage_field Ctx "$CTX")"
+OUT="$OUT$SEP$(usage_field 5h "$FIVE_HOUR")"
+OUT="$OUT$SEP$(usage_field 7d "$SEVEN_DAY")"
 
 printf '%s\n' "$OUT"
