@@ -8,9 +8,6 @@
     "claude-code"
     "vscode-extension-anthropic-claude-code"
   ];
-  nixpkgs.config.allowInsecurePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "openclaw"
-  ];
   home.packages = with pkgs; [
     # Core
     bat
@@ -51,9 +48,6 @@
     k9s
     krew
     kubectl
-
-    # 🦞
-    openclaw
   ];
   programs.fish.shellInit = ''
     source /home/vojta/.config/op/plugins.sh
