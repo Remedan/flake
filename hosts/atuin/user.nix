@@ -12,7 +12,6 @@
     # Core
     bat
     htop
-    nix-search-cli
     ripgrep
 
     # Networking

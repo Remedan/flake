@@ -14,7 +14,6 @@ in
       gnupg
       htop
       killall
-      nix-search-cli
       pciutils
       ripgrep
       rlwrap

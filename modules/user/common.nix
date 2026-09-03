@@ -13,6 +13,7 @@ in
       vimAlias = true;
       vimdiffAlias = true;
     };
+    programs.nh.enable = true;
     programs.nix-index.enable = mkDefault true;
     programs.yazi.enable = mkDefault true;
     programs.zellij.enable = mkDefault true;
