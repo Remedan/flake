@@ -28,6 +28,8 @@
       };
       # Overlay for packages that are broken in unstable
       stablePkgs = final: prev: inputs.nixpkgs.lib.getAttrs [
+        "picard"
+        "trezorctl"
       ] inputs.nixpkgs-stable.legacyPackages.${system};
       overlays = [
         inputs.nix-vscode-extensions.overlays.default
