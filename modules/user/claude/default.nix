@@ -28,10 +28,6 @@ in
       # Adapted from https://code.claude.com/docs/en/statusline#context-window-usage
       home.file.".claude/statusline.sh".source = ./statusline.sh;
       home.file.".claude/skills/emacs".source = ./skills/emacs;
-
-      home.packages = with pkgs; [
-        recall
-      ];
     })
     (lib.mkIf cfg.desktop.enable {
       home.packages = with pkgs; [

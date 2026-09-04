@@ -18,13 +18,6 @@
     };
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     claude-desktop.url = "github:aaddrick/claude-desktop-debian";
-    recall = {
-      url = "github:zippoxer/recall";
-      inputs.nixpkgs.follows = "nixpkgs";
-      # recall's pinned naersk fetches crates from crates.io/api/v1/..., which
-      # now 403s on curl's default User-Agent. Newer naersk uses static.crates.io.
-      inputs.naersk.url = "github:nix-community/naersk";
-    };
   };
 
   outputs = inputs:
@@ -32,7 +25,6 @@
       system = "x86_64-linux";
       extraPkgs = final: prev: {
         rc2nix = inputs.plasma-manager.packages.${system}.rc2nix;
-        recall = inputs.recall.packages.${system}.default;
       };
       # Overlay for packages that are broken in unstable
       stablePkgs = final: prev: inputs.nixpkgs.lib.getAttrs [
