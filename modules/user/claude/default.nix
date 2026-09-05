@@ -13,7 +13,7 @@ in
       programs.claude-code = {
         enable = true;
         settings = {
-          model = "opus[1m]";
+          model = "claude-fable-5-1";
           permissions.defaultMode = "auto";
           statusLine = {
             type = "command";
