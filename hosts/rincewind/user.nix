@@ -9,5 +9,6 @@
       python.enable = true;
       rust.enable = true;
     };
+    claude.desktop.enable = true;
   };
 }
