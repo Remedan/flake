@@ -1,6 +1,6 @@
 ---
 name: emacs
-description: Interact with a running Emacs daemon via emacsclient to evaluate Elisp — inspect state, test changes, and debug configuration live. Use when tweaking an Emacs/Doom config, when asked to "eval", "run in emacs", "check my emacs", reload config, inspect a variable/function/keybinding, or read the *Messages*/*Warnings* buffers. This is a Doom Emacs (GNU Emacs 30) setup whose config is managed by home-manager (~/.config/doom/ files are read-only symlinks; source is in the home-manager repo).
+description: Interact with a running Emacs daemon via emacsclient to evaluate Elisp — inspect state, test changes, and debug configuration live. Use when tweaking an Emacs/Doom config, when asked to "eval", "run in emacs", "check my emacs", reload config, inspect a variable/function/keybinding, or read the *Messages*/*Warnings* buffers. This is a Doom Emacs (GNU Emacs 30) setup whose config is managed by home-manager (~/.config/doom/ files are read-only symlinks; source is in the Nix flake repo, ~/flake or ~/.config/home-manager).
 ---
 
 # Interacting with Emacs
@@ -20,13 +20,27 @@ This is a **Doom Emacs** setup. Personal config:
 
 **The config is managed by home-manager.** The files under `~/.config/doom/` are
 read-only symlinks into the Nix store — do **not** edit them directly (edits won't
-stick and the files aren't writable). The real source lives in the home-manager repo:
-- `~/.config/home-manager/modules/user/emacs/doom/{init,config,packages}.el`
+stick and the files aren't writable). The real source lives in the Nix flake repo,
+which is checked out at **`~/flake`** (older checkouts may still be at
+`~/.config/home-manager` — use whichever exists):
+- `$REPO/modules/user/emacs/doom/{init,config,packages}.el`
 
-To change config: edit the source `.el` files in the repo, then rebuild:
 ```bash
-home-manager switch
+# Locate the repo
+set -l REPO (test -d ~/flake && echo ~/flake || echo ~/.config/home-manager)   # fish
+REPO=$([ -d ~/flake ] && echo ~/flake || echo ~/.config/home-manager)          # bash
 ```
+
+To change config: edit the source `.el` files in the repo, then rebuild. The
+rebuild command depends on the host:
+```bash
+# NixOS hosts (weatherwax, rincewind) — home-manager runs as a NixOS module:
+sudo nixos-rebuild switch --flake ~/flake      # or: nh os switch ~/flake
+
+# atuin (Fedora, standalone home-manager):
+home-manager switch --flake ~/flake            # or: nh home switch ~/flake
+```
+Substitute `~/.config/home-manager` for `~/flake` if that's where the checkout is.
 New files must be `git add`-ed first — the flake ignores untracked files. After the
 rebuild updates the symlinks, reload/restart Emacs to pick up the changes (below).
 
@@ -123,7 +137,7 @@ emacsclient -e '(progn (setq foo 1) (message "foo=%s" foo))'
 ```
 
 Once you've confirmed a change works, write it into the repo source
-(`~/.config/home-manager/modules/user/emacs/doom/config.el`), rebuild, then reload.
+(`$REPO/modules/user/emacs/doom/config.el`), rebuild (see above), then reload.
 Loading the live `~/.config/doom/config.el` symlink only reflects changes *after* a
 rebuild has updated it:
 
