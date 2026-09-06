@@ -1,38 +1,16 @@
-# Home Manager and NixOS
+# Nix flake that builds my systems
 
 <img src="assets/nix-snowflake.svg" alt="Nix snowflake" width="200">
 
-[Home Manager Manual](https://nix-community.github.io/home-manager/)
+## Structure
+
+Reusable configuration is organized into custom modules under `modules`. They are further split between NixOS (`system`) and Home Manager (`user`).
+
+Machine profiles live under `hosts`. Secrets are managed via git-crypt and live in `secrets`.
 
 ## Installation
 
-Clone this repo to `~/.config/home-manager` and then build a new configuration.
-
-[Install Doom Emacs](https://github.com/doomemacs/doomemacs?tab=readme-ov-file#install):
-
-```bash
-git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
-~/.config/emacs/bin/doom install
-```
-
-## Building a new NixOS configuration
-
-```bash
-sudo nixos-rebuild switch --flake "$HOME/.config/home-manager#$(hostname)"
-```
-
-## Building a new stand-alone Home Manager configuration
-
-### First time setup
-
-```bash
-mkdir ~/.config/nix
-echo 'experimental-features = nix-command flakes' > ~/.config/nix/nix.conf
-nix run home-manager/master -- switch
-```
-
-### After first time setup
-
-```bash
-home-manager switch
-```
+1. Clone
+2. Unlock secrets with git-crypt
+3. Build a NixOS/HM configuration
+4. Initialize Doom Emacs
