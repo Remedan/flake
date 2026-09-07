@@ -14,7 +14,6 @@ in
         enable = true;
         settings = {
           model = "claude-fable-5-1";
-          permissions.defaultMode = "auto";
           statusLine = {
             type = "command";
             command = "~/.claude/statusline.sh";
