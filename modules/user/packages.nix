@@ -89,7 +89,6 @@ in
       krew
       kubectl
       kubernetes-helm
-      remmina
       terraform
       winbox
       wireshark

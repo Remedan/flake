@@ -148,11 +148,6 @@ in
       enable = true;
       enableAlias = true;
     };
-    programs.atuin = {
-      enable = true;
-      daemon.enable = true;
-      flags = [ "--disable-up-arrow" ];
-    };
     programs.direnv = {
       enable = true;
       nix-direnv.enable = true;
