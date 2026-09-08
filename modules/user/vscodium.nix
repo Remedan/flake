@@ -78,6 +78,7 @@ in
           "redhat.telemetry.enabled" = true;
           "claudeCode.preferredLocation" = "panel";
           "python.languageServer" = "None"; # Use Pyrefly
+          "workbench.experimental.modernUI" = true;
         };
         keybindings = [
           {
