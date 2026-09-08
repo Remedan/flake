@@ -1,6 +1,24 @@
 { config, lib, pkgs, osConfig ? null, ... }:
 let
   cfg = config.userModules.plasma;
+  plasma-claude-usage = pkgs.stdenvNoCC.mkDerivation rec {
+    pname = "plasma-claude-usage";
+    version = "2.3.5";
+    src = pkgs.fetchFromGitHub {
+      owner = "izll";
+      repo = "plasma-claude-usage";
+      tag = "v${version}";
+      hash = "sha256-/cCrKbatIlgCnvsM6uJ23s6pLSoCQgQbDDiSaBdokQQ=";
+    };
+    dontBuild = true;
+    installPhase = ''
+      runHook preInstall
+      dest=$out/share/plasma/plasmoids/org.kde.plasma.claudeusage
+      mkdir -p $dest
+      cp -r metadata.json contents $dest/
+      runHook postInstall
+    '';
+  };
 in
 {
   options.userModules.plasma = {
@@ -61,6 +79,6 @@ in
       kdePackages.kcalc
       kdePackages.kmines
       kdePackages.kpat
-    ];
+    ] ++ lib.optional config.userModules.claude.code.enable plasma-claude-usage;
   };
 }
