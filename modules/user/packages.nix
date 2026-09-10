@@ -52,6 +52,10 @@ in
       usbutils
       wl-clipboard
 
+      # Security
+      bitwarden-cli
+      bitwarden-desktop
+
       # Backup
       vorta
 
