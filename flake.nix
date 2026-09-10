@@ -27,11 +27,13 @@
         rc2nix = inputs.plasma-manager.packages.${system}.rc2nix;
       };
       # Overlay for packages that are broken in unstable
-      stablePkgs = final: prev: inputs.nixpkgs.lib.getAttrs [
-        "picard"
-        "qmk"
-        "trezorctl"
-      ] inputs.nixpkgs-stable.legacyPackages.${system};
+      stablePkgs = final: prev: inputs.nixpkgs.lib.getAttrs
+        [
+          "picard"
+          "qmk"
+          "trezorctl"
+        ]
+        inputs.nixpkgs-stable.legacyPackages.${system};
       overlays = [
         inputs.nix-vscode-extensions.overlays.default
         inputs.claude-desktop.overlays.default
