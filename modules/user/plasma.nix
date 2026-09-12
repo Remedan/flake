@@ -41,15 +41,9 @@ in
         "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = "Meta+Space";
         "services/emacsclient.desktop"._launch = "Meta+E";
         "services/kitty.desktop"._launch = "Meta+Return";
-        "services/net.local.1password.desktop"._launch = "Ctrl+Shift+Space";
         "services/org.kde.dolphin.desktop"._launch = [ ]; # Conflict with Meta+E
       };
       hotkeys.commands = {
-        "1password-quick-access" = {
-          name = "1Password Quick Access";
-          key = "Ctrl+Shift+Space";
-          command = "1password --quick-access";
-        };
         "kitty-quick-access" = {
           name = "Kitty Quick Access";
           key = "Meta+Shift+Return";

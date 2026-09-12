@@ -13,17 +13,20 @@ in
       # Default values will be removed in the future
       enableDefaultConfig = false;
       settings = {
-        # Pin a specific key for Codeberg, otherwise we get too many auth failures after trying all the keys in 1Password.
+        # Pin a specific key for Codeberg, otherwise we get too many auth failures after trying all the keys in Bitwarden.
         "codeberg.org" = {
           IdentityFile = "~/.ssh/codeberg.pub";
           IdentitiesOnly = true;
         };
         "*" = {
-          IdentityAgent = "~/.1password/agent.sock";
+          IdentityAgent = "~/.bitwarden-ssh-agent.sock";
           # Kitty sets TERM to 'xterm-kitty', we either need to either use the ssh kitten or change TERM on servers
           SetEnv = lib.mkIf (config.userModules.kitty.enable) { TERM = "xterm-256color"; };
         };
       };
     };
+    home.sessionVariables.SSH_AUTH_SOCK = "$HOME/.bitwarden-ssh-agent.sock";
+    # Make the envvar available to daemons such as Emacs
+    systemd.user.sessionVariables.SSH_AUTH_SOCK = "$HOME/.bitwarden-ssh-agent.sock";
   };
 }
