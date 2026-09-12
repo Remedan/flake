@@ -1,4 +1,7 @@
 { pkgs, lib, ... }:
+let
+  inherit (lib) mkForce;
+in
 {
   home = {
     username = "vojta";
@@ -51,13 +54,14 @@
   programs.fish.shellInit = ''
     source /home/vojta/.config/op/plugins.sh
   '';
+  programs.git.settings.gpg.ssh.program = "/opt/1Password/op-ssh-sign";
+  programs.ssh.settings."*".IdentityAgent = mkForce "~/.1password/agent.sock";
   home.sessionPath = [ "$HOME/.cargo/bin" ];
   # For some reason, Nix programs can't find the CA bundle on Fedora 44
   home.sessionVariables.NIX_SSL_CERT_FILE = "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem";
   userModules = {
     genericLinux.enable = true;
     plasma.enable = true;
-    git.sshProgram = "/opt/1Password/op-ssh-sign";
 
     packages.enable = false;
     flatpak.enable = false;
