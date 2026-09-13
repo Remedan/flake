@@ -147,10 +147,11 @@ in
       # Games
       bolt-launcher
       gargoyle
-      uzdoom
       ifm
+      itch
       prismlauncher
       scummvm
+      uzdoom
     ];
   };
 }
