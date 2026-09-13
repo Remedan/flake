@@ -29,9 +29,6 @@
       # Overlay for packages that are broken in unstable
       stablePkgs = final: prev: inputs.nixpkgs.lib.getAttrs
         [
-          "picard"
-          "qmk"
-          "trezorctl"
         ]
         inputs.nixpkgs-stable.legacyPackages.${system};
       overlays = [
