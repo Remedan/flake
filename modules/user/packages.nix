@@ -113,6 +113,7 @@ in
       distrobox
       quickemu
       quickgui
+      ruffle
       steam-run
       winboat
       wineWow64Packages.stagingFull
