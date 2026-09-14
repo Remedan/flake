@@ -115,6 +115,8 @@ in
       quickgui
       steam-run
       winboat
+      wineWow64Packages.stagingFull
+      winetricks
       xlsclients
 
       # Messaging
