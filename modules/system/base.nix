@@ -42,7 +42,7 @@ in
       services.fwupd.enable = true;
 
       # Regularly scrub btrfs filesystems
-      services.btrfs.autoScrub.enable = true;
+      services.btrfs.autoScrub.enable = lib.mkDefault true;
 
       # Networking
       networking = {
@@ -230,7 +230,7 @@ in
       # Virtualisation
       virtualisation.docker = {
         enable = true;
-        storageDriver = "btrfs";
+        storageDriver = lib.mkDefault "btrfs";
         autoPrune = {
           enable = true;
           flags = [ "--all" "--volumes" ];

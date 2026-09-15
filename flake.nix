@@ -70,7 +70,8 @@
           name = "rincewind";
           extraSystemModules = [ inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-yoga ];
         };
-        # Testing VM
+        # Build the testing VM with:
+        #   nixos-rebuild build-vm --flake .#nixos
         nixos = mkNixosSystem { name = "nixos"; };
       };
 
