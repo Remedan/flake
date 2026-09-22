@@ -63,7 +63,7 @@ in
           "gitlab.duoChat.enabled" = false;
           "gitlab.duoCodeSuggestions.enabled" = false;
           "claudeCode.allowDangerouslySkipPermissions" = true;
-          "editor.minimap.enabled" = false;
+          "editor.minimap.enabled" = true;
           "vim.handleKeys" = {
             "<C-p>" = false;
             "<C-d>" = true;
