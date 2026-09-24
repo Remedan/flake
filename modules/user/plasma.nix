@@ -3,12 +3,12 @@ let
   cfg = config.userModules.plasma;
   plasma-claude-usage = pkgs.stdenvNoCC.mkDerivation rec {
     pname = "plasma-claude-usage";
-    version = "2.3.5";
+    version = "2.4.0";
     src = pkgs.fetchFromGitHub {
       owner = "izll";
       repo = "plasma-claude-usage";
       tag = "v${version}";
-      hash = "sha256-/cCrKbatIlgCnvsM6uJ23s6pLSoCQgQbDDiSaBdokQQ=";
+      hash = "sha256-89saKplyDf8GD/owQ7frkWT7Zi/wo3s7ejVfkebIM8Q=";
     };
     dontBuild = true;
     installPhase = ''
