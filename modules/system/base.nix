@@ -146,9 +146,11 @@ in
           experimental-features = [ "nix-command" "flakes" ];
           substituters = [
             "https://nix-community.cachix.org"
+            "https://cache.nixos-cuda.org"
           ];
           trusted-public-keys = [
             "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+            "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
           ];
           auto-optimise-store = true;
         };
@@ -183,18 +185,40 @@ in
         "1password-cli"
         "canon-cups-ufr2"
         "cnijfilter2"
-        "cuda_cccl"
-        "cuda_cudart"
-        "cuda_nvcc"
-        "libcublas"
-        "nvidia-settings"
-        "nvidia-x11"
         "steam"
         "steam-original"
         "steam-run"
         "steam-unwrapped"
         "uhk-agent"
         "uhk-udev-rules"
+        # Nvidia
+        "blender" # Blender with cuda has an unfree license
+        "cuda_cccl"
+        "cuda_compat"
+        "cuda_cudart"
+        "cuda_cuobjdump"
+        "cuda_cupti"
+        "cuda_nvcc"
+        "cuda_nvdisasm"
+        "cuda_nvml_dev"
+        "cuda_nvrtc"
+        "cuda_nvtx"
+        "cuda_profiler_api"
+        "cudnn"
+        "libcublas"
+        "libcudla"
+        "libcufft"
+        "libcufile"
+        "libcurand"
+        "libcusolver"
+        "libcusparse"
+        "libcusparse_lt"
+        "libnpp"
+        "libnvjitlink"
+        "libnvshmem"
+        "nvidia-settings"
+        "nvidia-x11"
+        "tensorrt"
         # Home Manager packages (useGlobalPkgs = true)
         "claude-code"
         "claude-desktop"

@@ -24,5 +24,6 @@ in
       powerManagement.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.${cfg.driverVersion};
     };
+    nixpkgs.config.cudaSupport = true;
   };
 }
