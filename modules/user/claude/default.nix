@@ -13,7 +13,7 @@ in
       programs.claude-code = {
         enable = true;
         settings = {
-          model = "claude-fable-5-1";
+          model = "claude-opus-5-5";
           statusLine = {
             type = "command";
             command = "~/.claude/statusline.sh";
