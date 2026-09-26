@@ -176,6 +176,11 @@ in
       programs._1password-gui.enable = true;
       programs._1password-gui.polkitPolicyOwners = [ cfg.userName ];
 
+      programs.obs-studio = {
+        enable = true;
+        enableVirtualCamera = true;
+      };
+
       programs.appimage.enable = true;
 
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

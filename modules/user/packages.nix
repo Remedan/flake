@@ -68,7 +68,6 @@ in
       ffmpeg
       mediainfo
       mpv
-      obs-studio
       vlc
       yt-dlp
 
