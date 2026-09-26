@@ -190,6 +190,8 @@ in
         "1password-cli"
         "canon-cups-ufr2"
         "cnijfilter2"
+        "discord"
+        "discord-unwrapped"
         "steam"
         "steam-original"
         "steam-run"

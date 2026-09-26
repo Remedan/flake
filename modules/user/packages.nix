@@ -120,9 +120,9 @@ in
       xlsclients
 
       # Messaging
+      discord
       element-desktop
       telegram-desktop
-      vesktop
 
       # Graphics
       gimp
