@@ -14,6 +14,8 @@ in
         enable = true;
         settings = {
           model = "claude-opus-5-5";
+          modelSettings."claude-opus-5-5".effortLevel = "high";
+          permissions.defaultMode = "auto";
           statusLine = {
             type = "command";
             command = "~/.claude/statusline.sh";
