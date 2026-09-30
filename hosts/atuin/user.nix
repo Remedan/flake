@@ -57,8 +57,6 @@ in
   programs.git.settings.gpg.ssh.program = "/opt/1Password/op-ssh-sign";
   programs.ssh.settings."*".IdentityAgent = mkForce "~/.1password/agent.sock";
   home.sessionPath = [ "$HOME/.cargo/bin" ];
-  # For some reason, Nix programs can't find the CA bundle on Fedora 44
-  home.sessionVariables.NIX_SSL_CERT_FILE = "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem";
   # The two-axis variable Noto Sans files from nixpkgs noto-fonts (NotoSans[wdth,wght].ttf and the
   # Italic one) break Qt 6.11 font matching on Fedora 44: "Noto Sans" Regular/Italic silently fall
   # back to Noto Sans Arabic line metrics, which makes Breeze title bars and Qt line spacing ~50 %
