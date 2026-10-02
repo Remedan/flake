@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   inherit (lib) mkOption mkEnableOption types;
   cfg = config.systemModules.nvidia;
@@ -24,6 +24,10 @@ in
       powerManagement.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.${cfg.driverVersion};
     };
-    nixpkgs.config.cudaSupport = true;
+    # Enable cuda for packages that benefit from it
+    services.ollama.package = pkgs.ollama-cuda;
+    # nixpkgs.overlays = [
+    #   (final: prev: { blender = prev.blender.override { cudaSupport = true; }; })
+    # ];
   };
 }
