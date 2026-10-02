@@ -40,7 +40,10 @@ in
           '';
         };
     };
-    services.emacs.enable = cfg.service;
+    services.emacs = {
+      enable = cfg.service;
+      client.enable = cfg.service;
+    };
     # Emacs needs to have kitty's terminfo in env if it is started in terminal
     systemd.user.services.emacs.Service.Environment = mkIf
       (cfg.service && config.userModules.kitty.enable)
