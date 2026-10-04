@@ -1,4 +1,4 @@
-{ config, lib, pkgs, osConfig ? null, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.userModules.plasma;
   plasma-claude-usage = pkgs.stdenvNoCC.mkDerivation rec {
@@ -22,10 +22,7 @@ let
 in
 {
   options.userModules.plasma = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = osConfig != null && osConfig.systemModules.base.desktopEnvironment == "KDE";
-    };
+    enable = lib.mkEnableOption "KDE Plasma";
   };
   config = lib.mkIf cfg.enable {
     programs.plasma = {

@@ -23,6 +23,7 @@ in
       packages.enable = mkDefault true;
       shell.enable = mkDefault true;
       kitty.enable = mkDefault true;
+      plasma.enable = mkDefault true;
       emacs.enable = mkDefault true;
       fonts.enable = mkDefault true;
       gtk.enable = mkDefault true;

@@ -8,7 +8,6 @@
   ./generic-linux.nix
   ./git.nix
   ./gtk.nix
-  ./hyprland.nix
   ./kitty.nix
   ./music.nix
   ./nextcloud.nix
