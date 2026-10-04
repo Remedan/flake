@@ -73,6 +73,7 @@ in
       kdePackages.kcalc
       kdePackages.kmines
       kdePackages.kpat
+      kdePackages.filelight
     ] ++ lib.optional config.userModules.claude.code.enable plasma-claude-usage;
   };
 }
