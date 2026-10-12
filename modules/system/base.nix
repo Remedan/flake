@@ -189,18 +189,20 @@ in
       "cnijfilter2"
       "discord"
       "discord-unwrapped"
+      "lsfg-vk" # Bottles dependency
       "steam"
       "steam-unwrapped"
       "uhk-agent"
       "uhk-udev-rules"
       # Nvidia
-      "blender" # Blender with cuda has an unfree license
-      "cuda_cccl"
+      "cccl"
       "cuda_compat"
+      "cuda_crt"
       "cuda_cudart"
       "cuda_nvcc"
       "cuda_nvrtc"
       "libcublas"
+      "libnvvm"
       "nvidia-settings"
       "nvidia-x11"
       # Home Manager packages (useGlobalPkgs = true)
