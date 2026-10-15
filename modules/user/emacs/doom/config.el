@@ -29,7 +29,7 @@
 ;; refresh your font settings. If Emacs still can't find your font, it likely
 ;; wasn't installed correctly. Font issues are rarely Doom issues!
 (setq doom-font (font-spec :family "Jetbrains Mono" :size 11.0))
-(setq doom-variable-pitch-font (font-spec :family "Inter" :size 11.0))
+(setq doom-variable-pitch-font (font-spec :family "Fira Sans" :size 11.0))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -137,6 +137,9 @@
 
 ;; Disable line numbers in Org
 (add-hook! org-mode #'doom-disable-line-numbers-h)
+
+;; Enable mixed pitch mode in Org
+(add-hook! org-mode #'mixed-pitch-mode)
 
 ;; Define a function to insert the current date
 (defun +insert-current-date ()
