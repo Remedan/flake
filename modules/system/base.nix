@@ -271,6 +271,9 @@ in
     # Trezor
     services.trezord.enable = true;
 
+    # Better tty
+    services.kmscon.enable = true;
+
     # Home Manager
     home-manager = {
       useGlobalPkgs = true;
