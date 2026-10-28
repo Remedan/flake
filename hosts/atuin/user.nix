@@ -50,6 +50,9 @@ in
     k9s
     krew
     kubectl
+
+    # AI
+    t3code
   ];
   programs.fish.shellInit = ''
     source /home/vojta/.config/op/plugins.sh
