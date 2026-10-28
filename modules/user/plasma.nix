@@ -65,6 +65,7 @@ in
         };
       };
     };
+
     home.packages = with pkgs; [
       rc2nix
       kdePackages.kcalc
@@ -72,5 +73,18 @@ in
       kdePackages.kpat
       kdePackages.filelight
     ] ++ lib.optional config.userModules.claude.code.enable plasma-claude-usage;
+
+    # Map mouse forward/back buttons to switch desktops via solaar
+    xdg.configFile."solaar/rules.yaml".text = ''
+      %YAML 1.3
+      ---
+      - Rule:
+        - Key: [Forward Button, pressed]
+        - Execute: [${pkgs.dbus}/bin/dbus-send, --session, --type=method_call, --dest=org.kde.kglobalaccel, /component/kwin, org.kde.kglobalaccel.Component.invokeShortcut, "string:Switch One Desktop to the Right"]
+      - Rule:
+        - Key: [Back Button, pressed]
+        - Execute: [${pkgs.dbus}/bin/dbus-send, --session, --type=method_call, --dest=org.kde.kglobalaccel, /component/kwin, org.kde.kglobalaccel.Component.invokeShortcut, "string:Switch One Desktop to the Left"]
+      ...
+    '';
   };
 }
