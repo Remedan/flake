@@ -8,9 +8,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    # GPU drivers are provided via targets.genericLinux.gpu (enabled by default).
+    # After switching, run `sudo non-nixos-gpu-setup` whenever home-manager warns about it.
     targets.genericLinux.enable = true;
-    # We use nixGL because the default approach relies on creating a system systemd service
-    # which doesn't work well on Fedora because of SELinux.
-    targets.genericLinux.nixGL.packages = pkgs.nixgl;
   };
 }

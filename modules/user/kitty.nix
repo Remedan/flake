@@ -15,7 +15,6 @@ in
   config = lib.mkIf cfg.enable {
     programs.kitty = {
       enable = true;
-      package = config.lib.nixGL.wrap pkgs.kitty;
       font = {
         name = "IosevkaTerm Nerd Font";
         size = 11;

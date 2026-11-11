@@ -10,7 +10,6 @@ in
     services.nextcloud-client = {
       enable = true;
       startInBackground = true;
-      package = config.lib.nixGL.wrap pkgs.nextcloud-client;
     };
   };
 }

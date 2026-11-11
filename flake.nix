@@ -10,7 +10,6 @@
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
-    nixgl.url = "github:nix-community/nixGL";
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -39,7 +38,7 @@
       ];
       pkgs = import inputs.nixpkgs {
         inherit system;
-        overlays = overlays ++ [ inputs.nixgl.overlay ];
+        inherit overlays;
       };
       mkNixosSystem = { name, extraSystemModules ? [ ], extraHomeModules ? [ ] }: inputs.nixpkgs.lib.nixosSystem {
         inherit system;
