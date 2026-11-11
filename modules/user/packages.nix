@@ -146,9 +146,6 @@ in
       uhk-agent
       yubikey-manager
 
-      # AI
-      t3code
-
       # Games
       bolt-launcher
       gargoyle

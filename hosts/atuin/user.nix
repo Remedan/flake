@@ -50,9 +50,6 @@ in
     k9s
     krew
     kubectl
-
-    # AI
-    t3code
   ];
   programs.fish.shellInit = ''
     source /home/vojta/.config/op/plugins.sh
@@ -72,6 +69,7 @@ in
     dev = {
       python.enable = true;
       nodejs.enable = true;
+      t3code.enable = true;
     };
   };
 }
