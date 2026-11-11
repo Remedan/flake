@@ -75,6 +75,7 @@ in
       bfg-repo-cleaner
       cmake
       dive
+      forgejo-cli
       gcc
       gdb
       git-crypt
