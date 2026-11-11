@@ -59,25 +59,25 @@ in
         userSettings = {
           "containers.containerClient" = "com.microsoft.visualstudio.containers.docker";
           "containers.orchestratorClient" = "com.microsoft.visualstudio.orchestrators.dockercompose";
+          "claudeCode.preferredLocation" = "panel";
+          "claudeCode.hideOnboarding" = true;
+          "editor.fontFamily" = "'JetBrains Mono', monospace";
+          "editor.minimap.enabled" = true;
+          "git.confirmSync" = false;
           "gitlab.duoAgentPlatform.enabled" = false;
           "gitlab.duoChat.enabled" = false;
           "gitlab.duoCodeSuggestions.enabled" = false;
-          "claudeCode.allowDangerouslySkipPermissions" = true;
-          "editor.minimap.enabled" = true;
+          "python.languageServer" = "None"; # Use Pyrefly
+          "redhat.telemetry.enabled" = true;
           "vim.handleKeys" = {
             "<C-p>" = false;
             "<C-d>" = true;
             "<C-s>" = false;
             "<C-z>" = false;
           };
-          "editor.fontFamily" = "'JetBrains Mono', monospace";
-          "git.confirmSync" = false;
           "vs-kubernetes" = {
             "vs-kubernetes.crd-code-completion" = "enabled";
           };
-          "redhat.telemetry.enabled" = true;
-          "claudeCode.preferredLocation" = "panel";
-          "python.languageServer" = "None"; # Use Pyrefly
           "workbench.experimental.modernUI" = true;
         };
         keybindings = [
