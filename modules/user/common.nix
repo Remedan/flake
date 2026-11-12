@@ -34,6 +34,7 @@ in
       nextcloud.enable = mkDefault true;
       vscodium.enable = mkDefault true;
       claude.code.enable = mkDefault true;
+      t3code.enable = mkDefault true;
     };
   };
 }

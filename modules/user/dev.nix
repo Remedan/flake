@@ -17,7 +17,6 @@ in
     commonLisp.enable = mkEnableOption "Common Lisp";
     godot.enable = mkEnableOption "Godot";
     jetbrains.enable = mkEnableOption "JetBrains";
-    t3code.enable = mkEnableOption "T3 Code";
   };
   config = lib.mkMerge [
     (mkIf cfg.python.enable {
@@ -54,15 +53,6 @@ in
     (mkIf cfg.jetbrains.enable {
       home.packages = with pkgs; [
         jetbrains-toolbox
-      ];
-    })
-    (mkIf cfg.t3code.enable {
-      home.packages = with pkgs; [
-        (t3code.override {
-          # Get those from the environment
-          enableCodex = false;
-          enableGitHub = false;
-        })
       ];
     })
   ];

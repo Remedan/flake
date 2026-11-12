@@ -8,7 +8,6 @@
     dev = {
       python.enable = true;
       rust.enable = true;
-      t3code.enable = true;
     };
     claude.desktop.enable = true;
   };

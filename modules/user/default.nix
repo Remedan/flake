@@ -15,6 +15,7 @@
   ./plasma.nix
   ./shell.nix
   ./ssh.nix
+  ./t3code.nix
   ./virt-manager.nix
   ./vscodium.nix
 ]

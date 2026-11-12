@@ -69,7 +69,6 @@ in
     dev = {
       python.enable = true;
       nodejs.enable = true;
-      t3code.enable = true;
     };
   };
 }
