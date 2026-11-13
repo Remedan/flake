@@ -80,7 +80,7 @@
 
 ;; Make new frames larger by default (width/height in character cells).
 (add-to-list 'default-frame-alist '(width . 150))
-(add-to-list 'default-frame-alist '(height . 45))
+(add-to-list 'default-frame-alist '(height . 50))
 
 ;; Doom defaults to 'persistent, which saves cache to disk but that can get stale.
 ;; t will only keep files cached for the session.
