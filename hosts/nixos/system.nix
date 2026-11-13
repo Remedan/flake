@@ -8,7 +8,10 @@
     memorySize = 8192;
     cores = 4;
     diskSize = 16 * 1024;
-    qemu.options = [ "-vga virtio" ];
+    qemu.options = [
+      "-device virtio-vga-gl"
+      "-display gtk,gl=on"
+    ];
   };
 
   zramSwap.enable = true;
