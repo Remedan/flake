@@ -16,7 +16,6 @@ in
         enableCodex = false;
         enableGitHub = false;
       };
-      server.enable = true;
     };
   };
 }
