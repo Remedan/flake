@@ -248,3 +248,10 @@
                          default-directory
                          (file-remote-p default-directory))
                 (flycheck-mode -1)))))
+
+;; Fixes issues with special keys like ESC sometimes breaking in Kitty.
+(defvar evil-inhibit-esc)
+(defadvice! +kkp--inhibit-evil-esc-a (fn &rest args)
+  :around #'kkp--terminal-setup
+  (let ((evil-inhibit-esc t))
+    (apply fn args)))
