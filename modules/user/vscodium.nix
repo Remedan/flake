@@ -62,6 +62,7 @@ in
           "claudeCode.preferredLocation" = "panel";
           "claudeCode.hideOnboarding" = true;
           "editor.fontFamily" = "'JetBrains Mono', monospace";
+          "editor.fontSize" = 16;
           "editor.minimap.enabled" = true;
           "git.confirmSync" = false;
           "gitlab.duoAgentPlatform.enabled" = false;
