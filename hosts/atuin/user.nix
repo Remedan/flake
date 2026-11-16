@@ -1,16 +1,20 @@
-{ pkgs, lib, ... }:
-let
-  inherit (lib) mkForce;
-in
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   home = {
     username = "vojta";
     homeDirectory = "/home/vojta";
   };
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "claude-code"
-    "vscode-extension-anthropic-claude-code"
-  ];
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "claude-code"
+      "vscode-extension-anthropic-claude-code"
+    ];
   home.packages = with pkgs; [
     # Core
     bat
@@ -51,17 +55,19 @@ in
     krew
     kubectl
   ];
-  programs.fish.shellInit = ''
-    source /home/vojta/.config/op/plugins.sh
+  programs.fish.interactiveShellInit = ''
+    if test -f ${config.xdg.configHome}/op/plugins.sh
+      source ${config.xdg.configHome}/op/plugins.sh
+    end
   '';
   programs.git.settings.gpg.ssh.program = "/opt/1Password/op-ssh-sign";
-  programs.ssh.settings."*".IdentityAgent = mkForce "~/.1password/agent.sock";
   home.sessionPath = [ "$HOME/.cargo/bin" ];
   # Overlay to remove nixpkgs' noto fonts, as the package breaks KDE title bars on Fedora
   nixpkgs.overlays = [ (final: prev: { noto-fonts = prev.emptyDirectory; }) ];
   userModules = {
     genericLinux.enable = true;
     plasma.enable = true;
+    ssh.agentSocket = "${config.home.homeDirectory}/.1password/agent.sock";
 
     packages.enable = false;
     flatpak.enable = false;

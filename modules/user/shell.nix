@@ -8,7 +8,11 @@ in
   };
   config =
     let
-      editor = if config.userModules.emacs.service then "emacsclient -nw" else "emacs -nw";
+      editor =
+        if config.userModules.emacs.enable && config.userModules.emacs.service then
+          "emacsclient -nw"
+        else
+          "emacs -nw";
     in
     lib.mkIf cfg.enable {
       home = {

@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   inherit (lib) mkOption mkEnableOption types;
   cfg = config.systemModules.nvidia;
@@ -7,7 +12,10 @@ in
   options.systemModules.nvidia = {
     enable = mkEnableOption "Nvidia";
     driverVersion = mkOption {
-      type = types.enum [ "stable" "beta" ];
+      type = types.enum [
+        "stable"
+        "beta"
+      ];
       default = "stable";
     };
   };

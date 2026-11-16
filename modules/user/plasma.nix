@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.userModules.plasma;
   plasma-claude-usage = pkgs.stdenvNoCC.mkDerivation rec {
@@ -30,7 +35,10 @@ in
       input.keyboard = {
         layouts = [
           { layout = "us"; }
-          { layout = "cz"; variant = "qwerty"; }
+          {
+            layout = "cz";
+            variant = "qwerty";
+          }
         ];
         options = [ "caps:escape_shifted_capslock" ];
       };
@@ -66,13 +74,16 @@ in
       };
     };
 
-    home.packages = with pkgs; [
-      rc2nix
-      kdePackages.kcalc
-      kdePackages.kmines
-      kdePackages.kpat
-      kdePackages.filelight
-    ] ++ lib.optional config.userModules.claude.code.enable plasma-claude-usage;
+    home.packages =
+      with pkgs;
+      [
+        rc2nix
+        kdePackages.kcalc
+        kdePackages.kmines
+        kdePackages.kpat
+        kdePackages.filelight
+      ]
+      ++ lib.optional config.userModules.claude.code.enable plasma-claude-usage;
 
     # Map mouse forward/back buttons to switch desktops via solaar
     xdg.configFile."solaar/rules.yaml".text = ''

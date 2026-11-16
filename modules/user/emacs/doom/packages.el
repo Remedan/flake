@@ -55,9 +55,6 @@
 
 (package! nyan-mode)
 
-(package! ghostel)
-(package! evil-ghostel)
-
 (package! shell-maker)
 (package! acp)
 (package! agent-shell)

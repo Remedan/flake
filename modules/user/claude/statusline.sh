@@ -1,12 +1,10 @@
-#!/usr/bin/env bash
-
 # Read all of stdin into a variable
 input=$(cat)
 
 # Extract fields with jq, "// empty" yields nothing when a field is absent
-DIR=$(echo "$input" | jq -r '.workspace.current_dir')
-MODEL=$(echo "$input" | jq -r '.model.display_name')
-EFFORT=$(echo "$input" | jq -r '.effort.level')
+DIR=$(echo "$input" | jq -r '.workspace.current_dir // empty')
+MODEL=$(echo "$input" | jq -r '.model.display_name // empty')
+EFFORT=$(echo "$input" | jq -r '.effort.level // empty')
 
 # Usage percentages; each is absent until the session's first API response,
 # and the rate limits are only ever present for Pro and Max subscriptions
@@ -44,7 +42,7 @@ pct_bar() {
 
 # "Label: value" with a faint label and a coloured value
 field() {
-  printf '%s%s: %s%s%s' "$DIM" "$1" "$3" "$2" "$RESET"
+  printf '%s%s: \033[22m%s%s%s' "$DIM" "$1" "$3" "$2" "$RESET"
 }
 
 # A usage field, holding its place with a faint dash until the data arrives so

@@ -7,7 +7,6 @@
   ./fonts.nix
   ./generic-linux.nix
   ./git.nix
-  ./gtk.nix
   ./kitty.nix
   ./music.nix
   ./nextcloud.nix

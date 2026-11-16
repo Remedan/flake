@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   inherit (lib) mkDefault;
 in
@@ -26,7 +31,6 @@ in
       plasma.enable = mkDefault true;
       emacs.enable = mkDefault true;
       fonts.enable = mkDefault true;
-      gtk.enable = mkDefault true;
       ssh.enable = mkDefault true;
       git.enable = mkDefault true;
       virt-manager.enable = mkDefault true;

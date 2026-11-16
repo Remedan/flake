@@ -99,34 +99,6 @@
         (pop-to-buffer buf))
     (funcall start-fn)))
 
-(use-package! ghostel
-  :defer t
-  :init
-  ;; :ttl nil keeps the buffer (and terminal session) alive when the popup closes.
-  (set-popup-rule! "^\\*ghostel" :size 0.3 :vslot -4 :select t :quit nil :ttl nil)
-  (defun +ghostel/toggle ()
-    "Toggle a ghostel popup window."
-    (interactive)
-    (+toggle-buffer-with-mode 'ghostel-mode #'ghostel))
-  (defun +ghostel/here ()
-    "Open ghostel in the current window."
-    (interactive)
-    (switch-to-buffer
-     (or (+buffer-with-mode 'ghostel-mode)
-         (save-window-excursion
-           (ghostel)
-           (current-buffer)))))
-  (map! :leader
-        :desc "Terminal" "o t" #'+ghostel/toggle
-        :desc "Terminal here" "o T" #'+ghostel/here)
-  (add-hook! 'ghostel-mode-hook
-    (defun +ghostel-hide-trailing-whitespace-h ()
-      (setq-local show-trailing-whitespace nil))))
-
-(use-package! evil-ghostel
-  :after (ghostel evil)
-  :hook (ghostel-mode . evil-ghostel-mode))
-
 ;; Use the ISO date format in org-journal, rename the journal directory.
 (use-package! org-journal
   :defer t
@@ -220,10 +192,7 @@
         (with-selected-window win
           (recenter (- -1 scroll-margin)))))))
 
-(add-hook! 'diff-mode-hook
-  (defun +agent-shell-diff-emacs-state-h ()
-    (when (string-match-p "\\*agent-shell-diff\\*" (buffer-name))
-      (evil-emacs-state))))
+(set-evil-initial-state! 'agent-shell-diff-mode 'emacs)
 
 ;; TRAMP over ssh hangs because our ~/.ssh/config forces TERM=xterm-256color
 ;; for `Host *` (a kitty workaround; see modules/user/ssh.nix). TRAMP needs

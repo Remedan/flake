@@ -1,6 +1,20 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.userModules.claude;
+  # Adapted from https://code.claude.com/docs/en/statusline#context-window-usage
+  statusline = pkgs.writeShellApplication {
+    name = "claude-statusline";
+    runtimeInputs = [
+      pkgs.jq
+      pkgs.coreutils
+    ];
+    text = builtins.readFile ./statusline.sh;
+  };
 in
 {
   options.userModules.claude = {
@@ -17,7 +31,7 @@ in
           permissions.defaultMode = "auto";
           statusLine = {
             type = "command";
-            command = "~/.claude/statusline.sh";
+            command = lib.getExe statusline;
           };
           tui = "fullscreen";
           editorMode = "vim";
@@ -25,8 +39,6 @@ in
       };
       home.shellAliases.c = "claude";
       home.shellAliases.cs = "cd ~/sandbox && claude";
-      # Adapted from https://code.claude.com/docs/en/statusline#context-window-usage
-      home.file.".claude/statusline.sh".source = ./statusline.sh;
       home.file.".claude/skills/emacs".source = ./skills/emacs;
     })
     (lib.mkIf cfg.desktop.enable {

@@ -1,6 +1,16 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
-  inherit (lib) mkOption mkEnableOption types mkIf;
+  inherit (lib)
+    mkOption
+    mkEnableOption
+    types
+    mkIf
+    ;
   cfg = config.userModules.dev;
 in
 {
@@ -20,12 +30,15 @@ in
   };
   config = lib.mkMerge [
     (mkIf cfg.python.enable {
-      home.packages = with pkgs; [
-        poetry
-        python3
-        ruff
-        uv
-      ] ++ map lib.lowPrio cfg.python.extraPackages;
+      home.packages =
+        with pkgs;
+        [
+          poetry
+          python3
+          ruff
+          uv
+        ]
+        ++ map lib.lowPrio cfg.python.extraPackages;
     })
     (mkIf cfg.rust.enable {
       home = {

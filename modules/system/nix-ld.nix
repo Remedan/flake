@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.systemModules.nix-ld;
 in
@@ -10,7 +15,7 @@ in
   config = lib.mkIf cfg.enable {
     programs.nix-ld = {
       enable = true;
-      libraries = pkgs.appimageTools.defaultFhsEnvArgs.targetPkgs pkgs;
+      libraries = with pkgs.appimageTools.defaultFhsEnvArgs; targetPkgs pkgs ++ multiPkgs pkgs;
     };
   };
 }

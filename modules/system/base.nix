@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   inherit (lib) mkOption types;
   cfg = config.systemModules.base;
@@ -12,7 +17,12 @@ in
       type = types.str;
     };
     cpuType = mkOption {
-      type = with types; nullOr (enum [ "amd" "intel" ]);
+      type =
+        with types;
+        nullOr (enum [
+          "amd"
+          "intel"
+        ]);
       default = null;
     };
   };
@@ -137,8 +147,14 @@ in
 
     nix = {
       settings = {
-        trusted-users = [ "root" cfg.userName ];
-        experimental-features = [ "nix-command" "flakes" ];
+        trusted-users = [
+          "root"
+          cfg.userName
+        ];
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
         substituters = [
           "https://nix-community.cachix.org"
           "https://cache.nixos-cuda.org"
@@ -181,40 +197,42 @@ in
     programs.appimage.enable = true;
 
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-      # System packages
-      "1password"
-      "1password-cli"
-      "canon-cups-ufr2"
-      "cnijfilter2"
-      "discord"
-      "discord-unwrapped"
-      "lsfg-vk" # Bottles dependency
-      "steam"
-      "steam-unwrapped"
-      "uhk-agent"
-      "uhk-udev-rules"
-      # Nvidia
-      "cccl"
-      "cuda_compat"
-      "cuda_crt"
-      "cuda_cudart"
-      "cuda_nvcc"
-      "cuda_nvrtc"
-      "libcublas"
-      "libnvvm"
-      "nvidia-settings"
-      "nvidia-x11"
-      # Home Manager packages (useGlobalPkgs = true)
-      "claude-code"
-      "claude-desktop"
-      "jetbrains-toolbox"
-      "spotify"
-      "terraform"
-      "trezor-suite"
-      "vscode-extension-anthropic-claude-code"
-      "winbox"
-    ];
+    nixpkgs.config.allowUnfreePredicate =
+      pkg:
+      builtins.elem (lib.getName pkg) [
+        # System packages
+        "1password"
+        "1password-cli"
+        "canon-cups-ufr2"
+        "cnijfilter2"
+        "discord"
+        "discord-unwrapped"
+        "lsfg-vk" # Bottles dependency
+        "steam"
+        "steam-unwrapped"
+        "uhk-agent"
+        "uhk-udev-rules"
+        # Nvidia
+        "cccl"
+        "cuda_compat"
+        "cuda_crt"
+        "cuda_cudart"
+        "cuda_nvcc"
+        "cuda_nvrtc"
+        "libcublas"
+        "libnvvm"
+        "nvidia-settings"
+        "nvidia-x11"
+        # Home Manager packages (useGlobalPkgs = true)
+        "claude-code"
+        "claude-desktop"
+        "jetbrains-toolbox"
+        "spotify"
+        "terraform"
+        "trezor-suite"
+        "vscode-extension-anthropic-claude-code"
+        "winbox"
+      ];
 
     # Flatpak
     services.flatpak.enable = true;
@@ -238,7 +256,10 @@ in
       storageDriver = lib.mkDefault "btrfs";
       autoPrune = {
         enable = true;
-        flags = [ "--all" "--volumes" ];
+        flags = [
+          "--all"
+          "--volumes"
+        ];
       };
     };
     virtualisation.libvirtd = {

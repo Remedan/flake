@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   inherit (lib) mkOption mkEnableOption types;
   cfg = config.userModules.git;
@@ -67,7 +72,7 @@ in
         };
         rerere = {
           enabled = true;
-          autocomplete = true;
+          autoUpdate = true;
         };
         gpg = {
           format = "ssh";

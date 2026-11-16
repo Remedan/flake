@@ -1,6 +1,16 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
-  inherit (lib) mkOption mkEnableOption types mkIf;
+  inherit (lib)
+    mkOption
+    mkEnableOption
+    types
+    mkIf
+    ;
   cfg = config.userModules.emacs;
 in
 {
@@ -8,7 +18,7 @@ in
     enable = mkEnableOption "Emacs";
     service = mkOption {
       type = types.bool;
-      default = pkgs.stdenv.isLinux;
+      default = pkgs.stdenv.hostPlatform.isLinux;
     };
   };
   config = mkIf cfg.enable {
@@ -45,8 +55,8 @@ in
       client.enable = cfg.service;
     };
     # Emacs needs to have kitty's terminfo in env if it is started in terminal
-    systemd.user.services.emacs.Service.Environment = mkIf
-      (cfg.service && config.userModules.kitty.enable)
-      [ "TERMINFO=${pkgs.kitty}/lib/kitty/terminfo" ];
+    systemd.user.services = mkIf (cfg.service && config.userModules.kitty.enable) {
+      emacs.Service.Environment = [ "TERMINFO=${pkgs.kitty}/lib/kitty/terminfo" ];
+    };
   };
 }

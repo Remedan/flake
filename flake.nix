@@ -1,5 +1,5 @@
 {
-  description = "Home Manager configuration";
+  description = "Personal NixOS flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -19,17 +19,18 @@
     claude-desktop.url = "github:aaddrick/claude-desktop-debian";
   };
 
-  outputs = inputs:
+  outputs =
+    inputs:
     let
       system = "x86_64-linux";
       extraPkgs = final: prev: {
         rc2nix = inputs.plasma-manager.packages.${system}.rc2nix;
       };
       # Overlay for packages that are broken in unstable
-      stablePkgs = final: prev: inputs.nixpkgs.lib.getAttrs
-        [
-        ]
-        inputs.nixpkgs-stable.legacyPackages.${system};
+      stablePkgs =
+        final: prev:
+        inputs.nixpkgs.lib.getAttrs [
+        ] inputs.nixpkgs-stable.legacyPackages.${system};
       overlays = [
         inputs.nix-vscode-extensions.overlays.default
         inputs.claude-desktop.overlays.default
@@ -40,25 +41,36 @@
         inherit system;
         inherit overlays;
       };
-      mkNixosSystem = { name, extraSystemModules ? [ ], extraHomeModules ? [ ] }: inputs.nixpkgs.lib.nixosSystem {
-        inherit system;
-        modules = [
-          { nixpkgs.overlays = overlays; }
-          ./hosts/${name}/system.nix
-          inputs.home-manager.nixosModules.home-manager
-          {
-            home-manager.users.remedan = import ./hosts/${name}/user.nix;
-            home-manager.sharedModules = import ./modules/user ++ [
-              inputs.nix-flatpak.homeManagerModules.nix-flatpak
-              inputs.plasma-manager.homeModules.plasma-manager
-              (import ./secrets/common.nix)
-            ] ++ extraHomeModules;
-          }
-        ] ++ import ./modules/system ++ extraSystemModules;
-      };
+      mkNixosSystem =
+        {
+          name,
+          extraSystemModules ? [ ],
+          extraHomeModules ? [ ],
+        }:
+        inputs.nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            { nixpkgs.overlays = overlays; }
+            ./hosts/${name}/system.nix
+            inputs.home-manager.nixosModules.home-manager
+            {
+              home-manager.users.remedan = import ./hosts/${name}/user.nix;
+              home-manager.sharedModules =
+                import ./modules/user
+                ++ [
+                  inputs.nix-flatpak.homeManagerModules.nix-flatpak
+                  inputs.plasma-manager.homeModules.plasma-manager
+                  (import ./secrets/common.nix)
+                ]
+                ++ extraHomeModules;
+            }
+          ]
+          ++ import ./modules/system
+          ++ extraSystemModules;
+        };
     in
     {
-      formatter.${system} = pkgs.nixpkgs-fmt;
+      formatter.${system} = pkgs.nixfmt-tree;
 
       nixosConfigurations = {
         weatherwax = mkNixosSystem {
@@ -83,7 +95,8 @@
           (import ./secrets/atuin.nix)
           inputs.nix-flatpak.homeManagerModules.nix-flatpak
           inputs.plasma-manager.homeModules.plasma-manager
-        ] ++ import ./modules/user;
+        ]
+        ++ import ./modules/user;
       };
     };
 }

@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.userModules.vscodium;
 in
@@ -86,7 +91,8 @@ in
           {
             "key" = "ctrl+w";
             "command" = "-workbench.action.terminal.killEditor";
-            "when" = "terminalEditorFocus && terminalFocus && terminalHasBeenCreated || terminalEditorFocus && terminalFocus && terminalProcessSupported";
+            "when" =
+              "terminalEditorFocus && terminalFocus && terminalHasBeenCreated || terminalEditorFocus && terminalFocus && terminalProcessSupported";
           }
         ];
       };
