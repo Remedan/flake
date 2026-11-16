@@ -78,6 +78,7 @@ in
           "vs-kubernetes" = {
             "vs-kubernetes.crd-code-completion" = "enabled";
           };
+          "workbench.colorTheme" = "Monokai Dimmed";
           "workbench.experimental.modernUI" = true;
         };
         keybindings = [
