@@ -11,13 +11,6 @@ in
 {
   options.systemModules.nvidia = {
     enable = mkEnableOption "Nvidia";
-    driverVersion = mkOption {
-      type = types.enum [
-        "stable"
-        "beta"
-      ];
-      default = "stable";
-    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -28,9 +21,7 @@ in
     services.xserver.videoDrivers = [ "nvidia" ];
     hardware.nvidia = {
       open = true;
-      modesetting.enable = true;
       powerManagement.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.${cfg.driverVersion};
     };
     # Enable cuda for packages that benefit from it
     services.ollama.package = pkgs.ollama-cuda;

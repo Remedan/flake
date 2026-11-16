@@ -66,7 +66,6 @@
   nixpkgs.overlays = [ (final: prev: { noto-fonts = prev.emptyDirectory; }) ];
   userModules = {
     genericLinux.enable = true;
-    plasma.enable = true;
     ssh.agentSocket = "${config.home.homeDirectory}/.1password/agent.sock";
 
     packages.enable = false;

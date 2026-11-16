@@ -37,8 +37,5 @@ in
         app_id = "dock";
       };
     };
-    home.shellAliases = {
-      s = "kitten ssh";
-    };
   };
 }

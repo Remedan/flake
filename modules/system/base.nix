@@ -53,7 +53,6 @@ in
     networking = {
       hostName = cfg.hostName;
       networkmanager.enable = true;
-      firewall.enable = true;
     };
 
     time.timeZone = "Europe/Prague";
@@ -117,9 +116,6 @@ in
       settings.PasswordAuthentication = lib.mkDefault false;
     };
 
-    # Automatic SSD trim
-    services.fstrim.enable = true;
-
     # User setup
     users.groups.${cfg.userName} = {
       gid = 1000;
@@ -130,14 +126,14 @@ in
       isNormalUser = true;
       description = "Vojtěch Balák";
       extraGroups = [
-        "networkmanager"
-        "wheel"
         "docker"
+        "gamemode"
         "libvirtd"
-        "scanner"
         "lp"
+        "networkmanager"
+        "scanner"
         "video"
-        "adbusers"
+        "wheel"
       ];
       shell = pkgs.fish;
       openssh.authorizedKeys.keys = [
@@ -244,7 +240,6 @@ in
     # Udev
     services.udev.packages = with pkgs; [
       yubikey-personalization
-      uhk-udev-rules
     ];
 
     # Smart Card / Yubikey support
@@ -294,6 +289,9 @@ in
 
     # Better tty
     services.kmscon.enable = true;
+
+    # UHK
+    hardware.keyboard.uhk.enable = true;
 
     # Home Manager
     home-manager = {
